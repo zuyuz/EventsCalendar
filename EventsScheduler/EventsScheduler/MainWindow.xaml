@@ -1,0 +1,35 @@
+﻿<Window x:Name="MainWindow1" x:Class="EventsScheduler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="484" Width="546" ResizeMode="NoResize">
+    <Grid x:Name="Grid" RenderTransformOrigin="0.99,0.477">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="251*"/>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="266*"/>
+        </Grid.ColumnDefinitions>
+        <Menu HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="538" Grid.ColumnSpan="3">
+            <MenuItem x:Name="FileItem" Header="File" Height="42" StaysOpenOnClick="True" FontSize="14">
+                <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
+                <MenuItem x:Name="GuestItem" Header="I'm a quest!"/>
+                <MenuItem x:Name="SignUpItem" Header="Sign up" StaysOpenOnClick="True" Click="SignUpItem_Click"/>
+                <MenuItem x:Name="SignOutItem" Header="Sign out" StaysOpenOnClick="True" Click="SignOutItem_Click" Visibility="Collapsed"/>
+                <MenuItem x:Name="ExitItem" Header="Exit" StaysOpenOnClick="True" Click="ExitItem_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="AboutItem" Header="About" StaysOpenOnClick="True" FontSize="14"/>
+        </Menu>
+        <Label x:Name="GreetingLabel" Content="Greeting" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="538" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF0A0A0A"/>
+        <ScrollBar x:Name="MainWindowScrollBar" HorizontalAlignment="Left" Height="426" Margin="246,26,0,0" VerticalAlignment="Top" ValueChanged="ScrollBar_ValueChanged" Grid.Column="2" Width="20"/>
+        <Grid.Background>
+            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/Calendar.png"/>
+        </Grid.Background>
+    </Grid>
+</Window>
