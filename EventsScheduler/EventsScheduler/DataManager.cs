@@ -32,10 +32,9 @@ namespace EventsScheduler
             }
         }
 
-        public static void OutputGreeting(MainWindow window)
+        public static string OutputGreeting()
         {
-            window.GreetingLabel.Visibility = Visibility.Visible;
-            window.GreetingLabel.Content = "Hello " + staticLogin + "!";
+            return ("Hello " + staticLogin + "!");
         }
     }
 }

@@ -35,12 +35,12 @@ namespace EventsScheduler
             SignOutItem.Visibility = Visibility.Visible;
             SignInItem.Visibility = Visibility.Collapsed;
             SignUpItem.Visibility = Visibility.Collapsed;
-            GuestItem.Visibility = Visibility.Collapsed;
             GreetingLabel.Visibility = Visibility.Visible;
 
             if (DataManager.StaticLogin != null)
             {
-                DataManager.OutputGreeting(this);
+                GreetingLabel.Visibility = Visibility.Visible;
+                GreetingLabel.Content = DataManager.OutputGreeting();
             }
         }
 
@@ -56,7 +56,6 @@ namespace EventsScheduler
             SignOutItem.Visibility = Visibility.Collapsed;
             SignInItem.Visibility = Visibility.Visible;
             SignUpItem.Visibility = Visibility.Visible;
-            GuestItem.Visibility = Visibility.Visible;
             GreetingLabel.Visibility = Visibility.Collapsed;
         }
 

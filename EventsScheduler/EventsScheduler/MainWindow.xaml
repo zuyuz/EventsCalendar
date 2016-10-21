@@ -19,7 +19,6 @@
         <Menu HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="538" Grid.ColumnSpan="3">
             <MenuItem x:Name="FileItem" Header="File" Height="42" StaysOpenOnClick="True" FontSize="14">
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
-                <MenuItem x:Name="GuestItem" Header="I'm a quest!"/>
                 <MenuItem x:Name="SignUpItem" Header="Sign up" StaysOpenOnClick="True" Click="SignUpItem_Click"/>
                 <MenuItem x:Name="SignOutItem" Header="Sign out" StaysOpenOnClick="True" Click="SignOutItem_Click" Visibility="Collapsed"/>
                 <MenuItem x:Name="ExitItem" Header="Exit" StaysOpenOnClick="True" Click="ExitItem_Click"/>
