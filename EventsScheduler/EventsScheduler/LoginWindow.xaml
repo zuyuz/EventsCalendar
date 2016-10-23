@@ -3,19 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="LoginWindow" Height="482" Width="542" ResizeMode="NoResize">
     <Grid>
-        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="199" Height="158" Margin="171,146,166,150">
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="229" Height="212" Margin="158,113,149,129">
             <StackPanel.Background>
                 <RadialGradientBrush>
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FFE8DCDC"/>
-                    <GradientStop Color="#FF857E7E" Offset="0.391"/>
-                    <GradientStop Color="#FF857E7E" Offset="0.391"/>
-                    <GradientStop Color="#FF0D0C0C" Offset="0.935"/>
+                    <GradientStop Color="#FF343434" Offset="0.439"/>
+                    <GradientStop Color="#FF0F0F0F" Offset="0.896"/>
                 </RadialGradientBrush>
             </StackPanel.Background>
-            <TextBox x:Name="LoginTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" ToolTip="Login" FontSize="14" Margin="18,10" Height="22"/>
-            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" ToolTip="Login" FontSize="14" Margin="0, 25"/>
-            <Button x:Name="SignInButton" Content="Sign in" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" Click="SignInButton_Click" FontSize="14" Margin="18,0"/>
+            <TextBox x:Name="LoginTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" ToolTip="Login" FontSize="14" Margin="33,30"/>
+            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="163" ToolTip="Password" FontSize="14" Margin="33,9" Height="25"/>
+            <Button x:Name="SignInButton" Content="Sign in" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" Click="SignInButton_Click" FontSize="14" Margin="33,27"/>
         </StackPanel>
         <Grid.Background>
             <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/funny-numbers-2015-calendar_23-2147496311.jpg"/>

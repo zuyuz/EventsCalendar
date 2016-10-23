@@ -32,13 +32,11 @@ namespace EventsScheduler
             loginWindow.Owner = this;
             loginWindow.ShowDialog();
 
-            SignOutItem.Visibility = Visibility.Visible;
-            SignInItem.Visibility = Visibility.Collapsed;
-            SignUpItem.Visibility = Visibility.Collapsed;
-            GreetingLabel.Visibility = Visibility.Visible;
-
             if (DataManager.StaticLogin != null)
             {
+                SignOutItem.Visibility = Visibility.Visible;
+                SignInItem.Visibility = Visibility.Collapsed;
+                SignUpItem.Visibility = Visibility.Collapsed;
                 GreetingLabel.Visibility = Visibility.Visible;
                 GreetingLabel.Content = DataManager.OutputGreeting();
             }

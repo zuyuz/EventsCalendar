@@ -3,15 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="RegisterWindow" Height="482" Width="542" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="210,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" FontSize="14"/>
-        <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="29" Margin="210,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontSize="14"/>
-        <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="29" Margin="210,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontSize="14"/>
-        <Label x:Name="LoginLabel" Content="Login" HorizontalAlignment="Left" Margin="210,200,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFF3F1F1" FontWeight="Bold"/>
-        <Label x:Name="EmailLabel" Content="Email" HorizontalAlignment="Left" Margin="210,120,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="#FFFDFBFB"/>
-        <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Left" Margin="210,281,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFFBFBFB" FontWeight="Bold"/>
-        <Button x:Name="SignUpButton" Content="Sign up" HorizontalAlignment="Left" Margin="210,372,0,0" VerticalAlignment="Top" Width="142" Height="30" FontSize="14" Click="SignUpButton_Click"/>
-        <Label x:Name="NameLabel" Content="Name" HorizontalAlignment="Left" Margin="210,38,0,0" VerticalAlignment="Top" FontSize="14" Width="53" Foreground="#FFFBFBFB" FontWeight="Bold"/>
-        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="210,310,0,0" VerticalAlignment="Top" Width="142" Height="29" FontSize="14"/>
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" Height="292" Margin="146,46,150,116">
+            <StackPanel.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF343434" Offset="0.439"/>
+                    <GradientStop Color="#FF0F0F0F" Offset="0.896"/>
+                </RadialGradientBrush>
+            </StackPanel.Background>
+            <Label x:Name="NameLabel" Content="Name"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" FontSize="14" FontWeight="Bold" Foreground="White"/>
+            <TextBox x:Name="NameTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" ToolTip="Name" FontSize="14"/>
+            <Label x:Name="EmailLabel" Content="Email" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" FontSize="14" FontWeight="Bold" Foreground="White"/>
+            <TextBox x:Name="EmailTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" ToolTip="Email" FontSize="14"/>
+            <Label x:Name="LoginLabel" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" FontSize="14" FontWeight="Bold" Foreground="White"/>
+            <TextBox x:Name="LoginTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" ToolTip="Login" FontSize="14"/>
+            <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" FontSize="14" FontWeight="Bold" Foreground="White"/>
+            <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" FontSize="14"/>
+            <Button x:Name="SignUpButton" Content="Sign up" HorizontalAlignment="Center" VerticalAlignment="Center" Width="163" FontSize="14" Margin="0, 27" Click="SignUpButton_Click"/>
+        </StackPanel>
         <Grid.Background>
             <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/funny-numbers-2015-calendar_23-2147496311.jpg"/>
         </Grid.Background>
