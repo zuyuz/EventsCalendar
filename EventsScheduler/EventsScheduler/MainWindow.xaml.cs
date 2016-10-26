@@ -23,7 +23,30 @@ namespace EventsScheduler
         public MainWindow()
         {
             InitializeComponent();
-            GreetingLabel.Visibility = Visibility.Collapsed;
+            using (var db = new AppDbContext())
+            {
+                /*
+                db.Users.Add(new User { Name = "Daun", UserRole = User.Role.Admin });
+                for (int i = 0; i < 10; ++i)
+                    db.Users.Add(new User
+                    {
+                        Name = $"user{i}",
+                        UserRole = User.Role.User
+                    });
+                */
+
+                db.SaveChanges();
+                /*
+                StringBuilder s = new StringBuilder();
+                foreach (var item in db.Users)
+                {
+                    s.AppendLine($"{item.Id} {item.Name} {item.UserRole}");
+                }
+                txtTest.Text = s.ToString();
+                */
+            }
+            
+
         }
 
         private void SignInItem_Click(object sender, RoutedEventArgs e)
@@ -37,8 +60,6 @@ namespace EventsScheduler
                 SignOutItem.Visibility = Visibility.Visible;
                 SignInItem.Visibility = Visibility.Collapsed;
                 SignUpItem.Visibility = Visibility.Collapsed;
-                GreetingLabel.Visibility = Visibility.Visible;
-                GreetingLabel.Content = DataManager.OutputGreeting();
             }
         }
 
@@ -54,7 +75,6 @@ namespace EventsScheduler
             SignOutItem.Visibility = Visibility.Collapsed;
             SignInItem.Visibility = Visibility.Visible;
             SignUpItem.Visibility = Visibility.Visible;
-            GreetingLabel.Visibility = Visibility.Collapsed;
         }
 
         private void ExitItem_Click(object sender, RoutedEventArgs e)

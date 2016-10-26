@@ -11,11 +11,6 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="251*"/>
-            <ColumnDefinition Width="17*"/>
-            <ColumnDefinition Width="266*"/>
-        </Grid.ColumnDefinitions>
         <Menu HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="538" Grid.ColumnSpan="3">
             <MenuItem x:Name="FileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
@@ -25,8 +20,7 @@
             </MenuItem>
             <MenuItem x:Name="AboutItem" Header="About" StaysOpenOnClick="True" FontSize="14"/>
         </Menu>
-        <Label x:Name="GreetingLabel" Content="Greeting" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="538" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF0A0A0A"/>
-        <ScrollBar x:Name="MainWindowScrollBar" HorizontalAlignment="Left" Height="426" Margin="246,26,0,0" VerticalAlignment="Top" ValueChanged="ScrollBar_ValueChanged" Grid.Column="2" Width="20"/>
+        <TextBox x:Name="txtTest" HorizontalAlignment="Left" Height="280" Margin="80,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="380"/>
         <Grid.Background>
             <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/Calendar.png"/>
         </Grid.Background>
