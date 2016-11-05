@@ -72,6 +72,9 @@
     </ApplicationDefinition>
     <Compile Include="AppDbContext.cs" />
     <Compile Include="DataManager.cs" />
+    <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\201610261400482_init.cs" />
     <Compile Include="Migrations\201610261400482_init.Designer.cs">
       <DependentUpon>201610261400482_init.cs</DependentUpon>
