@@ -79,6 +79,7 @@
     <Compile Include="IEventRepository.cs" />
     <Compile Include="ILocationRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="LocationRepository.cs" />
     <Compile Include="Migrations\201611051347548_Initial.cs" />
@@ -94,6 +95,7 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository.cs" />
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="UserRepository.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>

@@ -24,6 +24,30 @@ namespace EventsScheduler
         public MainWindow()
         {
             InitializeComponent();
+
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                var info = dataManager.Users.GetUserAdmin();
+                txtTest.Text = info.Name;
+
+                bool exist = dataManager.Users
+                    .Find(u => u.Name == "Vasya")
+                    .ToList().Count > 0;
+                if (!exist)
+                {
+                    var newUser = new User()
+                    {
+                        Login = "pazan",
+                        Password = "password",
+                        Name = "Vasya",
+                        UserRole = User.Role.User
+                    };
+
+                    dataManager.Users.Add(newUser);
+                }
+
+                dataManager.Complete();
+            }
         }
 
         private void SignInItem_Click(object sender, RoutedEventArgs e)
