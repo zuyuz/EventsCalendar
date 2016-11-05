@@ -20,9 +20,12 @@ namespace EventsScheduler
 
         public IEnumerable<Event> GetEventsInSpecificPeriod(DateTime fromTime, DateTime toTime)
         {
+            if (fromTime < toTime)
+                throw new ArgumentException("Bad arguments");
+
             return from ev in AppDbContext.Events
-                   where fromTime == ev.StartTime
-                      && fromTime == ev.EndTime
+                   where ev.StartTime < toTime 
+                      && ev.EndTime > fromTime
                    select ev;
         }
     }
