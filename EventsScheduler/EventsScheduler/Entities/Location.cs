@@ -10,6 +10,7 @@ namespace EventsScheduler.Entities
         public int Id { get; set; }
         
         [Required]
+        [MaxLength(255)]
         public string Address { get; set; }
     }
 }

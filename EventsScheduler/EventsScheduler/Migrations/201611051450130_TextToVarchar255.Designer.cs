@@ -7,13 +7,13 @@ namespace EventsScheduler.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class init1 : IMigrationMetadata
+    public sealed partial class TextToVarchar255 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TextToVarchar255));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610261404564_init1"; }
+            get { return "201611051450130_TextToVarchar255"; }
         }
         
         string IMigrationMetadata.Source

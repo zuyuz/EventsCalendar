@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventsScheduler.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,30 +24,6 @@ namespace EventsScheduler
         public MainWindow()
         {
             InitializeComponent();
-            using (var db = new AppDbContext())
-            {
-                /*
-                db.Users.Add(new User { Name = "Daun", UserRole = User.Role.Admin });
-                for (int i = 0; i < 10; ++i)
-                    db.Users.Add(new User
-                    {
-                        Name = $"user{i}",
-                        UserRole = User.Role.User
-                    });
-                */
-
-                db.SaveChanges();
-                /*
-                StringBuilder s = new StringBuilder();
-                foreach (var item in db.Users)
-                {
-                    s.AppendLine($"{item.Id} {item.Name} {item.UserRole}");
-                }
-                txtTest.Text = s.ToString();
-                */
-            }
-            
-
         }
 
         private void SignInItem_Click(object sender, RoutedEventArgs e)
