@@ -75,7 +75,12 @@
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="EventRepository.cs" />
+    <Compile Include="IEventRepository.cs" />
+    <Compile Include="ILocationRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
+    <Compile Include="LocationRepository.cs" />
     <Compile Include="Migrations\201611051347548_Initial.cs" />
     <Compile Include="Migrations\201611051347548_Initial.Designer.cs">
       <DependentUpon>201611051347548_Initial.cs</DependentUpon>
@@ -89,6 +94,7 @@
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository.cs" />
+    <Compile Include="UserRepository.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
