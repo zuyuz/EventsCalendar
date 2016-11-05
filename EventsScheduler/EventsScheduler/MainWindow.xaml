@@ -16,13 +16,14 @@
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
                 <MenuItem x:Name="SignUpItem" Header="Sign up" StaysOpenOnClick="True" Click="SignUpItem_Click"/>
                 <MenuItem x:Name="SignOutItem" Header="Sign out" StaysOpenOnClick="True" Click="SignOutItem_Click" Visibility="Collapsed"/>
+                <Separator Margin="0" />
                 <MenuItem x:Name="ExitItem" Header="Exit" StaysOpenOnClick="True" Click="ExitItem_Click"/>
             </MenuItem>
             <MenuItem x:Name="AboutItem" Header="About" StaysOpenOnClick="True" FontSize="14"/>
         </Menu>
         <TextBox x:Name="txtTest" HorizontalAlignment="Left" Height="280" Margin="80,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="380"/>
         <Grid.Background>
-            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/Calendar.png"/>
+            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/main_window_calendar_bg.png"/>
         </Grid.Background>
     </Grid>
 </Window>

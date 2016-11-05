@@ -156,7 +156,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Calendar.png" />
+    <Resource Include="Resources\main_window_calendar_bg.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ftf-1021-cal-growblack.png" />
@@ -168,7 +168,7 @@
     <Resource Include="Resources\RHVL67EHVJIMGORJOHO0G2I93july-15-calendar-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\funny-numbers-2015-calendar_23-2147496311.jpg" />
+    <Resource Include="Resources\register_window_calendar_bg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

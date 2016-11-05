@@ -24,8 +24,8 @@ namespace EventsScheduler
                 throw new ArgumentException("Bad arguments");
 
             return from ev in AppDbContext.Events
-                   where ev.StartTime < toTime 
-                      && ev.EndTime > fromTime
+                   where ev.StartTime >= fromTime 
+                      && ev.EndTime <= toTime
                    select ev;
         }
     }
