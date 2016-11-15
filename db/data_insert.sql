@@ -1,11 +1,9 @@
-INSERT INTO "EventsScheduler"
-("Name", "Login", "Password", "UserRole")
-VALUES ('Admin', 'admin', 'admin', 0);
+INSERT INTO "Users"
+VALUES (0, 'Admin', 'admin', 'admin', 0);
 
-INSERT INTO "EventsScheduler"
-("Name", "Login", "Password", "UserRole")
-VALUES ('Guest', 'guest', 'guest', 2);
+INSERT INTO "Users"
+VALUES (1, 'Guest', 'guest', 'guest', 2);
 
-INSERT INTO "EventsScheduler"
+INSERT INTO "Users"
 ("Name", "Login", "Password", "UserRole")
 VALUES ('User', 'user', 'user', 1);
