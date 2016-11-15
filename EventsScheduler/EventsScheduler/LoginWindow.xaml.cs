@@ -30,6 +30,10 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Invalid login or password!");
             }
+            else
+            {
+                MessageBox.Show("Hello there");
+            }
 
             Close();
         }

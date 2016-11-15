@@ -1,0 +1,377 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6rc1
+-- Dumped by pg_dump version 9.6rc1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: EventsScheduler; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "EventsScheduler" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Ukrainian_Ukraine.1251' LC_CTYPE = 'Ukrainian_Ukraine.1251';
+
+
+ALTER DATABASE "EventsScheduler" OWNER TO postgres;
+
+\connect "EventsScheduler"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: Events; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Events" (
+    "Id" integer NOT NULL,
+    "Name" character varying(255) DEFAULT ''::character varying NOT NULL,
+    "StartTime" timestamp without time zone DEFAULT '0001-01-01 00:00:00'::timestamp without time zone NOT NULL,
+    "EndTime" timestamp without time zone DEFAULT '0001-01-01 00:00:00'::timestamp without time zone NOT NULL,
+    "FreePlaces" integer DEFAULT 0 NOT NULL,
+    "Creator_Id" integer DEFAULT 0 NOT NULL,
+    "EventLocation_Id" integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE "Events" OWNER TO postgres;
+
+--
+-- Name: Events_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Events_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Events_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Events_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Events_Id_seq" OWNED BY "Events"."Id";
+
+
+--
+-- Name: Locations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Locations" (
+    "Id" integer NOT NULL,
+    "Address" character varying(255) DEFAULT ''::character varying NOT NULL
+);
+
+
+ALTER TABLE "Locations" OWNER TO postgres;
+
+--
+-- Name: Locations_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Locations_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Locations_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Locations_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Locations_Id_seq" OWNED BY "Locations"."Id";
+
+
+--
+-- Name: Users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Users" (
+    "Id" integer NOT NULL,
+    "Name" character varying(255) DEFAULT ''::character varying NOT NULL,
+    "Login" character varying(255) DEFAULT ''::character varying NOT NULL,
+    "Password" character varying(255) DEFAULT ''::character varying NOT NULL,
+    "UserRole" integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE "Users" OWNER TO postgres;
+
+--
+-- Name: UsersEvents; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "UsersEvents" (
+    "UserId" integer DEFAULT 0 NOT NULL,
+    "CourseId" integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE "UsersEvents" OWNER TO postgres;
+
+--
+-- Name: Users_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Users_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Users_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Users_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Users_Id_seq" OWNED BY "Users"."Id";
+
+
+--
+-- Name: __MigrationHistory; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "__MigrationHistory" (
+    "MigrationId" character varying(150) DEFAULT ''::character varying NOT NULL,
+    "ContextKey" character varying(300) DEFAULT ''::character varying NOT NULL,
+    "Model" bytea DEFAULT '\x'::bytea NOT NULL,
+    "ProductVersion" character varying(32) DEFAULT ''::character varying NOT NULL
+);
+
+
+ALTER TABLE "__MigrationHistory" OWNER TO postgres;
+
+--
+-- Name: Events Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Events" ALTER COLUMN "Id" SET DEFAULT nextval('"Events_Id_seq"'::regclass);
+
+
+--
+-- Name: Locations Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Locations" ALTER COLUMN "Id" SET DEFAULT nextval('"Locations_Id_seq"'::regclass);
+
+
+--
+-- Name: Users Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Users" ALTER COLUMN "Id" SET DEFAULT nextval('"Users_Id_seq"'::regclass);
+
+
+--
+-- Data for Name: Events; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Events" ("Id", "Name", "StartTime", "EndTime", "FreePlaces", "Creator_Id", "EventLocation_Id") FROM stdin;
+\.
+
+
+--
+-- Name: Events_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Events_Id_seq"', 1, false);
+
+
+--
+-- Data for Name: Locations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Locations" ("Id", "Address") FROM stdin;
+\.
+
+
+--
+-- Name: Locations_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Locations_Id_seq"', 1, false);
+
+
+--
+-- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Users" ("Id", "Name", "Login", "Password", "UserRole") FROM stdin;
+1	admin	admin	admin	0
+\.
+
+
+--
+-- Data for Name: UsersEvents; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "UsersEvents" ("UserId", "CourseId") FROM stdin;
+\.
+
+
+--
+-- Name: Users_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Users_Id_seq"', 1, true);
+
+
+--
+-- Data for Name: __MigrationHistory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "__MigrationHistory" ("MigrationId", "ContextKey", "Model", "ProductVersion") FROM stdin;
+201611151800110_Initial	EventsScheduler.Migrations.Configuration	\\x1f8b0800000000000400ed5bdd6edb3614be1fb0771074b9a55192aec31ad82d32272982e50f755aecae60a4634798446924952518f664bbd823ed1546ea87a2484a9664d7c98aa2405153e4c7f3cfc3c3d37ffffe67f2f6218e9c7b20344cf0d4dddfdd731dc07e128478397533b678f193fbf6cdb7df4c4e82f8c1f958cd7b29e6f195984edd3bc6d243cfa3fe1dc488eec6a14f129a2cd8ae9fc41e0a12ef606fefb5b7bfef0187703996e34cde67988531e43ff8cf59827d485986a28b24808896e3fccb3c47752e510c34453e4cdd937bc08c8af1208b80b8ce5114224ec61ca285eb208c13861827f2f003853923095ece533e80a29bc714f8bc058a2894c41fd6d3fbf2b17720f8f0ea8515949f5196c40301f75f9682f1f4e5a3c4eb4ac171d19d7011b347c1752ebe5272aea3ef74388b889865887637470881eee61f761cedfb8eb4076e36e2cf8e33cb2296119862c81841d18e739ddd46a1ff0b3cde24bf019ee22c8a54223999fc5b63800f5d932405c21edfc3a224fd2c701dafb9ced317ca65ca9a82af33cc5e1eb8ce25df1cdd46206d4091c19c2504de0106821804d78831205860402e4563776d2ff177b51b373aee3cae73811ece012fd9ddd43d78f5ca754ec30708aa9192820f38e4bec61731928185c2ee5de70c117613d65b1f73e28bdf03914e70b0119c5302701d713fa5ab64afe15ca2fb7099ab42439c11405c37aef31ea2fc3bbd0bd3c2db0bb3fc24679c92247e9f449521571f3ecd938cf882b7c4f6f5069125b0fe04e5abcf13bff4d256b2b4793a718dcf2d2436e70c25f49a1b47e88729e23e6ba593074852ec4155fa9461b9674597faada259a567e2d551a7331609a051a1482cfc1a899e5b243a4f9621defeb6d788d23f12126c7f676186c225e4cec2a18a81f5421d0495478e0f78bad7dac3e1a080373a82e891cd165d4645903ab48e8822d5e2af91a47dafa3202040e9e7f6ad768567b1a2eec2b7cee869849675163ff200f95ea06d4cf79cdd0048f4c8c5a3eaa629dc0b886f8148d1c6225c7e4451c67fed199a684c2e8eca72ee7ef7dc77195026271f98922e64aa0e1e519af8612e3d65c3caab9b7bf134d1e970f13a1216345f70e98529971757efd4fdce20dd0e27a3570d57de5c3af1269ec2493783cd30da46534b12398caa0e440b9f36b1edbb7a28b9c2c7100103e7c82f2e9a33447d1498219deb3b584742cd14b69bab967c766d69d9736005b73e07b62eb72270cd12cc50886be74ed3e35b31080fb6db36d77119a468191f750108d03930edf8ada36453a086fc9acb8549d95617a6b66271255b1b402d770d441156930c992928332c8984aeb6eea0234996ac7afd002a5352002afa74736872d4835b2d4f33f9ed88403d62d04a927b449d55721bcdb576ef6de3bd23b6f48e2e63e4608f270a9262f3bd2552e5303214d4054cafa86056954eafa5d439b94069ca1308a5f4598e38f3a2ee397b311f5e138c0b0ccfa796d2a0a456eec40d042d41fbcab7e6949e8684b263c4d02d1289d72c888d698dc0d71258aaad1ab1cdd459156baae9e2dfea1225afcba3a086504bef943314f319396fa01b8cb92e2f39a308114be23d4ba22cc66dc97bd7eae252aeae2f46fa2328a53e154619ee8f258b7d2a921cec8fa316fb542875dc449b789a6a74ed7b86fa8dd3b9694cbd4cad0872eb585a7e620e3734fbb2e76a67652147852887fa63d4551915a61eed8f54575954a47af4d958577d68ac63616dc7610f2b6b5ffa792c4d1607540839b87dbd348f66d3f565eed9eddf729acd8bad478648302c56aba5a9a63c7ae94420d9f492df50aab5c3082a339e9104cd383b148691a4e74d83f5a765d32b72817a62af23df222e6bc23c566025ca06b468bd0b8c24eb4934a8dd0c56e9519bbe9e36ad69ff48e135b136a659eb1de799e8d7b8e0e853647c97171ded4233292f17ab1b3c8cdb4631c57538edf761206e1a97e992fe1ed5231708870ba0ac28cabaaf777fd4da429e4f8b86476910592e63469fc6d65f1442cc7e28ddacebd160e04399fa1e798f887f8788f986b06edf83e825a20cc5e9ba8d0fe381ccce87429e0361d4f3428531ca8867388087a9fb67beeed039fbf553bd74c7b922dc2b0e9d3de7afe11231a2db403a748001d40c6b1ff8ea21ad988df7f84d81eaafed9bc2d5dfd27b38cef057e22fc458b447d9712a18e466a34fa3d6cb8b39b5ed5ab15aded526036354b16cad3859d33c344e970b3710173bdf6ead29a4f618b2c5d74763eff2fd4a23a0e73321b71d20c28750c47352ca08cf4a8d9ac23509b168808b548ecd8cba8fe70b7e249cfee51852c0c2a30deefa6cd67ec997b89a6057313fe0a1775569407f3f59fda4fb45594c7f2d6ed564baca305b309a7efd134f195f7adaeaff2cae0c3090ceb2d3d64ca45f0349b324b4b5b68e2734988e42ff131a4d9fbad6c64d47ab2bc900a7bf38eb8ab334c9b4f7c81415a4a99be6dd7b5ccd45a6d5d2efa1831771cbc02e865ba0ed3d153a726de406ba52f8b4efd0dea760a3bf4d40cab72e4e5a24b5aad547766a7476fcb4d43a8da3447f545dd5e9d3e0597bc559bfdbc5d64bd4cda6bdea6c0621a3c8fdb48c6eac9969b8167b0ae4b9f42ae9eedc7c99fdbc8c0e6841322bf13c7e2bff21931f21345cd610e2bf6762f01b915bce39c38ba43a4a348aaa29dac5f902180a78583f222c5c209ff1cf3e509a3797978dcb27f12d0467f82a6369c638cb10df468d7e75711075ed9ff75935699e5ca579b8dc040b9ccc90b30057f8e72c8c0249f7a9e5eade02214eb8b22e2474c9447d68f928912e13dc13a8149f3c986f204e230e46aff01cddc318dab85f9ec312f98fd5fb4a3bc86a4534c53e390ed192a0989618f57afe93db70103fbcf90f79c170ef973c0000	6.1.3-40302
+\.
+
+
+--
+-- Name: Events PK_public.Events; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Events"
+    ADD CONSTRAINT "PK_public.Events" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Locations PK_public.Locations; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Locations"
+    ADD CONSTRAINT "PK_public.Locations" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Users PK_public.Users; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Users"
+    ADD CONSTRAINT "PK_public.Users" PRIMARY KEY ("Id");
+
+
+--
+-- Name: UsersEvents PK_public.UsersEvents; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "UsersEvents"
+    ADD CONSTRAINT "PK_public.UsersEvents" PRIMARY KEY ("UserId", "CourseId");
+
+
+--
+-- Name: __MigrationHistory PK_public.__MigrationHistory; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "__MigrationHistory"
+    ADD CONSTRAINT "PK_public.__MigrationHistory" PRIMARY KEY ("MigrationId", "ContextKey");
+
+
+--
+-- Name: Events_IX_Creator_Id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "Events_IX_Creator_Id" ON "Events" USING btree ("Creator_Id");
+
+
+--
+-- Name: Events_IX_EventLocation_Id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "Events_IX_EventLocation_Id" ON "Events" USING btree ("EventLocation_Id");
+
+
+--
+-- Name: UsersEvents_IX_CourseId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "UsersEvents_IX_CourseId" ON "UsersEvents" USING btree ("CourseId");
+
+
+--
+-- Name: UsersEvents_IX_UserId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "UsersEvents_IX_UserId" ON "UsersEvents" USING btree ("UserId");
+
+
+--
+-- Name: Events FK_public.Events_public.Locations_EventLocation_Id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Events"
+    ADD CONSTRAINT "FK_public.Events_public.Locations_EventLocation_Id" FOREIGN KEY ("EventLocation_Id") REFERENCES "Locations"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: Events FK_public.Events_public.Users_Creator_Id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Events"
+    ADD CONSTRAINT "FK_public.Events_public.Users_Creator_Id" FOREIGN KEY ("Creator_Id") REFERENCES "Users"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: UsersEvents FK_public.UsersEvents_public.Events_CourseId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "UsersEvents"
+    ADD CONSTRAINT "FK_public.UsersEvents_public.Events_CourseId" FOREIGN KEY ("CourseId") REFERENCES "Events"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: UsersEvents FK_public.UsersEvents_public.Users_UserId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "UsersEvents"
+    ADD CONSTRAINT "FK_public.UsersEvents_public.Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users"("Id") ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
