@@ -82,13 +82,9 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="LocationRepository.cs" />
-    <Compile Include="Migrations\201611051347548_Initial.cs" />
-    <Compile Include="Migrations\201611051347548_Initial.Designer.cs">
-      <DependentUpon>201611051347548_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611051450130_TextToVarchar255.cs" />
-    <Compile Include="Migrations\201611051450130_TextToVarchar255.Designer.cs">
-      <DependentUpon>201611051450130_TextToVarchar255.cs</DependentUpon>
+    <Compile Include="Migrations\201611151735574_Initial.cs" />
+    <Compile Include="Migrations\201611151735574_Initial.Designer.cs">
+      <DependentUpon>201611151735574_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RegisterWindow.xaml.cs">
@@ -135,11 +131,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201611051347548_Initial.resx">
-      <DependentUpon>201611051347548_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051450130_TextToVarchar255.resx">
-      <DependentUpon>201611051450130_TextToVarchar255.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611151735574_Initial.resx">
+      <DependentUpon>201611151735574_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -170,6 +163,7 @@
   <ItemGroup>
     <Resource Include="Resources\register_window_calendar_bg.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

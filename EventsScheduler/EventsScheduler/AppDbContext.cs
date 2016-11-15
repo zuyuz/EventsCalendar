@@ -24,6 +24,17 @@ namespace EventsScheduler
         {
             // PostgreSQL uses the public schema by default - not dbo.
             modelBuilder.HasDefaultSchema("public");
+
+            modelBuilder.Entity<User>()
+                        .HasMany(u => u.Events)
+                        .WithMany(ev => ev.Participants)
+                        .Map(uEv =>
+                        {
+                            uEv.MapLeftKey("UserId");
+                            uEv.MapRightKey("CourseId");
+                            uEv.ToTable("UsersEvents");
+                        });
+
             base.OnModelCreating(modelBuilder);
         }
     }
