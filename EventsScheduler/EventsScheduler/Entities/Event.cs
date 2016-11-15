@@ -27,6 +27,10 @@ namespace EventsScheduler.Entities
         [Required]
         public Location EventLocation { get; set; }
 
+
+        [Required]
+        public virtual User Creator { get; set; }
+
         public virtual List<User> Participants { get; set; }
     }
 }

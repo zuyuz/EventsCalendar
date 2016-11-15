@@ -25,6 +25,8 @@ namespace EventsScheduler.Entities
         [Required]
         public Role UserRole { get; set; }
 
+        public virtual List<Event> CreatedEvents { get; set; }
+
         public virtual List<Event> Events { get; set; }
 
         public enum Role

@@ -35,6 +35,10 @@ namespace EventsScheduler
                             uEv.ToTable("UsersEvents");
                         });
 
+            modelBuilder.Entity<Event>()
+                        .HasRequired(ev => ev.Creator)
+                        .WithMany(u => u.CreatedEvents);
+
             base.OnModelCreating(modelBuilder);
         }
     }
