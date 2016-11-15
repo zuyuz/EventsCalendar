@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Location.cs" />

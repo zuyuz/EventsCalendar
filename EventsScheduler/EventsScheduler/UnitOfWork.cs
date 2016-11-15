@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventsScheduler
 {
-    class UnitOfWork : IUnitOfWork
+    class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly AppDbContext context;
         private IEventRepository events;

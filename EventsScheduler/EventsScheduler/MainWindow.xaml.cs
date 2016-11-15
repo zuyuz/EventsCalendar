@@ -25,6 +25,7 @@ namespace EventsScheduler
         {
             InitializeComponent();
 
+            /*
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
                 var info = dataManager.Users.GetUserAdmin();
@@ -48,6 +49,7 @@ namespace EventsScheduler
 
                 dataManager.Complete();
             }
+            */
         }
 
         private void SignInItem_Click(object sender, RoutedEventArgs e)

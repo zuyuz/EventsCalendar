@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventsScheduler
 {
-    interface IUnitOfWork : IDisposable
+    interface IUnitOfWork
     {
         IEventRepository Events { get; }
         ILocationRepository Locations { get; }

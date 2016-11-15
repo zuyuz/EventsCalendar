@@ -26,13 +26,7 @@ namespace EventsScheduler
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = this.Owner as MainWindow;
-
-            if (LoginTextBox.Text != "" && PasswordBox.Password != "")
-            {
-                DataManager.StaticLogin = LoginTextBox.Text;
-            }
-            else
+            if (!App.Controller.SignIn(LoginTextBox.Text, PasswordBox.Password))
             {
                 MessageBox.Show("Invalid login or password!");
             }

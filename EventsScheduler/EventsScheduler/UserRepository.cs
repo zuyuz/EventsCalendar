@@ -1,5 +1,6 @@
 ﻿using EventsScheduler.Entities;
 using System.Linq;
+using System;
 
 namespace EventsScheduler
 {
@@ -23,7 +24,8 @@ namespace EventsScheduler
 
         public User GetUserByLogin(string login)
         {
-            return AppDbContext.Users.First(u => u.Login == login);
+            var result = AppDbContext.Users.Where(u => u.Login == login).ToArray();
+            return result.Length > 0 ? result[0] : null;
         }
 
         public User GetUserGuest()
