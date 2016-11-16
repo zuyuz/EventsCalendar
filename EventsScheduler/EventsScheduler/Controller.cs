@@ -46,6 +46,16 @@ namespace EventsScheduler
             return false;
         }
 
+        public void SignOut()
+        {
+            this.currentUser = null;
+        }
+
+        public string GetCurrentUserLogin()
+        {
+            return this.currentUser.Login;
+        }
+
         /// <summary>
         /// Getter for singleton instance of <c>Controller</c> type
         /// </summary>

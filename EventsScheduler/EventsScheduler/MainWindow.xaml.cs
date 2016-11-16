@@ -64,7 +64,7 @@ namespace EventsScheduler
             this.SignOutItem.Visibility = Visibility.Visible;
             this.SignInItem.Visibility = Visibility.Collapsed;
             this.SignUpItem.Visibility = Visibility.Collapsed;
-            this.GreetingLabel.Content = "Hello user!";
+            this.GreetingLabel.Content = "Hello " + App.Controller.GetCurrentUserLogin() + "!";
             this.GreetingLabel.Visibility = Visibility.Visible;
             this.CreateEventItem.Visibility = Visibility.Visible;
             this.ViewMyEventsItem.Visibility = Visibility.Visible;
@@ -79,9 +79,11 @@ namespace EventsScheduler
 
         private void SignOutItem_Click(object sender, RoutedEventArgs e)
         {
-            SignOutItem.Visibility = Visibility.Collapsed;
-            SignInItem.Visibility = Visibility.Visible;
-            SignUpItem.Visibility = Visibility.Visible;
+            this.SignOutItem.Visibility = Visibility.Collapsed;
+            this.SignInItem.Visibility = Visibility.Visible;
+            this.SignUpItem.Visibility = Visibility.Visible;
+            this.GreetingLabel.Visibility = Visibility.Collapsed;
+            this.GreetingLabel.Content = "";
         }
 
         private void ExitItem_Click(object sender, RoutedEventArgs e)
