@@ -25,6 +25,9 @@
             </MenuItem>
             <MenuItem x:Name="AboutItem" Header="About" StaysOpenOnClick="True" FontSize="14"/>
         </Menu>
+        <Viewbox>
+            <Calendar x:Name="CalendarBox" HorizontalAlignment="Center" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+        </Viewbox>
         <Label x:Name="GreetingLabel" Content="Greet!" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Width="540" Height="26" FontSize="14" Foreground="#FFF3F3F3" FontWeight="Bold"/>
         <Grid.Background>
             <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/main_window_calendar_bg.png"/>

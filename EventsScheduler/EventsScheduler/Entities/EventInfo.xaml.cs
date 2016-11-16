@@ -23,5 +23,11 @@ namespace EventsScheduler.Entities
         {
             InitializeComponent();
         }
+
+        public EventInfo(DateTime choosedDate)
+        {
+            InitializeComponent();
+            
+        }
     }
 }

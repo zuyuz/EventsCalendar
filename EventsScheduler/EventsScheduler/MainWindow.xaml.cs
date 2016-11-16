@@ -93,5 +93,21 @@ namespace EventsScheduler
         {
 
         }
+
+        private void Calendar_SelectedDatesChanged(object sender,
+        SelectionChangedEventArgs e)
+        {
+            // ... Get reference.
+            var calendar = sender as Calendar;
+
+            // ... See if a date is selected.
+            if (calendar.SelectedDate.HasValue)
+            {
+                // ... Display SelectedDate in Title.
+                DateTime date = calendar.SelectedDate.Value;
+                EventInfo eventWindow = new EventInfo(date);
+                eventWindow.ShowDialog();
+            }
+        }
     }
 }

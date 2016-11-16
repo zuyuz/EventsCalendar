@@ -74,6 +74,9 @@
     <Compile Include="Controller.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\EventInfo.xaml.cs">
+      <DependentUpon>EventInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="EventRepository.cs" />
@@ -94,6 +97,10 @@
     <Compile Include="Repository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="UserRepository.cs" />
+    <Page Include="Entities\EventInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
