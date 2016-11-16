@@ -17,24 +17,6 @@ namespace EventsScheduler
 {
     public static class DataManager
     {
-        private static string staticLogin;
-
-        public static string StaticLogin
-        {
-            get
-            {
-                return staticLogin;
-            }
-
-            set
-            {
-                staticLogin = value;
-            }
-        }
-
-        public static string OutputGreeting()
-        {
-            return ("Hello " + staticLogin + "!");
-        }
+      
     }
 }

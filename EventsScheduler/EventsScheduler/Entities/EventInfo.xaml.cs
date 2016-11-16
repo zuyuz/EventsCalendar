@@ -12,26 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EventsScheduler
+namespace EventsScheduler.Entities
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for EventInfo.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class EventInfo : Window
     {
-        public LoginWindow()
+        public EventInfo()
         {
             InitializeComponent();
-        }
-
-        private void SignInButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!App.Controller.SignIn(LoginTextBox.Text, PasswordBox.Password))
-            {
-                MessageBox.Show("Invalid login or password!");
-            }
-
-            Close();
         }
     }
 }

@@ -30,7 +30,7 @@
             </Button>
         </StackPanel>
         <Grid.Background>
-            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/register_window_calendar.jpg"/>
+            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
     </Grid>
 </Window>
