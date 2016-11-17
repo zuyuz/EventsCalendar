@@ -30,7 +30,14 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Invalid login or password!");
             }
+            else 
+            {
+                Close();
+            }
+        }
 
+        private void BackItem_Click(object sender, RoutedEventArgs e)
+        {
             Close();
         }
     }

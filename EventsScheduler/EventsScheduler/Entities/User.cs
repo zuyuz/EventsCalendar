@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EventsScheduler.Entities
 {
     [Table("Users")]
-    class User
+    public class User
     {
         [Key]
         public int Id { get; set; }

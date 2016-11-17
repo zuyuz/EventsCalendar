@@ -21,6 +21,14 @@ namespace EventsScheduler
         {
         }
 
+        public User CurrentUser 
+        {
+            get
+            {
+                return this.currentUser;
+            }
+        }
+
         /// <summary>
         /// Identificates, authentificates and authorizates user 
         /// by login and password

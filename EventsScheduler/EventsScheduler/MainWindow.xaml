@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Events Scheduler" Height="484" Width="546" ResizeMode="NoResize" FontSize="9" Foreground="Black">
-    <Grid x:Name="Grid" RenderTransformOrigin="0.99,0.477">
+    <Grid x:Name="Grid" RenderTransformOrigin="0.99,0.477" Margin="0,0,0,285">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -11,7 +11,7 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Menu HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="538" Grid.ColumnSpan="3">
+        <Menu x:Name="EventsShedulerMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
             <MenuItem x:Name="FileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
                 <MenuItem x:Name="ViewEventsItem" Header="View all events"/>
@@ -25,9 +25,10 @@
             </MenuItem>
             <MenuItem x:Name="AboutItem" Header="About" StaysOpenOnClick="True" FontSize="14"/>
         </Menu>
-        <Label x:Name="GreetingLabel" Content="Greet!" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Width="540" Height="26" FontSize="14" Foreground="#FFF3F3F3" FontWeight="Bold"/>
+        <Label x:Name="GreetingLabel" HorizontalAlignment="Left" Margin="0,159,0,-30" VerticalAlignment="Top" Width="540" Height="42" FontSize="14" Foreground="#FFF3F3F3" FontWeight="Bold" Background="Black"/>
+        <Image HorizontalAlignment="Left" Margin="0,183,0,-280" Width="540" Source="Resources/Conference-image.jpg" Stretch="Fill"/>
         <Grid.Background>
-            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/main_window_calendar_bg.png"/>
+            <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/Event-Organiser.jpg"/>
         </Grid.Background>
     </Grid>
 </Window>

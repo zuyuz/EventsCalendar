@@ -24,7 +24,6 @@ namespace EventsScheduler
         public MainWindow()
         {
             InitializeComponent();
-            this.GreetingLabel.Visibility = Visibility.Collapsed;
             this.ViewMyEventsItem.Visibility = Visibility.Collapsed;
             this.CreateEventItem.Visibility = Visibility.Collapsed;
             this.AddLocationItem.Visibility = Visibility.Collapsed;
@@ -61,13 +60,15 @@ namespace EventsScheduler
             loginWindow.Owner = this;
             loginWindow.ShowDialog();
 
-            this.SignOutItem.Visibility = Visibility.Visible;
-            this.SignInItem.Visibility = Visibility.Collapsed;
-            this.SignUpItem.Visibility = Visibility.Collapsed;
-            this.GreetingLabel.Content = "Hello " + App.Controller.GetCurrentUserLogin() + "!";
-            this.GreetingLabel.Visibility = Visibility.Visible;
-            this.CreateEventItem.Visibility = Visibility.Visible;
-            this.ViewMyEventsItem.Visibility = Visibility.Visible;
+            if (App.Controller.CurrentUser != null)
+            {
+                this.SignOutItem.Visibility = Visibility.Visible;
+                this.SignInItem.Visibility = Visibility.Collapsed;
+                this.SignUpItem.Visibility = Visibility.Collapsed;
+                this.GreetingLabel.Content = "Hello " + App.Controller.GetCurrentUserLogin() + "!";
+                this.CreateEventItem.Visibility = Visibility.Visible;
+                this.ViewMyEventsItem.Visibility = Visibility.Visible;
+            }
         }
 
         private void SignUpItem_Click(object sender, RoutedEventArgs e)
@@ -82,8 +83,8 @@ namespace EventsScheduler
             this.SignOutItem.Visibility = Visibility.Collapsed;
             this.SignInItem.Visibility = Visibility.Visible;
             this.SignUpItem.Visibility = Visibility.Visible;
-            this.GreetingLabel.Visibility = Visibility.Collapsed;
             this.GreetingLabel.Content = "";
+            App.Controller.SignOut();
         }
 
         private void ExitItem_Click(object sender, RoutedEventArgs e)
