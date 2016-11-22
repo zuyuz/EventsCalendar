@@ -97,45 +97,12 @@ namespace EventsScheduler
 
         }
 
-        private void Calendar_SelectedDatesChanged(object sender,
-        SelectionChangedEventArgs e)
+        
+
+        private void ShowCalendarItem_Click(object sender, RoutedEventArgs e)
         {
-            // ... Get reference.
-            var calendar = sender as Calendar;
-
-            // ... See if a date is selected.
-            if (calendar.SelectedDate.HasValue)
-            {
-                AppDbContext db = new AppDbContext();
-                UnitOfWork uOW = new UnitOfWork(db);
-
-                var allEvents = uOW.Events.GetAll().ToList();
-
-                var currentEvent = allEvents.Select(aE =>
-                {
-                    if(aE.StartTime.DayOfYear == calendar.SelectedDate.Value.DayOfYear)
-                    {
-                        return aE;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                    
-                }).ToList();
-
-                if (currentEvent.Count == 0)
-                {
-                    MessageBox.Show("No events for this day!");
-                }
-                else
-                {
-                    DateTime date = calendar.SelectedDate.Value;
-                    EventInfo eventWindow = new EventInfo(currentEvent.Last(), date);
-                    eventWindow.ShowDialog();
-                }
-                
-            }
+            CalendarWindow cw = new CalendarWindow();
+            cw.ShowDialog();
         }
     }
 }
