@@ -44,9 +44,28 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Invalid password!");
             }
-			
 
-            Close();
+			var result = Controller.Instance.RegisterUser(
+				EmailTextBox.Text,
+				NameTextBox.Text,
+				LoginTextBox.Text,
+				PasswordBox.Password);
+
+			if (result)
+			{
+				MessageBox.Show(
+					"Registered successfully!", 
+					"Registration Completed", 
+					MessageBoxButton.OK);
+				Close();
+			}
+			else
+			{
+				MessageBox.Show(
+					"Login is already registered!", 
+					"Registration Failed", 
+					MessageBoxButton.OK);
+			}
         }
 
         private void BackItem_Click(object sender, RoutedEventArgs e)
