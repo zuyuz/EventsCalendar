@@ -106,10 +106,25 @@ namespace EventsScheduler
             // ... See if a date is selected.
             if (calendar.SelectedDate.HasValue)
             {
-                // ... Display SelectedDate in Title.
-                DateTime date = calendar.SelectedDate.Value;
-                EventInfo eventWindow = new EventInfo(date);
-                eventWindow.ShowDialog();
+                AppDbContext db = new AppDbContext();
+                var allEvents = db.Events.ToList();
+
+                var currentEvent = allEvents.Find(aE =>
+                {
+                    return (aE.StartTime.DayOfYear == calendar.SelectedDate.Value.DayOfYear);
+                });
+
+                if (currentEvent == null)
+                {
+                    MessageBox.Show("No events for this day!");
+                }
+                else
+                {
+                    DateTime date = calendar.SelectedDate.Value;
+                    EventInfo eventWindow = new EventInfo(date);
+                    eventWindow.ShowDialog();
+                }
+                
             }
         }
     }

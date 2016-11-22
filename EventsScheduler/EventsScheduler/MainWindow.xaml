@@ -27,8 +27,8 @@
         </Menu>
         <Label x:Name="GreetingLabel" HorizontalAlignment="Left" Margin="0,159,0,-30" VerticalAlignment="Top" Width="540" Height="42" FontSize="14" Foreground="#FFF3F3F3" FontWeight="Bold" Background="Black"/>
         <Image HorizontalAlignment="Left" Margin="0,183,0,-280" Width="540" Source="Resources/Conference-image.jpg" Stretch="Fill"/>
-        <Viewbox>
-            <Calendar x:Name="CalendarBox" HorizontalAlignment="Center" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+        <Viewbox HorizontalAlignment="Right">
+            <Calendar x:Name="CalendarBox" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
         </Viewbox>
         <Grid.Background>
             <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/Event-Organiser.jpg"/>
