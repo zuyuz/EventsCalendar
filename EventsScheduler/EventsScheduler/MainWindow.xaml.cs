@@ -107,21 +107,31 @@ namespace EventsScheduler
             if (calendar.SelectedDate.HasValue)
             {
                 AppDbContext db = new AppDbContext();
-                var allEvents = db.Events.ToList();
+                UnitOfWork uOW = new UnitOfWork(db);
 
-                var currentEvent = allEvents.Find(aE =>
+                var allEvents = uOW.Events.GetAll().ToList();
+
+                var currentEvent = allEvents.Select(aE =>
                 {
-                    return (aE.StartTime.DayOfYear == calendar.SelectedDate.Value.DayOfYear);
-                });
+                    if(aE.StartTime.DayOfYear == calendar.SelectedDate.Value.DayOfYear)
+                    {
+                        return aE;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    
+                }).ToList();
 
-                if (currentEvent == null)
+                if (currentEvent.Count == 0)
                 {
                     MessageBox.Show("No events for this day!");
                 }
                 else
                 {
                     DateTime date = calendar.SelectedDate.Value;
-                    EventInfo eventWindow = new EventInfo(date);
+                    EventInfo eventWindow = new EventInfo(currentEvent.Last(), date);
                     eventWindow.ShowDialog();
                 }
                 

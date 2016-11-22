@@ -19,43 +19,30 @@ namespace EventsScheduler
     /// </summary>
     public partial class EventInfo : Window
     {
-        AppDbContext db = new AppDbContext();
+
 
         public EventInfo()
         {
             InitializeComponent();
-            
+
         }
 
-        public EventInfo(DateTime choosedDate)
+        public EventInfo(Entities.Event choosedEvent, DateTime choosedDate)
         {
             InitializeComponent();
-
-            var allEvents = db.Events.ToList();
-
-            var currentEvent = allEvents.Find(e =>
-            {
-                return (e.StartTime.DayOfYear == choosedDate.DayOfYear);
-            });
-
-            if (currentEvent == null)
-            {
-                MessageBox.Show("No events for this day!");
-                
-            }
-            else
-            {
-                CreatorLabel.Content = currentEvent.Creator;
-                LocationTextBox.Text = currentEvent.EventLocation.Address;
-                
-                foreach(var i in currentEvent.Participants)
-                {
-                    ParticipantsListBox.Items.Add(i.Name);
-                }
-
-                DatePicker.DisplayDate = choosedDate;
-            }
             
+
+            CreatorLabel.Content = choosedEvent.Creator;
+            LocationTextBox.Text = choosedEvent.EventLocation.ToString();
+
+            foreach (var i in choosedEvent.Participants)
+            {
+                ParticipantsListBox.Items.Add(i.Name);
+            }
+
+            DatePicker.DisplayDate = choosedDate;
+
+
 
         }
     }
