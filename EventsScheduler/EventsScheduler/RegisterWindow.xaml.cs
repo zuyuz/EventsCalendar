@@ -44,6 +44,7 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Invalid password!");
             }
+			
 
             Close();
         }

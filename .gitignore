@@ -2,3 +2,5 @@
 **/obj
 **/.vs
 **/App.config
+/EventsScheduler/EventsScheduler/StyleCop.Cache
+/EventsScheduler/EventsScheduler/Settings.StyleCop
