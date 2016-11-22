@@ -19,7 +19,7 @@ namespace EventsScheduler
     /// </summary>
     public partial class EventInfo : Window
     {
-
+        Entities.Event chEvent;
 
         public EventInfo()
         {
@@ -43,7 +43,35 @@ namespace EventsScheduler
             DatePicker.DisplayDate = choosedDate;
 
 
+            chEvent = choosedEvent;
+        }
 
+        private void DeleteParticipantButton_Click(object sender, RoutedEventArgs e)
+        {
+            var itemForDelete = ParticipantsListBox.SelectedItem;
+
+            if (itemForDelete != null)
+            {
+                ParticipantsListBox.Items.Remove(itemForDelete);
+
+                Entities.User participForDel = new Entities.User();
+
+                foreach (var i in chEvent.Participants)
+                {
+                    if (i.Name == itemForDelete.ToString())
+                    {
+                        participForDel = i;
+                        break;
+                    }
+                }
+
+
+                chEvent.Participants.Remove(participForDel);
+            }
+            else
+            {
+                MessageBox.Show("No participants choosed");
+            }
         }
     }
 }

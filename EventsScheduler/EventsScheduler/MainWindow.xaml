@@ -17,6 +17,7 @@
                 <MenuItem x:Name="ViewEventsItem" Header="View all events"/>
                 <MenuItem x:Name="ViewMyEventsItem" Header="View my events"/>
                 <MenuItem x:Name="CreateEventItem" Header="Create new event"/>
+                <MenuItem x:Name="ShowCalendarItem" Header="Show calendar" Click="ShowCalendarItem_Click"/>
                 <MenuItem x:Name="AddLocationItem" Header="Add new location"/>
                 <MenuItem x:Name="SignUpItem" Header="Sign up" StaysOpenOnClick="True" Click="SignUpItem_Click"/>
                 <MenuItem x:Name="SignOutItem" Header="Sign out" StaysOpenOnClick="True" Click="SignOutItem_Click" Visibility="Collapsed"/>
@@ -27,9 +28,7 @@
         </Menu>
         <Label x:Name="GreetingLabel" HorizontalAlignment="Left" Margin="0,159,0,-30" VerticalAlignment="Top" Width="540" Height="42" FontSize="14" Foreground="#FFF3F3F3" FontWeight="Bold" Background="Black"/>
         <Image HorizontalAlignment="Left" Margin="0,183,0,-280" Width="540" Source="Resources/Conference-image.jpg" Stretch="Fill"/>
-        <Viewbox HorizontalAlignment="Right">
-            <Calendar x:Name="CalendarBox" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
-        </Viewbox>
+        
         <Grid.Background>
             <ImageBrush x:Name="MenuWindowImageBrush" ImageSource="Resources/Event-Organiser.jpg"/>
         </Grid.Background>

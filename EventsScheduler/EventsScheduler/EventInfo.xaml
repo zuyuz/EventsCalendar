@@ -11,7 +11,7 @@
         <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Height="23" Margin="98,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
         <Label x:Name="ParticipantsLabel" Content="Participants:" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,-2.457" Width="81"/>
         <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Height="283" Margin="96,163,0,0" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="DeleteParticipantButton" Content="Delete participant" HorizontalAlignment="Left" Margin="407,424,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="DeleteParticipantButton" Content="Delete participant" HorizontalAlignment="Left" Margin="407,424,0,0" VerticalAlignment="Top" Width="110" Click="DeleteParticipantButton_Click"/>
         <Button x:Name="DeleteEventButton" Content="Delete event" HorizontalAlignment="Left" Margin="407,80,0,0" VerticalAlignment="Top" Width="110"/>
 
     </Grid>
