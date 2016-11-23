@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <StackPanel HorizontalAlignment="Center" Height="359" Margin="96,10,120,10" VerticalAlignment="Center" Width="185">
+        <StackPanel HorizontalAlignment="Center" Height="359" Margin="106,10,110,10" VerticalAlignment="Center" Width="185">
             <StackPanel.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF0F0F0F" Offset="0.884"/>
@@ -26,7 +26,7 @@
             <Label x:Name="endLabel" Content="Time end" Margin="20,0" FontWeight="Bold" Foreground="White"/>
             <TextBox x:Name="endTextBox" Height="23" TextWrapping="Wrap" Margin="20,0"/>
             <Label x:Name="placesLabel" Content="Number of places" Margin="20,0" FontWeight="Bold" Foreground="White"/>
-            <TextBox x:Name="placesTextBox" Height="23" TextWrapping="Wrap" Margin="20,0" TextChanged="textBox_TextChanged"/>
+            <TextBox x:Name="placesTextBox" Height="23" TextWrapping="Wrap" Margin="20,0"/>
             <Label x:Name="locationLabel" Content="Location" Margin="20,0" FontWeight="Bold" Foreground="White"/>
             <ComboBox x:Name="locationComboBox" Margin="20,0"/>
             <Label x:Name="label" Content=""/>
