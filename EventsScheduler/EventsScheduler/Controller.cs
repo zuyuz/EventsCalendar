@@ -112,7 +112,7 @@ namespace EventsScheduler
         {
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
-                if(dataManager.Events.GetEventsInSpecificPeriod(begin, end) == null)
+                if(dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
                 {
                     Event createdEvent = new Event();
                     createdEvent.Name = name;
@@ -124,6 +124,28 @@ namespace EventsScheduler
                     createdEvent.Participants = participants;
 
                     dataManager.Events.Add(createdEvent);
+
+                    dataManager.Complete();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool AddLocation(string address)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                if (dataManager.Locations.GetLocationByAddress(address) == null)
+                {
+                    Location location = new Location();
+                    location.Address = address;
+
+                    dataManager.Locations.Add(location);
 
                     dataManager.Complete();
 

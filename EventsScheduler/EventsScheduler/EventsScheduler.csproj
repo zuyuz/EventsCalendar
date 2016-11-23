@@ -78,7 +78,6 @@
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controller.cs" />
-    <Compile Include="DataManager.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="EventInfo.xaml.cs">
       <DependentUpon>EventInfo.xaml</DependentUpon>
@@ -99,6 +98,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewEvent.xaml.cs">
       <DependentUpon>NewEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewLocation.xaml.cs">
+      <DependentUpon>NewLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
@@ -134,6 +136,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
