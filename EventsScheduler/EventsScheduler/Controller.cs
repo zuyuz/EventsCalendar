@@ -101,6 +101,41 @@ namespace EventsScheduler
 			}
 		}
 
+        public bool CreateEvent(
+            string name,
+            DateTime begin,
+            DateTime end,
+            int freePlaces,
+            Location location,
+            User creator,
+            List<User> participants)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                if(dataManager.Events.GetEventsInSpecificPeriod(begin, end) == null)
+                {
+                    Event createdEvent = new Event();
+                    createdEvent.Name = name;
+                    createdEvent.StartTime = begin;
+                    createdEvent.EndTime = end;
+                    createdEvent.FreePlaces = freePlaces;
+                    createdEvent.EventLocation = location;
+                    createdEvent.Creator = creator;
+                    createdEvent.Participants = participants;
+
+                    dataManager.Events.Add(createdEvent);
+
+                    dataManager.Complete();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         /// <summary>
         /// Getter for singleton instance of <c>Controller</c> type
         /// </summary>

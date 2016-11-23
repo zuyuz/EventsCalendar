@@ -53,6 +53,8 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Please, select location.");
             }
+
+            var result = Controller.Instance.
         }
     }
 }
