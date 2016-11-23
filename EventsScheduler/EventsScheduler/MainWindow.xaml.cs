@@ -85,6 +85,9 @@ namespace EventsScheduler
             this.SignUpItem.Visibility = Visibility.Visible;
             this.GreetingLabel.Content = "";
             App.Controller.SignOut();
+            this.ViewMyEventsItem.Visibility = Visibility.Collapsed;
+            this.CreateEventItem.Visibility = Visibility.Collapsed;
+            this.AddLocationItem.Visibility = Visibility.Collapsed;
         }
 
         private void ExitItem_Click(object sender, RoutedEventArgs e)
