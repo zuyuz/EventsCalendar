@@ -30,22 +30,42 @@ namespace EventsScheduler
 
             if (NameTextBox.Text == "")
             {
-                MessageBox.Show("Invalid name!");
+                MessageBox.Show("Please, input your name.");
             }
             else if (EmailTextBox.Text == "")
             {
-                MessageBox.Show("Invalid email!");
+                MessageBox.Show("Please, input your email.");
             }
             else if (LoginTextBox.Text == "")
             {
-                MessageBox.Show("Invalid login");
+                MessageBox.Show("Please, input your login.");
             }
             else if (PasswordBox.Password == "")
             {
-                MessageBox.Show("Invalid password!");
+                MessageBox.Show("Please, input your password.");
             }
 
-            Close();
+			var result = Controller.Instance.RegisterUser(
+				EmailTextBox.Text,
+				NameTextBox.Text,
+				LoginTextBox.Text,
+				PasswordBox.Password);
+
+			if (result)
+			{
+				MessageBox.Show(
+					"Registered successfully!", 
+					"Registration Completed", 
+					MessageBoxButton.OK);
+				Close();
+			}
+			else
+			{
+				MessageBox.Show(
+					"Login is already registered!", 
+					"Registration Failed", 
+					MessageBoxButton.OK);
+			}
         }
 
         private void BackItem_Click(object sender, RoutedEventArgs e)

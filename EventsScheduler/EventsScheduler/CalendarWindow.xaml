@@ -1,0 +1,14 @@
+﻿<Window x:Class="EventsScheduler.CalendarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventsScheduler"
+        mc:Ignorable="d"
+        Title="CalendarWindow" Height="300" Width="300">
+    <Grid>
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Calendar x:Name="CalendarBox" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+        </Viewbox>
+    </Grid>
+</Window>

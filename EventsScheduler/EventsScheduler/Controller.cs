@@ -64,6 +64,43 @@ namespace EventsScheduler
             return this.currentUser.Login;
         }
 
+		/// <summary>
+		/// Performs registration and updates DB.
+		/// </summary>
+		/// <param name="email">User email</param>
+		/// <param name="name">User full name</param>
+		/// <param name="login">User login</param>
+		/// <param name="password">User password</param>
+		/// <returns>Whether registration completed successfully</returns>
+		public bool RegisterUser(
+			string email, 
+			string name, 
+			string login, 
+			string password)
+		{
+			using (var dataManager = new UnitOfWork(new AppDbContext()))
+			{
+				if(dataManager.Users.GetUserByLogin(login) == null)
+				{
+					User registrant = new User();
+					registrant.Login = login;
+					registrant.Name = name;
+					registrant.Password = password;
+					registrant.UserRole = User.Role.User;
+
+					dataManager.Users.Add(registrant);
+					//remove completion if necessary
+					dataManager.Complete();
+
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+
         /// <summary>
         /// Getter for singleton instance of <c>Controller</c> type
         /// </summary>

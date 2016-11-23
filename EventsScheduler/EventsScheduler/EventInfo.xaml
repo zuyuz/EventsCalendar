@@ -1,7 +1,7 @@
 ﻿<Window x:Class="EventsScheduler.EventInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Event Info" Height="484" Width="546" ResizeMode="NoResize" FontSize="12" Foreground="Black">
+        Title="Event Info" Height="484" Width="546" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="s">
     <Grid x:Name="ParrticipantsTextBox">
         <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="42" Width="520" FontSize="27"/>
         <Label x:Name="CreatedByLabel" Content="Organizer:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontSize="12" Width="70"/>
@@ -10,8 +10,8 @@
         <Label x:Name="LocationLabel" Content="Location:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.003"/>
         <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Height="23" Margin="98,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
         <Label x:Name="ParticipantsLabel" Content="Participants:" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,-2.457" Width="81"/>
-        <ListBox HorizontalAlignment="Left" Height="283" Margin="96,163,0,0" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="DeleteParticipantButton" Content="Delete participant" HorizontalAlignment="Left" Margin="407,424,0,0" VerticalAlignment="Top" Width="110"/>
+        <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Height="283" Margin="96,163,0,0" VerticalAlignment="Top" Width="209"/>
+        <Button x:Name="DeleteParticipantButton" Content="Delete participant" HorizontalAlignment="Left" Margin="407,424,0,0" VerticalAlignment="Top" Width="110" Click="DeleteParticipantButton_Click"/>
         <Button x:Name="DeleteEventButton" Content="Delete event" HorizontalAlignment="Left" Margin="407,80,0,0" VerticalAlignment="Top" Width="110"/>
 
     </Grid>
