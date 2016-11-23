@@ -22,6 +22,7 @@ namespace EventsScheduler
         public NewEvent()
         {
             InitializeComponent();
+            datePicker.DisplayDateStart = datePicker.DisplayDate;
         }
 
         private void createButton_Click(object sender, RoutedEventArgs e)

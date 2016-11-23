@@ -15,7 +15,7 @@
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
                 <MenuItem x:Name="ViewEventsItem" Header="View all events"/>
                 <MenuItem x:Name="ViewMyEventsItem" Header="View my events"/>
-                <MenuItem x:Name="CreateEventItem" Header="Create new event"/>
+                <MenuItem x:Name="CreateEventItem" Header="Create new event" Click="CreateEventItem_Click"/>
                 <MenuItem x:Name="ShowCalendarItem" Header="Show calendar" Click="ShowCalendarItem_Click"/>
                 <MenuItem x:Name="AddLocationItem" Header="Add new location"/>
                 <MenuItem x:Name="SignUpItem" Header="Sign up" StaysOpenOnClick="True" Click="SignUpItem_Click"/>

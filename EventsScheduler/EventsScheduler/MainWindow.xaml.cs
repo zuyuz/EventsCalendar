@@ -104,5 +104,11 @@ namespace EventsScheduler
             CalendarWindow cw = new CalendarWindow();
             cw.ShowDialog();
         }
+
+        private void CreateEventItem_Click(object sender, RoutedEventArgs e)
+        {
+            NewEvent newEvent = new NewEvent();
+            newEvent.ShowDialog();
+        }
     }
 }

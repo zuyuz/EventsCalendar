@@ -20,7 +20,7 @@
             <Label x:Name="nameLabel" Content="Name" Margin="20,0" Background="{x:Null}" Foreground="#FFFDFDFD" FontWeight="Bold"/>
             <TextBox x:Name="nameTextBox" Height="23" TextWrapping="Wrap" Margin="20,0"/>
             <Label x:Name="dateLabel" Content="Date" Margin="20,0" Foreground="White" FontWeight="Bold"/>
-            <DatePicker x:Name="datePicker" Margin="20,0"/>
+            <DatePicker x:Name="datePicker" Margin="20,0" FirstDayOfWeek="Monday"/>
             <Label x:Name="beginLabel" Content="Time begin" Margin="20,0" Foreground="White" FontWeight="Bold"/>
             <TextBox x:Name="beginTextBox" Height="23" TextWrapping="Wrap" Margin="20,0"/>
             <Label x:Name="endLabel" Content="Time end" Margin="20,0" FontWeight="Bold" Foreground="White"/>
