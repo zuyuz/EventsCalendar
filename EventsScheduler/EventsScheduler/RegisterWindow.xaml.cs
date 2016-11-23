@@ -30,19 +30,19 @@ namespace EventsScheduler
 
             if (NameTextBox.Text == "")
             {
-                MessageBox.Show("Invalid name!");
+                MessageBox.Show("Please, input your name.");
             }
             else if (EmailTextBox.Text == "")
             {
-                MessageBox.Show("Invalid email!");
+                MessageBox.Show("Please, input your email.");
             }
             else if (LoginTextBox.Text == "")
             {
-                MessageBox.Show("Invalid login");
+                MessageBox.Show("Please, input your login.");
             }
             else if (PasswordBox.Password == "")
             {
-                MessageBox.Show("Invalid password!");
+                MessageBox.Show("Please, input your password.");
             }
 
             Close();
