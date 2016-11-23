@@ -26,6 +26,9 @@ namespace EventsScheduler
             InitializeComponent();
             beginDatePicker.DisplayDateStart = beginDatePicker.DisplayDate;
             endDatePicker.DisplayDateStart = endDatePicker.DisplayDate;
+
+            locationComboBox.Items.Clear();
+
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
                 foreach (var location in dataManager.Locations.GetAll())
@@ -33,7 +36,6 @@ namespace EventsScheduler
                     locationComboBox.Items.Add(location.Address);
                 }
             }
-
         }
 
         private void createButton_Click(object sender, RoutedEventArgs e)
@@ -83,7 +85,7 @@ namespace EventsScheduler
                 {
                     MessageBox.Show("Invalid number of participants!");
                 }
-                string locationAddress = locationComboBox.SelectionBoxItem.ToString();
+                string locationAddress = locationComboBox.Text;
 
                 Location location = new Location();
                 using (var dataManager = new UnitOfWork(new AppDbContext()))
