@@ -27,20 +27,25 @@ namespace EventsScheduler
 
         }
 
-        public EventInfo(Entities.Event choosedEvent, DateTime choosedDate)
+        public EventInfo(Entities.Event choosedEvent)
         {
             InitializeComponent();
-            
 
-            CreatorLabel.Content = choosedEvent.Creator;
-            LocationTextBox.Text = choosedEvent.EventLocation.ToString();
+
+            DatePickerStart.SelectedDate = choosedEvent.StartTime;
+            DatePickerEnd.SelectedDate = choosedEvent.EndTime;
+
+            CreatorLabel.Content = choosedEvent.Creator.Name;
+            if(choosedEvent.EventLocation != null)
+                LocationTextBox.Text = choosedEvent.EventLocation.ToString();
+
+            EventNameLabel.Content = choosedEvent.Name;
 
             foreach (var i in choosedEvent.Participants)
             {
                 ParticipantsListBox.Items.Add(i.Name);
             }
-
-            DatePicker.DisplayDate = choosedDate;
+            
 
 
             chEvent = choosedEvent;

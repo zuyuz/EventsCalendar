@@ -25,7 +25,7 @@ namespace EventsScheduler
         }
 
         private void Calendar_SelectedDatesChanged(object sender,
-        SelectionChangedEventArgs e)
+            SelectionChangedEventArgs e)
         {
             // ... Get reference.
             var calendar = sender as Calendar;
@@ -36,29 +36,15 @@ namespace EventsScheduler
                 AppDbContext db = new AppDbContext();
                 UnitOfWork uOW = new UnitOfWork(db);
 
-                var allEvents = uOW.Events.GetAll().ToList();
+                var dayEvent = uOW.Events.GetEventsInSpecificPeriod(calendar.SelectedDate.Value, calendar.SelectedDate.Value.AddDays(1));
 
-                var currentEvent = allEvents.Select(aE =>
-                {
-                    if (aE.StartTime.DayOfYear == calendar.SelectedDate.Value.DayOfYear)
-                    {
-                        return aE;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-
-                }).ToList();
-
-                if (currentEvent.Count == 0)
+                if (dayEvent.Count() == 0)
                 {
                     MessageBox.Show("No events for this day!");
                 }
                 else
                 {
-                    DateTime date = calendar.SelectedDate.Value;
-                    EventInfo eventWindow = new EventInfo(currentEvent.Last(), date);
+                    EventInfo eventWindow = new EventInfo(dayEvent.Last());
                     eventWindow.ShowDialog();
                 }
                 uOW.Dispose();
