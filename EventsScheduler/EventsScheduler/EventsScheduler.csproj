@@ -81,6 +81,9 @@
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controller.cs" />
+    <Compile Include="DayEvents.xaml.cs">
+      <DependentUpon>DayEvents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Event.cs" />
     <Compile Include="EventInfo.xaml.cs">
       <DependentUpon>EventInfo.xaml</DependentUpon>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CalendarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DayEvents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
