@@ -29,7 +29,8 @@ namespace EventsScheduler
             {
                 foreach (var user in dataManager.Users.GetAll())
                 {
-                    if (user.UserRole == Entities.User.Role.User)
+                    if (user.UserRole == Entities.User.Role.User 
+                        && !selectedUsers.Contains(user))
                     {
                         CheckBox item = new CheckBox();
                         item.Name = user.Login;
@@ -37,6 +38,18 @@ namespace EventsScheduler
                         allUsersListBox.Items.Add(item);
                     }
                 }
+            }
+        }
+
+        public List<User> SelectedUsers
+        {
+            get
+            {
+                return selectedUsers;
+            }
+            set
+            {
+                selectedUsers = value;
             }
         }
 

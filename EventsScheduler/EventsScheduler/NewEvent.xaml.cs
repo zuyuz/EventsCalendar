@@ -21,6 +21,13 @@ namespace EventsScheduler
     /// </summary>
     public partial class NewEvent : Window
     {
+        String name;
+        DateTime begin;
+        DateTime end;
+        int freePlaces;
+        Location location;
+        List<User> participants;
+
         public NewEvent()
         {
             InitializeComponent();
@@ -67,26 +74,25 @@ namespace EventsScheduler
             }
             else
             {
-                string name = nameTextBox.Text;
-                DateTime begin = beginDatePicker.SelectedDate.Value;
+                name = nameTextBox.Text;
+                begin = beginDatePicker.SelectedDate.Value;
+                end = beginDatePicker.SelectedDate.Value;
                 TimeSpan beginTime = new TimeSpan();
-                DateTime end = beginDatePicker.SelectedDate.Value;
                 TimeSpan endTime = new TimeSpan();
-                if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out endTime) == false
-                    || TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out beginTime) == false)
+                if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out beginTime) == false
+                    || TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out endTime) == false)
                 {
                     MessageBox.Show("Invalid time!\nTime format is HH:MM");
                 }
-                begin.Add(beginTime);
-                end.Add(endTime);
-                int freePlaces;
+                begin = begin.Add(beginTime);
+                end = end.Add(endTime);
                 if (int.TryParse(placesTextBox.Text, out freePlaces) == false)
                 {
                     MessageBox.Show("Invalid number of participants!");
                 }
                 string locationAddress = locationComboBox.SelectedValue.ToString();
 
-                Location location = new Location();
+                location = new Location();
                 using (var dataManager = new UnitOfWork(new AppDbContext()))
                 {
                     location = dataManager.Locations.GetLocationByAddress(
@@ -123,8 +129,12 @@ namespace EventsScheduler
         {
             AddParticipants addParticipants = new AddParticipants();
             addParticipants.Owner = this;
-            addParticipants.ShowDialog();
-
+            addParticipants.SelectedUsers = participants;
+            bool? result = addParticipants.ShowDialog();
+            if(result == true)
+            {
+                participants = addParticipants.SelectedUsers;
+            }
 
         }
     }

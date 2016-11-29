@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Grid Margin="25,20,25,39">
+        <Grid Margin="25,20,25,28">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -19,7 +19,7 @@
             </Grid.Background>
             <ListBox x:Name="allUsersListBox" HorizontalAlignment="Left" Height="160" Margin="10,25,0,0" VerticalAlignment="Top" Width="120"/>
             <ListBox x:Name="selectedUsersListBox" HorizontalAlignment="Right" Height="160" Margin="0,25,10,0" Width="120" VerticalAlignment="Top"/>
-            <Button x:Name="addButton" Content="→" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" Width="30" Click="addButton_Click">
+            <Button x:Name="addButton" Content="→" HorizontalAlignment="Center" Margin="131,79,131,0" VerticalAlignment="Top" Width="30" Click="addButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -29,7 +29,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="removeButton" Content="←" Margin="0,96,0,0" Width="30" HorizontalAlignment="Center" VerticalAlignment="Top" Click="removeButton_Click">
+            <Button x:Name="removeButton" Content="←" Margin="131,110,131,0" Width="30" HorizontalAlignment="Center" VerticalAlignment="Top" Click="removeButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -39,7 +39,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="confirmButton" Content="Confirm" HorizontalAlignment="Center" Margin="0,0,0,35" VerticalAlignment="Bottom" Width="76" IsDefault="True" Click="confirmButton_Click">
+            <Button x:Name="confirmButton" Content="Confirm" HorizontalAlignment="Center" Margin="108,0,108,46" VerticalAlignment="Bottom" Width="76" IsDefault="True" Click="confirmButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -49,9 +49,9 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Label x:Name="allUsersLabel" Content="All users" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
-            <Label x:Name="selectedUsersLabel" Content="Selected users" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
-            <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Center" Margin="0,0,0,7" VerticalAlignment="Bottom" Width="76" IsCancel="True" Click="closeButton_Click">
+            <Label x:Name="allUsersLabel" Content="All users" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Margin="10,0,0,0" Padding="0,5"/>
+            <Label x:Name="selectedUsersLabel" Content="Selected users" HorizontalAlignment="Right" Margin="0,-1,50,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Padding="0,5"/>
+            <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Center" Margin="108,0,108,18" VerticalAlignment="Bottom" Width="76" IsCancel="True" Click="closeButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
