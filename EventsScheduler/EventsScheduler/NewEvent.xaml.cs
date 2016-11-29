@@ -72,13 +72,13 @@ namespace EventsScheduler
 				TimeSpan beginTime = new TimeSpan();
 				DateTime end = beginDatePicker.SelectedDate.Value;
 				TimeSpan endTime = new TimeSpan();
-				if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out endTime) == false
-					|| TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out beginTime) == false)
+				if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out beginTime) == false
+					|| TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out endTime) == false)
 				{
 					MessageBox.Show("Invalid time!\nTime format is HH:MM");
 				}
-				begin.Add(beginTime);
-				end.Add(endTime);
+				begin = begin.Add(beginTime);
+				end = end.Add(endTime);
 				int freePlaces;
 				if (int.TryParse(placesTextBox.Text, out freePlaces) == false)
 				{

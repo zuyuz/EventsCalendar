@@ -30,8 +30,7 @@ namespace EventsScheduler
 
         public User GetUserGuest()
         {
-            return AppDbContext.Users
-                .First(u => u.UserRole == User.Role.Guest);
+            return AppDbContext.Users.First(u => u.UserRole == User.Role.Guest);
         }
     }
 }
