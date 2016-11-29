@@ -105,61 +105,69 @@ namespace EventsScheduler
             });
 		}
 
-        public bool CreateEvent(
+        public async Task<bool> CreateEventAsync(
             string name,
             DateTime begin,
             DateTime end,
             int freePlaces,
-            Location location,
-            User creator,
-            List<User> participants)
+            string location,
+            string creatorLogin,
+			List<User> participants)
+		{
+			return await Task.Run(() =>
+			{
+				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				{
+					if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
+					{
+						Event createdEvent = new Event()
+						{
+							Name = name,
+							StartTime = begin,
+							EndTime = end,
+							FreePlaces = freePlaces,
+							EventLocation = dataManager.Locations
+							.GetLocationByAddress(location),
+							Creator = dataManager.Users.GetUserByLogin(creatorLogin),
+							Participants = participants
+						};
+						dataManager.Events.Add(createdEvent);
+
+						dataManager.Complete();
+
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			});
+		}
+
+		public async Task<bool> AddLocationAsync(string address)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
-            {
-                if(dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
-                {
-                    Event createdEvent = new Event();
-                    createdEvent.Name = name;
-                    createdEvent.StartTime = begin;
-                    createdEvent.EndTime = end;
-                    createdEvent.FreePlaces = freePlaces;
-                    createdEvent.EventLocation = location;
-                    createdEvent.Creator = creator;
-                    createdEvent.Participants = participants;
+			return await Task.Run(() =>
+			{
+				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				{
+					if (dataManager.Locations.GetLocationByAddress(address) == null)
+					{
+						Location location = new Location();
+						location.Address = address;
 
-                    dataManager.Events.Add(createdEvent);
+						dataManager.Locations.Add(location);
 
-                    dataManager.Complete();
+						dataManager.Complete();
 
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool AddLocation(string address)
-        {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
-            {
-                if (dataManager.Locations.GetLocationByAddress(address) == null)
-                {
-                    Location location = new Location();
-                    location.Address = address;
-
-                    dataManager.Locations.Add(location);
-
-                    dataManager.Complete();
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			});
         }
 
         /// <summary>
