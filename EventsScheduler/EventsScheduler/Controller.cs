@@ -21,7 +21,7 @@ namespace EventsScheduler
         {
         }
 
-        public User CurrentUser 
+        public User CurrentUser
         {
             get
             {
@@ -67,20 +67,20 @@ namespace EventsScheduler
             return this.currentUser.Login;
         }
 
-		/// <summary>
-		/// Performs registration and updates DB.
-		/// </summary>
-		/// <param name="email">User email</param>
-		/// <param name="name">User full name</param>
-		/// <param name="login">User login</param>
-		/// <param name="password">User password</param>
-		/// <returns>Whether registration completed successfully</returns>
-		public async Task<bool> RegisterUserAsync(
-			string email, 
-			string name, 
-			string login, 
-			string password)
-		{
+        /// <summary>
+        /// Performs registration and updates DB.
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="name">User full name</param>
+        /// <param name="login">User login</param>
+        /// <param name="password">User password</param>
+        /// <returns>Whether registration completed successfully</returns>
+        public async Task<bool> RegisterUserAsync(
+            string email,
+            string name,
+            string login,
+            string password)
+        {
             return await Task.Run(() =>
             {
                 using (var dataManager = new UnitOfWork(new AppDbContext()))
@@ -103,7 +103,7 @@ namespace EventsScheduler
                     return false;
                 }
             });
-		}
+        }
 
         public async Task<bool> CreateEventAsync(
             string name,
@@ -112,62 +112,62 @@ namespace EventsScheduler
             int freePlaces,
             string location,
             string creatorLogin,
-			List<User> participants)
-		{
-			return await Task.Run(() =>
-			{
-				using (var dataManager = new UnitOfWork(new AppDbContext()))
-				{
-					if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
-					{
-						Event createdEvent = new Event()
-						{
-							Name = name,
-							StartTime = begin,
-							EndTime = end,
-							FreePlaces = freePlaces,
-							EventLocation = dataManager.Locations
-							.GetLocationByAddress(location),
-							Creator = dataManager.Users.GetUserByLogin(creatorLogin),
-							Participants = participants
-						};
-						dataManager.Events.Add(createdEvent);
-
-						dataManager.Complete();
-
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-			});
-		}
-
-		public async Task<bool> AddLocationAsync(string address)
+            List<User> participants)
         {
-			return await Task.Run(() =>
-			{
-				using (var dataManager = new UnitOfWork(new AppDbContext()))
-				{
-					if (dataManager.Locations.GetLocationByAddress(address) == null)
-					{
-						Location location = new Location();
-						location.Address = address;
+            return await Task.Run(() =>
+            {
+                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                {
+                    if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
+                    {
+                        Event createdEvent = new Event()
+                        {
+                            Name = name,
+                            StartTime = begin,
+                            EndTime = end,
+                            FreePlaces = freePlaces,
+                            EventLocation = dataManager.Locations
+                            .GetLocationByAddress(location),
+                            Creator = dataManager.Users.GetUserByLogin(creatorLogin),
+                            Participants = participants
+                        };
+                        dataManager.Events.Add(createdEvent);
 
-						dataManager.Locations.Add(location);
+                        dataManager.Complete();
 
-						dataManager.Complete();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            });
+        }
 
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-			});
+        public async Task<bool> AddLocationAsync(string address)
+        {
+            return await Task.Run(() =>
+            {
+                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                {
+                    if (dataManager.Locations.GetLocationByAddress(address) == null)
+                    {
+                        Location location = new Location();
+                        location.Address = address;
+
+                        dataManager.Locations.Add(location);
+
+                        dataManager.Complete();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            });
         }
 
         /// <summary>
@@ -188,18 +188,31 @@ namespace EventsScheduler
 
         public void RemoveEvent(Entities.Event eventToRemove)
         {
-            //using (var dataManager = new UnitOfWork(new AppDbContext()))
-            //{
-            //    int count = dataManager.Events.GetAll().Count();
-            //    for (int i = 0; i < count; i++)
-            //    {
-            //        if(dataManager.Events.Get(i).Name == eventToRemove.Name)
-            //        {
-            //            dataManager.Events.Remove(dataManager.Events.Get(i));
-            //        }
-            //    }
-            //    dataManager.Complete();
-            //}
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                var events = dataManager.Events.GetAll();
+
+                //for(int i=1; i<events.Count(); i++)
+                //{
+                //    string name = dataManager.Events.Get(i).Name;
+                //    if (name == eventToRemove.Name)
+                //    {
+                //        dataManager.Events.Remove(dataManager.Events.Get(i));
+                //        dataManager.Complete();
+                //        break;
+                //    }
+                //}
+                foreach(var ev in events)
+                {
+                    if(ev.Name == eventToRemove.Name)
+                    {
+                        dataManager.Events.Remove(ev);
+                        dataManager.Complete();
+                        break;
+                    }
+                }
+
+            }
         }
     }
 }

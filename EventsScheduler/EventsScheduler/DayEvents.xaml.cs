@@ -64,25 +64,25 @@ namespace EventsScheduler
 
         private void buttonDeleteEvent_Click(object sender, RoutedEventArgs e)
         {
-            //if (listBoxEvents.SelectedIndex != -1)
-            //{
-            //    Entities.Event ev = events.Find(i =>
-            //    {
-            //        if (i.Name == listBoxEvents.SelectedItem.ToString())
-            //        {
-            //            return true;
-            //        }
-            //        else
-            //        {
-            //            return false;
-            //        }
-            //    });
-            //    if(ev != null)
-            //    {
-            //        Controller.Instance.RemoveEvent(ev);
-            //        listBoxEvents.Items.RemoveAt(listBoxEvents.SelectedIndex);
-            //    }
-            //}
+            if (listBoxEvents.SelectedIndex != -1)
+            {
+                Entities.Event ev = events.Find(i =>
+                {
+                    if (i.Name == listBoxEvents.SelectedItem.ToString())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
+                if(ev != null)
+                {
+                    Controller.Instance.RemoveEvent(ev);
+                    listBoxEvents.Items.RemoveAt(listBoxEvents.SelectedIndex);
+                }
+            }
             
         }
     }

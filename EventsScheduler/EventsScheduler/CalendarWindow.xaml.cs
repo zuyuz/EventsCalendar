@@ -33,8 +33,6 @@ namespace EventsScheduler
             // ... See if a date is selected.
             if (calendar.SelectedDate.HasValue)
             {
-
-
                 using (var uOW = new UnitOfWork(new AppDbContext()))
                 {
                     var dayEvent = uOW.Events.GetEventsInSpecificPeriod(calendar.SelectedDate.Value, calendar.SelectedDate.Value.AddDays(1));
