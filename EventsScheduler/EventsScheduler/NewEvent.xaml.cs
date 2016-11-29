@@ -26,6 +26,7 @@ namespace EventsScheduler
             InitializeComponent();
             beginDatePicker.DisplayDateStart = beginDatePicker.DisplayDate;
             endDatePicker.DisplayDateStart = endDatePicker.DisplayDate;
+            locationComboBox.Items.Clear();
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
                 foreach (var location in dataManager.Locations.GetAll())
