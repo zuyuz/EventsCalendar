@@ -45,5 +45,6 @@ namespace EventsScheduler
         {
             context.Dispose();
         }
+        
     }
 }

@@ -13,7 +13,6 @@
         <Menu x:Name="EventsShedulerMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
             <MenuItem x:Name="FileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
-                <MenuItem x:Name="ViewEventsItem" Header="View all events"/>
                 <MenuItem x:Name="ViewMyEventsItem" Header="View my events"/>
                 <MenuItem x:Name="CreateEventItem" Header="Create new event" Click="CreateEventItem_Click"/>
                 <MenuItem x:Name="ShowCalendarItem" Header="Show calendar" Click="ShowCalendarItem_Click"/>
