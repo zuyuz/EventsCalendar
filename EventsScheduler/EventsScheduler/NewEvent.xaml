@@ -44,7 +44,7 @@
             <Label x:Name="dateLabel_Copy" Content="Date" Margin="20,153,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <DatePicker x:Name="endDatePicker" Margin="20,179,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
             <Label x:Name="participantsLabel" Content="Participants" Margin="20,305,18,0" VerticalAlignment="Top" Width="160" FontWeight="Bold" Foreground="White"/>
-            <Button x:Name="addParticipantsButton" Content="Add" Margin="63,0,64,71" VerticalAlignment="Bottom" Width="101">
+            <Button x:Name="addParticipantsButton" Content="Add" Margin="63,0,64,71" VerticalAlignment="Bottom" Width="101" Click="addParticipantsButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FF3EFF46" Offset="0.007"/>

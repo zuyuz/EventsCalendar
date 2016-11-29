@@ -60,10 +60,10 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Please, input number of places.");
             }
-            //else if(locationComboBox.SelectedValue == null)
-            //{
-            //    MessageBox.Show("Please, select location.");
-            //}
+            else if (locationComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Please, select location.");
+            }
             else
             {
                 string name = nameTextBox.Text;
@@ -83,7 +83,7 @@ namespace EventsScheduler
                 {
                     MessageBox.Show("Invalid number of participants!");
                 }
-                string locationAddress = locationComboBox.SelectionBoxItem.ToString();
+                string locationAddress = locationComboBox.SelectedValue.ToString();
 
                 Location location = new Location();
                 using (var dataManager = new UnitOfWork(new AppDbContext()))
@@ -93,14 +93,14 @@ namespace EventsScheduler
                 }
 
                 var result = Controller.Instance.CreateEvent(
-                name,
-                begin,
-                end,
-                freePlaces,
-                location,
-                App.Controller.CurrentUser,
-                null
-                );
+                    name,
+                    begin,
+                    end,
+                    freePlaces,
+                    location,
+                    App.Controller.CurrentUser,
+                    null
+                    );
 
                 if (result)
                 {
@@ -116,6 +116,15 @@ namespace EventsScheduler
                         MessageBoxButton.OK);
                 }
             }
+        }
+
+        private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddParticipants addParticipants = new AddParticipants();
+            addParticipants.Owner = this;
+            addParticipants.ShowDialog();
+
+
         }
     }
 }
