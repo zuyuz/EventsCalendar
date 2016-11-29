@@ -37,95 +37,92 @@ namespace EventsScheduler
 
         }
 
-        private void createButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = this.Owner as MainWindow;
+		private async void createButton_Click(object sender, RoutedEventArgs e)
+		{
+			MainWindow mainWindow = this.Owner as MainWindow;
 
-            if (nameTextBox.Text == "")
-            {
-                MessageBox.Show("Please, input name.");
-            }
-            else if (beginDatePicker.SelectedDate.HasValue == false)
-            {
-                MessageBox.Show("Please, select date.");
-            }
-            else if (beginTextBox.Text == "")
-            {
-                MessageBox.Show("Please, input begin time.");
-            }
-            else if (endTextBox.Text == "")
-            {
-                MessageBox.Show("Please, input end time.");
-            }
-            else if (placesTextBox.Text == "")
-            {
-                MessageBox.Show("Please, input number of places.");
-            }
-            else if (locationComboBox.SelectedValue == null)
-            {
-                MessageBox.Show("Please, select location.");
-            }
-            else
-            {
-                string name = nameTextBox.Text;
-                DateTime begin = beginDatePicker.SelectedDate.Value;
-                TimeSpan beginTime = new TimeSpan();
-                DateTime end = beginDatePicker.SelectedDate.Value;
-                TimeSpan endTime = new TimeSpan();
-                if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out endTime) == false
-                    || TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out beginTime) == false)
-                {
-                    MessageBox.Show("Invalid time!\nTime format is HH:MM");
-                }
-                begin.Add(beginTime);
-                end.Add(endTime);
-                int freePlaces;
-                if (int.TryParse(placesTextBox.Text, out freePlaces) == false)
-                {
-                    MessageBox.Show("Invalid number of participants!");
-                }
-                string locationAddress = locationComboBox.SelectedValue.ToString();
+			if (nameTextBox.Text == "")
+			{
+				MessageBox.Show("Please, input name.");
+			}
+			else if (beginDatePicker.SelectedDate.HasValue == false)
+			{
+				MessageBox.Show("Please, select date.");
+			}
+			else if (beginTextBox.Text == "")
+			{
+				MessageBox.Show("Please, input begin time.");
+			}
+			else if (endTextBox.Text == "")
+			{
+				MessageBox.Show("Please, input end time.");
+			}
+			else if (placesTextBox.Text == "")
+			{
+				MessageBox.Show("Please, input number of places.");
+			}
+			else if (locationComboBox.SelectedValue == null)
+			{
+				MessageBox.Show("Please, select location.");
+			}
+			else
+			{
+				string name = nameTextBox.Text;
+				DateTime begin = beginDatePicker.SelectedDate.Value;
+				TimeSpan beginTime = new TimeSpan();
+				DateTime end = beginDatePicker.SelectedDate.Value;
+				TimeSpan endTime = new TimeSpan();
+				if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out endTime) == false
+					|| TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out beginTime) == false)
+				{
+					MessageBox.Show("Invalid time!\nTime format is HH:MM");
+				}
+				begin.Add(beginTime);
+				end.Add(endTime);
+				int freePlaces;
+				if (int.TryParse(placesTextBox.Text, out freePlaces) == false)
+				{
+					MessageBox.Show("Invalid number of participants!");
+				}
+				string locationAddress = locationComboBox.SelectedValue.ToString();
 
-                Location location = new Location();
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
-                {
-                    location = dataManager.Locations.GetLocationByAddress(
-                        locationAddress);
-                }
+				Location location = new Location();
+				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				{
+					location = dataManager.Locations.GetLocationByAddress(
+						locationAddress);
+				}
 
-                var result = App.Controller.CreateEvent(
-                    name,
-                    begin,
-                    end,
-                    freePlaces,
-                    location,
-                    App.Controller.CurrentUser,
-                    null
-                    );
+				var result = await Controller.Instance.CreateEventAsync(
+					name,
+					begin,
+					end,
+					freePlaces,
+					locationAddress,
+					App.Controller.CurrentUser.Login,
+					null);
 
-                if (result)
-                {
-                    MessageBox.Show("Event created successfully!",
-                        "Creation Completed!",
-                        MessageBoxButton.OK);
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Can not create event!",
-                        "Creation Failed!",
-                        MessageBoxButton.OK);
-                }
-            }
-        }
+				if (result)
+				{
+					MessageBox.Show("Event created successfully!",
+						"Creation Completed!",
+						MessageBoxButton.OK);
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("Can not create event!",
+						"Creation Failed!",
+						MessageBoxButton.OK);
+				}
+			}
+		}
 
-        private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
+		private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
         {
             AddParticipants addParticipants = new AddParticipants();
             addParticipants.Owner = this;
             addParticipants.ShowDialog();
-
-
         }
     }
 }
