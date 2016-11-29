@@ -24,30 +24,30 @@ namespace EventsScheduler
             InitializeComponent();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(addressTextBox.Text == "")
-            {
-                MessageBox.Show("Please, input location address.");
-            }
-            else
-            {
-                var result = Controller.Instance.AddLocation(addressTextBox.Text);
-                if (result)
-                {
-                    MessageBox.Show("Location added successfully!",
-                        "Addition Completed!",
-                        MessageBoxButton.OK);
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Can not add location!",
-                        "Addition Failed!",
-                        MessageBoxButton.OK);
-                }
-            }
+		private async void addButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (addressTextBox.Text == "")
+			{
+				MessageBox.Show("Please, input location address.");
+			}
+			else
+			{
+				var result = await Controller.Instance.AddLocationAsync(addressTextBox.Text);
+				if (result)
+				{
+					MessageBox.Show("Location added successfully!",
+						"Addition Completed!",
+						MessageBoxButton.OK);
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("Can not add location!",
+						"Addition Failed!",
+						MessageBoxButton.OK);
+				}
+			}
 
-        }
-    }
+		}
+	}
 }
