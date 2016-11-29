@@ -37,7 +37,7 @@ namespace EventsScheduler
 
             CreatorLabel.Content = choosedEvent.Creator.Name;
             if(choosedEvent.EventLocation != null)
-                LocationTextBox.Text = choosedEvent.EventLocation.ToString();
+                LocationTextBox.Text = choosedEvent.EventLocation.Address.ToString();
 
             EventNameLabel.Content = choosedEvent.Name;
 

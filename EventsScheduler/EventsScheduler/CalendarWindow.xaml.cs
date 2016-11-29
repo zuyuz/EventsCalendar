@@ -33,22 +33,25 @@ namespace EventsScheduler
             // ... See if a date is selected.
             if (calendar.SelectedDate.HasValue)
             {
-                AppDbContext db = new AppDbContext();
-                UnitOfWork uOW = new UnitOfWork(db);
 
-                var dayEvent = uOW.Events.GetEventsInSpecificPeriod(calendar.SelectedDate.Value, calendar.SelectedDate.Value.AddDays(1));
 
-                if (dayEvent.Count() == 0)
+                using (var uOW = new UnitOfWork(new AppDbContext()))
                 {
-                    MessageBox.Show("No events for this day!");
-                }
-                else
-                {
-                    EventInfo eventWindow = new EventInfo(dayEvent.Last());
-                    eventWindow.ShowDialog();
-                }
-                uOW.Dispose();
+                    var dayEvent = uOW.Events.GetEventsInSpecificPeriod(calendar.SelectedDate.Value, calendar.SelectedDate.Value.AddDays(1));
 
+                    if (dayEvent.Count() == 0)
+                    {
+                        MessageBox.Show("No events for this day!");
+                    }
+                    else
+                    {
+                        List<Entities.Event> daysEvents = (from ev in dayEvent
+                                                           select ev).ToList();
+                        DayEvents eventWindow = new DayEvents(daysEvents);
+                        eventWindow.ShowDialog();
+                    }
+                    uOW.Dispose();
+                }
             }
         }
     }
