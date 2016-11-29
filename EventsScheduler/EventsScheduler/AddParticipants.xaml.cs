@@ -22,15 +22,29 @@ namespace EventsScheduler
     {
         List<User> selectedUsers = new List<User>();
 
-        public AddParticipants()
+		public List<User> SelectedUsers
+		{
+			get
+			{
+				return selectedUsers;
+			}
+			set
+			{
+				selectedUsers = value;
+			}
+		}
+
+		public AddParticipants()
         {
             InitializeComponent();
+
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
                 foreach (var user in dataManager.Users.GetAll())
                 {
-                    if (user.UserRole == Entities.User.Role.User 
-                        && !selectedUsers.Contains(user))
+                    if (user.UserRole == User.Role.User 
+                        && !selectedUsers.Contains(user)
+						&& user.Login != Controller.Instance.CurrentUser.Login)
                     {
                         CheckBox item = new CheckBox();
                         item.Name = user.Login;
@@ -41,72 +55,62 @@ namespace EventsScheduler
             }
         }
 
-        public List<User> SelectedUsers
-        {
-            get
-            {
-                return selectedUsers;
-            }
-            set
-            {
-                selectedUsers = value;
-            }
-        }
-
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            List<User> selectedUsersLocal = new List<User>();
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
-            {
-                foreach (var user in allUsersListBox.SelectedItems)
-                {
-                    selectedUsersLocal.Add(dataManager.Users.GetUserByLogin((user as CheckBox).Name));
-                }
-            }
-            foreach (var user in selectedUsersLocal)
-            {
-                CheckBox item = new CheckBox();
-                item.Name = user.Login;
-                item.Content = $"{user.Name} ({user.Login})";
-                selectedUsersListBox.Items.Add(item);
+			for (var i = 0; i < allUsersListBox.Items.Count; i++)
+			{
+				var check = allUsersListBox.Items[i] as CheckBox;
 
-                allUsersListBox.Items.Remove(item);
-            }
-        }
+				if (check.IsChecked == true)
+				{
+					var newItem = new CheckBox()
+					{
+						Name = check.Name,
+						Content = $"{check.Content} ({check.Name})"
+					};
+					selectedUsersListBox.Items.Add(newItem);
+					allUsersListBox.Items.Remove(check);
+					i--;
+				}
+			}
+		}
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
-            List<User> selectedUsersLocal = new List<User>();
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
-            {
-                foreach (var user in selectedUsersListBox.SelectedItems)
-                {
-                    selectedUsersLocal.Add(dataManager.Users.GetUserByLogin((user as CheckBox).Name));
-                }
-            }
-            foreach (var user in selectedUsersLocal)
-            {
-                CheckBox item = new CheckBox();
-                item.Name = user.Login;
-                item.Content = $"{user.Name} ({user.Login})";
-                selectedUsersListBox.Items.Remove(item);
+			for (var i = 0; i < selectedUsersListBox.Items.Count; i++)
+			{
+				var check = selectedUsersListBox.Items[i] as CheckBox;
 
-                allUsersListBox.Items.Add(item);
-            }
-        }
+				if (check.IsChecked == true)
+				{
+					var newItem = new CheckBox()
+					{
+						Name = check.Name,
+						Content = $"{check.Content} ({check.Name})"
+					};
+					allUsersListBox.Items.Add(newItem);
+					selectedUsersListBox.Items.Remove(check);
+					i--;
+				}
+			}
+		}
 
-        private void confirmButton_Click(object sender, RoutedEventArgs e)
-        {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
-            {
-                foreach (var user in selectedUsersListBox.Items)
-                {
-                    selectedUsers.Add(dataManager.Users.GetUserByLogin((user as CheckBox).Name));
-                }
-            }
-        }
+		private async void confirmButton_ClickAsync(object sender, RoutedEventArgs e)
+		{
+			await Task.Run(() =>
+			{
+				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				{
+					foreach (var user in selectedUsersListBox.Items)
+					{
+						selectedUsers.Add(
+							dataManager.Users.GetUserByLogin((user as CheckBox).Name));
+					}
+				}
+			});
+		}
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
+		private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
