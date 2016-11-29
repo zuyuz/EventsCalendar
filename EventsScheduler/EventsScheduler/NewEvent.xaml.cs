@@ -93,7 +93,7 @@ namespace EventsScheduler
                         locationAddress);
                 }
 
-                var result = Controller.Instance.CreateEvent(
+                var result = App.Controller.CreateEvent(
                     name,
                     begin,
                     end,

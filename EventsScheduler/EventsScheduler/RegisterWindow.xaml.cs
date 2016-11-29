@@ -24,7 +24,7 @@ namespace EventsScheduler
             InitializeComponent();
         }
 
-        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        private async void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = this.Owner as MainWindow;
 
@@ -46,7 +46,7 @@ namespace EventsScheduler
             }
             else
             {
-                var result = Controller.Instance.RegisterUser(
+                var result = await Controller.Instance.RegisterUserAsync(
                 EmailTextBox.Text,
                 NameTextBox.Text,
                 LoginTextBox.Text,

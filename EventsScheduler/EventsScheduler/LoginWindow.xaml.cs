@@ -24,9 +24,9 @@ namespace EventsScheduler
             InitializeComponent();
         }
 
-        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        private async void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!App.Controller.SignIn(LoginTextBox.Text, PasswordBox.Password))
+            if (! await App.Controller.SignInAsync(LoginTextBox.Text, PasswordBox.Password))
             {
                 MessageBox.Show("Invalid login or password!");
             }

@@ -36,22 +36,25 @@ namespace EventsScheduler
         /// <param name="login">user's login</param>
         /// <param name="password">user's password</param>
         /// <returns>whether user is signed in</returns>
-        public bool SignIn(string login, string password)
+        public async Task<bool> SignInAsync(string login, string password)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            return await Task.Run(() =>
             {
-                User user = dataManager.Users.GetUserByLogin(login);
-                if (user != null) // identification
+                using (var dataManager = new UnitOfWork(new AppDbContext()))
                 {
-                    if (user.Password == password) // authentification
+                    User user = dataManager.Users.GetUserByLogin(login);
+                    if (user != null) // identification
                     {
-                        currentUser = user; // authorization
-                        return true;
+                        if (user.Password == password) // authentification
+                        {
+                            currentUser = user; // authorization
+                            return true;
+                        }
                     }
                 }
-            }
 
-            return false;
+                return false;
+            });
         }
 
         public void SignOut()
@@ -72,33 +75,34 @@ namespace EventsScheduler
 		/// <param name="login">User login</param>
 		/// <param name="password">User password</param>
 		/// <returns>Whether registration completed successfully</returns>
-		public bool RegisterUser(
+		public async Task<bool> RegisterUserAsync(
 			string email, 
 			string name, 
 			string login, 
 			string password)
 		{
-			using (var dataManager = new UnitOfWork(new AppDbContext()))
-			{
-				if(dataManager.Users.GetUserByLogin(login) == null)
-				{
-					User registrant = new User();
-					registrant.Login = login;
-					registrant.Name = name;
-					registrant.Password = password;
-					registrant.UserRole = User.Role.User;
+            return await Task.Run(() =>
+            {
+                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                {
+                    if (dataManager.Users.GetUserByLogin(login) == null)
+                    {
+                        User registrant = new User();
+                        registrant.Login = login;
+                        registrant.Name = name;
+                        registrant.Password = password;
+                        registrant.UserRole = User.Role.User;
 
-					dataManager.Users.Add(registrant);
-					//remove completion if necessary
-					dataManager.Complete();
+                        dataManager.Users.Add(registrant);
+                        //remove completion if necessary
+                        dataManager.Complete();
 
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
+                        return true;
+                    }
+
+                    return false;
+                }
+            });
 		}
 
         public bool CreateEvent(
