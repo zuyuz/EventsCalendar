@@ -23,10 +23,10 @@ namespace EventsScheduler
             if (fromTime > toTime)
                 throw new ArgumentException("Bad arguments");
 
-            return from ev in AppDbContext.Events
+            return (from ev in AppDbContext.Events
                    where ev.StartTime >= fromTime 
                       && ev.EndTime <= toTime
-                   select ev;
+                   select ev).ToList();
         }
     }
 }

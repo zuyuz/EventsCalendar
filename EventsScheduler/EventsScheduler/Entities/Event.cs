@@ -25,8 +25,7 @@ namespace EventsScheduler.Entities
         public int FreePlaces { get; set; }
 
         [Required]
-        public Location EventLocation { get; set; }
-
+        public virtual Location EventLocation { get; set; }
 
         [Required]
         public virtual User Creator { get; set; }

@@ -26,8 +26,7 @@ namespace EventsScheduler
             InitializeComponent();
             this.ViewMyEventsItem.Visibility = Visibility.Collapsed;
             this.CreateEventItem.Visibility = Visibility.Collapsed;
-            this.AddLocationItem.Visibility = Visibility.Collapsed;
-            
+            this.AddLocationItem.Visibility = Visibility.Collapsed;            
         }
 
         private void SignInItem_Click(object sender, RoutedEventArgs e)
