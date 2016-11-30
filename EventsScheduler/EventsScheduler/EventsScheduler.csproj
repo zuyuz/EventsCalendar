@@ -102,6 +102,9 @@
       <DependentUpon>201611151800110_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MyEvents.xaml.cs">
+      <DependentUpon>MyEvents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewEvent.xaml.cs">
       <DependentUpon>NewEvent.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MyEvents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

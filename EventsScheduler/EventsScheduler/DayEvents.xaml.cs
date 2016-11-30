@@ -31,7 +31,7 @@ namespace EventsScheduler
             InitializeComponent();
 
             events = new List<Entities.Event>(ev);
-            foreach(var e in events)
+            foreach (var e in events)
             {
                 listBoxEvents.Items.Add(e.Name);
             }
@@ -77,13 +77,23 @@ namespace EventsScheduler
                         return false;
                     }
                 });
-                if(ev != null)
+                if (ev != null)
                 {
-                    Controller.Instance.RemoveEvent(ev);
-                    listBoxEvents.Items.RemoveAt(listBoxEvents.SelectedIndex);
+                    if (Controller.Instance.CurrentUser != null &&
+                        (Controller.Instance.CurrentUser == ev.Creator ||
+                        Controller.Instance.CurrentUser.UserRole == Entities.User.Role.Admin))
+                    {
+                        Controller.Instance.RemoveEvent(ev);
+                        listBoxEvents.Items.RemoveAt(listBoxEvents.SelectedIndex);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Only event creator or admin are allowed to delete this event.");
+                    }
+
                 }
             }
-            
+
         }
     }
 }
