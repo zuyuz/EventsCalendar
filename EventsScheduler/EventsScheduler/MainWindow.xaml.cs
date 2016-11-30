@@ -90,13 +90,14 @@ namespace EventsScheduler
 
         private void CreateEventItem_Click(object sender, RoutedEventArgs e)
         {
-            NewEvent newEvent = new NewEvent();
+            DateTime begin = new DateTime();
+            NewEvent newEvent = new NewEvent(begin);
             newEvent.ShowDialog();
         }
 
         private void AddLocationItem_Click(object sender, RoutedEventArgs e)
         {
-            Locations location = new Locations();
+            LocationsWindow location = new LocationsWindow();
             location.ShowDialog();
         }
 

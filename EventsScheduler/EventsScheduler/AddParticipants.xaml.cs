@@ -38,6 +38,7 @@ namespace EventsScheduler
         {
             InitializeComponent();
 
+            allUsersListBox.Items.Clear();
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
                 foreach (var user in dataManager.Users.GetAll())
@@ -48,8 +49,15 @@ namespace EventsScheduler
                     {
                         CheckBox item = new CheckBox();
                         item.Name = user.Login;
-                        item.Content = String.Format("{0} {1}", user.Name, user.Login);
+                        item.Content = String.Format("{0} ({1})", user.Name, user.Login);
                         allUsersListBox.Items.Add(item);
+                    }
+                    else if(selectedUsers.Contains(user))
+                    {
+                        CheckBox item = new CheckBox();
+                        item.Name = user.Login;
+                        item.Content = String.Format("{0} ({1})", user.Name, user.Login);
+                        selectedUsersListBox.Items.Add(item);
                     }
                 }
             }
@@ -66,7 +74,7 @@ namespace EventsScheduler
 					var newItem = new CheckBox()
 					{
 						Name = check.Name,
-						Content = String.Format("{0} {1}", check.Content, check.Name)
+						Content = check.Content
 					};
 					selectedUsersListBox.Items.Add(newItem);
 					allUsersListBox.Items.Remove(check);
@@ -86,7 +94,7 @@ namespace EventsScheduler
 					var newItem = new CheckBox()
 					{
 						Name = check.Name,
-                        Content = String.Format("{0} {1}", check.Content, check.Name)
+                        Content = check.Content
 					};
 					allUsersListBox.Items.Add(newItem);
 					selectedUsersListBox.Items.Remove(check);
@@ -105,7 +113,9 @@ namespace EventsScheduler
 						dataManager.Users.GetUserByLogin((user as CheckBox).Name));
 				}
 			}
-
+            var owner = this.Owner as NewEvent;
+            owner.Participants = selectedUsers;
+            
             Close();
 		}
     }
