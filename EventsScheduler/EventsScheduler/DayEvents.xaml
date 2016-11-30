@@ -5,12 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventsScheduler"
         mc:Ignorable="d"
-        Title="DayEvents" Height="300" Width="300">
-    <Grid>
-        <ListBox x:Name="listBoxEvents" HorizontalAlignment="Left" Height="250" Margin="10,10,0,0" VerticalAlignment="Top" Width="165"/>
-        <Button x:Name="buttonShowEvent" Content="Show" HorizontalAlignment="Left" Margin="195,31,0,0" VerticalAlignment="Top" Width="75" Click="buttonShowEvent_Click"/>
-        <Button x:Name="buttonDeleteEvent" Content="Delete" HorizontalAlignment="Left" Margin="195,91,0,0" VerticalAlignment="Top" Width="75" Click="buttonDeleteEvent_Click"/>
-        <Button x:Name="buttonClose" Content="Close" HorizontalAlignment="Left" Margin="195,150,0,0" VerticalAlignment="Top" Width="75" Click="buttonClose_Click"/>
-
+        Title="DayEvents" Height="340" Width="340">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
+    </Window.Background>
+    <Grid Margin="50">
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FF6C6C6C"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBoxEvents" Margin="10,10,0,10"/>
+        <Button x:Name="buttonShowEvent" Content="Show" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="76" Click="buttonShowEvent_Click" Grid.Column="1" Height="22">
+        <Button.Background>
+            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                <GradientStop Color="#FF118516" Offset="0.826"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Button.Background>
+        </Button>
+        <Button x:Name="buttonDeleteEvent" Content="Delete" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Width="76" Click="buttonDeleteEvent_Click" Grid.Column="1" Height="22">
+        <Button.Background>
+            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                <GradientStop Color="#FF118516" Offset="0.826"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Button.Background>
+        </Button>
+        <Button x:Name="buttonClose" Content="Close" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="76" Click="buttonClose_Click" Grid.Column="1" Height="22">
+        <Button.Background>
+            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                <GradientStop Color="#FF118516" Offset="0.826"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Button.Background>
+        </Button>
     </Grid>
 </Window>
