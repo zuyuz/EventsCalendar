@@ -35,7 +35,6 @@ namespace EventsScheduler
             {
                 listBoxEvents.Items.Add(e.Name);
             }
-
             //this.eventsLabel.Content += " on " + ev[0].StartTime.Date.ToShortDateString() + ":";
         }
 
