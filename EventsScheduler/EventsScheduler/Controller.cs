@@ -21,7 +21,7 @@ namespace EventsScheduler
         {
         }
 
-        public User CurrentUser
+        public User CurrentUser 
         {
             get
             {
@@ -67,20 +67,20 @@ namespace EventsScheduler
             return this.currentUser.Login;
         }
 
-        /// <summary>
-        /// Performs registration and updates DB.
-        /// </summary>
-        /// <param name="email">User email</param>
-        /// <param name="name">User full name</param>
-        /// <param name="login">User login</param>
-        /// <param name="password">User password</param>
-        /// <returns>Whether registration completed successfully</returns>
-        public async Task<bool> RegisterUserAsync(
-            string email,
-            string name,
-            string login,
-            string password)
-        {
+		/// <summary>
+		/// Performs registration and updates DB.
+		/// </summary>
+		/// <param name="email">User email</param>
+		/// <param name="name">User full name</param>
+		/// <param name="login">User login</param>
+		/// <param name="password">User password</param>
+		/// <returns>Whether registration completed successfully</returns>
+		public async Task<bool> RegisterUserAsync(
+			string email, 
+			string name, 
+			string login, 
+			string password)
+		{
             return await Task.Run(() =>
             {
                 using (var dataManager = new UnitOfWork(new AppDbContext()))
@@ -103,71 +103,87 @@ namespace EventsScheduler
                     return false;
                 }
             });
-        }
+		}
 
-        public async Task<bool> CreateEventAsync(
+        public  void CreateEventAsync(
             string name,
             DateTime begin,
+            string beginTimeStr,
             DateTime end,
-            int freePlaces,
-            string location,
+            string endTimeStr,
+            string freePlacesStr,
+            string locationStr,
             string creatorLogin,
-            List<User> participants)
+			List<User> participants)
+		{
+				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				{
+                    TimeSpan beginTime = new TimeSpan();
+                    TimeSpan endTime = new TimeSpan();
+                    if(TimeSpan.TryParseExact(beginTimeStr, @"hh\:mm", null, out beginTime) == false
+                    || TimeSpan.TryParseExact(endTimeStr, @"hh\:mm", null, out endTime) == false)
+                    {
+                        throw new ArgumentException("Invalid time!\nTime format is HH:MM");
+                    }
+                    begin = begin.Add(beginTime);
+                    end = end.Add(endTime);
+                    if(begin > end)
+                    {
+                        throw new ArgumentException("Invalid period of time");
+                    }
+
+                    int freePlaces;
+                    if (int.TryParse(freePlacesStr, out freePlaces) == false)
+                    {
+                        throw new ArgumentException("Invalid number of participants!");
+                    }
+
+                    if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() > 0)
+                    {
+                        throw new ArgumentException("Event in such period already exists.");
+                    }
+
+                    Location location = dataManager.Locations.GetLocationByAddress(locationStr);
+
+                    Event createdEvent = new Event()
+						{
+							Name = name,
+							StartTime = begin,
+							EndTime = end,
+							FreePlaces = freePlaces,
+							EventLocation = location,
+							Creator = dataManager.Users.GetUserByLogin(creatorLogin),
+							Participants = participants
+						};
+						dataManager.Events.Add(createdEvent);
+
+						dataManager.Complete();
+				}
+		}
+
+		public async Task<bool> AddLocationAsync(string address)
         {
-            return await Task.Run(() =>
-            {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
-                {
-                    if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
-                    {
-                        Event createdEvent = new Event()
-                        {
-                            Name = name,
-                            StartTime = begin,
-                            EndTime = end,
-                            FreePlaces = freePlaces,
-                            EventLocation = dataManager.Locations
-                            .GetLocationByAddress(location),
-                            Creator = dataManager.Users.GetUserByLogin(creatorLogin),
-                            Participants = participants
-                        };
-                        dataManager.Events.Add(createdEvent);
+			return await Task.Run(() =>
+			{
+				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				{
+					if (dataManager.Locations.GetLocationByAddress(address) == null)
+					{
+						Location location = new Location();
+						location.Address = address;
 
-                        dataManager.Complete();
+						dataManager.Locations.Add(location);
 
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            });
-        }
+						dataManager.Complete();
 
-        public async Task<bool> AddLocationAsync(string address)
-        {
-            return await Task.Run(() =>
-            {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
-                {
-                    if (dataManager.Locations.GetLocationByAddress(address) == null)
-                    {
-                        Location location = new Location();
-                        location.Address = address;
-
-                        dataManager.Locations.Add(location);
-
-                        dataManager.Complete();
-
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            });
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			});
         }
 
         /// <summary>
@@ -202,9 +218,9 @@ namespace EventsScheduler
                 //        break;
                 //    }
                 //}
-                foreach(var ev in events)
+                foreach (var ev in events)
                 {
-                    if(ev.Name == eventToRemove.Name)
+                    if (ev.Name == eventToRemove.Name)
                     {
                         dataManager.Events.Remove(ev);
                         dataManager.Complete();
