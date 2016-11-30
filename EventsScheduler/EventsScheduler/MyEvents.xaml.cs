@@ -24,19 +24,17 @@ namespace EventsScheduler
 		public MyEvents()
 		{
 			InitializeComponent();
-			if (Controller.Instance.CurrentUser != null)
+			if (App.Controller.CurrentUser != null)
 			{
 				using (var uOW = new UnitOfWork(new AppDbContext()))
 				{
-					events = uOW.Events.Find(
-						e => e.Creator.Login.Equals(
-							Controller.Instance.CurrentUser.Login))
-							.ToList();
-				}
-				foreach (var e in events)
-				{
-					listBoxEvents.Items.Add(e.Name);
-				}
+                    events = new List<Entities.Event>(uOW.Events.GetCurrentUserEvents(App.Controller.CurrentUser));
+                    foreach (var e in events)
+                    {
+                        listBoxEvents.Items.Add(e.Name);
+                    }
+                }
+				
 			}
 		}
 
@@ -56,6 +54,7 @@ namespace EventsScheduler
                             return false;
                         }
                     });
+
                 EventInfo eInfoWindow = new EventInfo(ev);
                 eInfoWindow.ShowDialog();
             }

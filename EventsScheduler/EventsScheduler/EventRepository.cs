@@ -28,5 +28,42 @@ namespace EventsScheduler
                       && ev.EndTime <= toTime
                    select ev).ToList();
         }
+
+        public IEnumerable<Event> GetCurrentUserEvents(Entities.User currentUser)
+        {
+            foreach (var ev in AppDbContext.Events.ToList())
+            {
+                if (ev.Creator.Login == currentUser.Login)
+                {
+                    yield return 
+                        new Entities.Event()
+                    {
+                        Id = ev.Id,
+                        Creator = ev.Creator,
+                        EndTime = ev.EndTime,
+                        StartTime = ev.StartTime,
+                        EventLocation = ev.EventLocation,
+                        FreePlaces = ev.FreePlaces,
+                        Name = ev.Name,
+                        Participants = ev.Participants
+                    };
+                }
+            }
+            /*
+            return (from ev in AppDbContext.Events
+                    where ev.Creator.Name == currentUser.Name
+                    select new Entities.Event()
+                    {
+                        Id = ev.Id,
+                        Creator = ev.Creator,
+                        EndTime = ev.EndTime,
+                        StartTime = ev.StartTime,
+                        EventLocation = ev.EventLocation,
+                        FreePlaces = ev.FreePlaces,
+                        Name = ev.Name,
+                        Participants = ev.Participants
+                    }
+                    ).ToList();*/
+        }
     }
 }

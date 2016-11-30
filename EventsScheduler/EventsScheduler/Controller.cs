@@ -250,7 +250,6 @@ namespace EventsScheduler
                 //        break;
                 //    }
                 //}
-
             }
         }
     }
