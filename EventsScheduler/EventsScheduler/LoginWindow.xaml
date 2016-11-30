@@ -3,12 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login" Height="482" Width="542" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid>
-        <Menu x:Name="loginWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
-            <MenuItem x:Name="fileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
-                <MenuItem x:Name="closeItem" Header="Close" StaysOpenOnClick="True" Click="CloseItem_Click"/>
-            </MenuItem>
-        </Menu>
-        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="229" Height="212" Margin="158,113,149,129">
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="229" Height="212" Margin="150,115,150,130">
             <StackPanel.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="#FF343434" Offset="0.439"/>

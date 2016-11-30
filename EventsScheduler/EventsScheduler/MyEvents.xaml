@@ -10,12 +10,11 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Menu x:Name="myEventsWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
-            <MenuItem x:Name="fileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
-                <MenuItem x:Name="closeItem" Header="Close" StaysOpenOnClick="True" Click="CloseItem_Click"/>
-            </MenuItem>
-        </Menu>
-        <Grid Margin="26,40,27,10">
+        <Grid Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="179*"/>
+                <ColumnDefinition Width="96*"/>
+            </Grid.ColumnDefinitions>
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -24,8 +23,8 @@
                 </RadialGradientBrush>
             </Grid.Background>
             <Label x:Name="myEventsLabel" Content=" My events:" Foreground="White" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
-            <ListBox x:Name="listBoxEvents" HorizontalAlignment="Left" Height="217" Margin="10,31,0,0" VerticalAlignment="Top" Width="165"/>
-            <Button x:Name="buttonShowEvent" Content="Show" HorizontalAlignment="Left" Margin="200,180,0,0" VerticalAlignment="Top" Width="75" Foreground="White" FontWeight="Bold" Click="buttonShowEvent_Click">
+            <ListBox x:Name="listBoxEvents" HorizontalAlignment="Center" Height="217" Margin="10,30,10,10" VerticalAlignment="Top" Width="165"/>
+            <Button x:Name="buttonShowEvent" Content="Show" HorizontalAlignment="Center" Margin="0,30,10,0" VerticalAlignment="Top" Width="75" Foreground="White" FontWeight="Bold" Click="buttonShowEvent_Click" Grid.Column="1">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FF3EFF46" Offset="0.007"/>
@@ -34,7 +33,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="buttonDeleteEvent" Content="Delete" HorizontalAlignment="Left" Margin="200,225,0,0" VerticalAlignment="Top" Width="75" Foreground="White" FontWeight="Bold" Click="buttonDeleteEvent_Click">
+            <Button x:Name="buttonDeleteEvent" Content="Delete" HorizontalAlignment="Center" Margin="0,70,10,0" VerticalAlignment="Top" Width="75" Foreground="White" FontWeight="Bold" Click="buttonDeleteEvent_Click" Grid.Column="1">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FF3EFF46" Offset="0.007"/>

@@ -106,10 +106,5 @@ namespace EventsScheduler
 				}
 			}
 		}
-
-		private void CloseItem_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

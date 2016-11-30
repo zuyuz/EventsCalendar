@@ -13,10 +13,10 @@
         <Menu x:Name="EventsShedulerMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
             <MenuItem x:Name="FileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
-                <MenuItem x:Name="ViewMyEventsItem" Header="View my events" Click="ViewMyEventsItem_Click"/>
-                <MenuItem x:Name="CreateEventItem" Header="Create new event" Click="CreateEventItem_Click"/>
-                <MenuItem x:Name="ShowCalendarItem" Header="Show calendar" Click="ShowCalendarItem_Click"/>
-                <MenuItem x:Name="AddLocationItem" Header="Add new location" Click="AddLocationItem_Click"/>
+                <MenuItem x:Name="ViewMyEventsItem" Header="My events" Click="ViewMyEventsItem_Click"/>
+                <MenuItem x:Name="CreateEventItem" Header="New event" Click="CreateEventItem_Click"/>
+                <MenuItem x:Name="ShowCalendarItem" Header="Calendar" Click="ShowCalendarItem_Click"/>
+                <MenuItem x:Name="AddLocationItem" Header="Locations" Click="AddLocationItem_Click"/>
                 <MenuItem x:Name="SignUpItem" Header="Sign up" StaysOpenOnClick="True" Click="SignUpItem_Click"/>
                 <MenuItem x:Name="SignOutItem" Header="Sign out" StaysOpenOnClick="True" Click="SignOutItem_Click" Visibility="Collapsed"/>
                 <Separator Margin="0" />

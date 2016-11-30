@@ -10,12 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Menu x:Name="addParticipantsWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
-            <MenuItem x:Name="fileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
-                <MenuItem x:Name="closeItem" Header="Close" StaysOpenOnClick="True" Click="CloseItem_Click"/>
-            </MenuItem>
-        </Menu>
-        <Grid Margin="26,45,24,31">
+        <Grid Margin="35,40">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>

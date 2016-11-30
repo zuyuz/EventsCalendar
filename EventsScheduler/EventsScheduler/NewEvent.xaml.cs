@@ -113,10 +113,5 @@ namespace EventsScheduler
             addParticipants.Owner = this;
             addParticipants.ShowDialog();
         }
-
-        private void CloseItem_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

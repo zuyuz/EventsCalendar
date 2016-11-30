@@ -108,8 +108,8 @@
     <Compile Include="NewEvent.xaml.cs">
       <DependentUpon>NewEvent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewLocation.xaml.cs">
-      <DependentUpon>NewLocation.xaml</DependentUpon>
+    <Compile Include="LocationsWindow.xaml.cs">
+      <DependentUpon>LocationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
@@ -160,7 +160,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewLocation.xaml">
+    <Page Include="LocationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
