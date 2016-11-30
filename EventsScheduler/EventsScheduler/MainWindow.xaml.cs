@@ -97,7 +97,7 @@ namespace EventsScheduler
 
         private void AddLocationItem_Click(object sender, RoutedEventArgs e)
         {
-            Locations location = new Locations();
+            LocationsWindow location = new LocationsWindow();
             location.ShowDialog();
         }
 

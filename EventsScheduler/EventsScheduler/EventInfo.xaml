@@ -47,8 +47,8 @@
             <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" Grid.Column="1" Grid.Row="4" IsEnabled="False"/>
             <Label x:Name="startLabel" Content="Begins:" HorizontalAlignment="Right" Margin="0,3,0,2" VerticalAlignment="Center" Height="26" Width="48" Grid.Row="3" Foreground="White"/>
             <Label x:Name="endLabel" Content="Ends:" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="4" Foreground="White"/>
-            <TextBlock x:Name="beginTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="3" TextWrapping="Wrap" Text="Time" VerticalAlignment="Center" Width="79"/>
-            <TextBlock x:Name="endTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="4" TextWrapping="Wrap" Text="Time" VerticalAlignment="Center" Width="79"/>
+            <TextBlock x:Name="beginTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="3" TextWrapping="Wrap" Text="Time" VerticalAlignment="Center" Width="79" Foreground="White"/>
+            <TextBlock x:Name="endTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="4" TextWrapping="Wrap" Text="Time" VerticalAlignment="Center" Width="79" Foreground="White"/>
         </Grid>
     </Grid>
 </Window>
