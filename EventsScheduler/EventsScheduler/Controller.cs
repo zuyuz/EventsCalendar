@@ -201,5 +201,34 @@ namespace EventsScheduler
                 return instance;
             }
         }
+
+        public void RemoveEvent(Entities.Event eventToRemove)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                var events = dataManager.Events.GetAll();
+
+                //for(int i=1; i<events.Count(); i++)
+                //{
+                //    string name = dataManager.Events.Get(i).Name;
+                //    if (name == eventToRemove.Name)
+                //    {
+                //        dataManager.Events.Remove(dataManager.Events.Get(i));
+                //        dataManager.Complete();
+                //        break;
+                //    }
+                //}
+                foreach (var ev in events)
+                {
+                    if (ev.Name == eventToRemove.Name)
+                    {
+                        dataManager.Events.Remove(ev);
+                        dataManager.Complete();
+                        break;
+                    }
+                }
+
+            }
+        }
     }
 }
