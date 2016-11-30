@@ -21,7 +21,7 @@
             <Label x:Name="nameLabel" Content="Name:" Margin="20,0,18,343" Background="{x:Null}" Foreground="#FFFDFDFD" FontWeight="Bold" VerticalAlignment="Top"/>
             <TextBox x:Name="nameTextBox" TextWrapping="Wrap" Margin="20,26,18,320" VerticalAlignment="Top"/>
             <Label x:Name="dateLabel" Content="Date" Margin="20,76,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
-            <DatePicker x:Name="beginDatePicker" Margin="20,102,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
+            <DatePicker x:Name="beginDatePicker" Margin="20,102,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top" SelectedDateFormat="Short"/>
             <Label x:Name="beginLabel" Content="Time" Margin="101,77,18,266" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <TextBox x:Name="beginTextBox" TextWrapping="Wrap" Margin="106,103,18,0" VerticalAlignment="Top"/>
             <Label x:Name="endLabel" Content="Time" Margin="101,154,18,189" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>

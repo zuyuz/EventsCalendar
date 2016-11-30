@@ -60,7 +60,6 @@ namespace EventsScheduler
                 });
 
                 EventInfo eInfoWindow = new EventInfo(ev);
-
                 eInfoWindow.ShowDialog();
             }
         }

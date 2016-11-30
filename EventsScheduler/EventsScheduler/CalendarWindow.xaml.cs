@@ -42,7 +42,6 @@ namespace EventsScheduler
                     {
                         if (Controller.Instance.CurrentUser != null)
                         {
-
                             var result = MessageBox.Show("No events for this day. Would you like to create new one?", "Free day", MessageBoxButton.YesNo);
                             if (result == MessageBoxResult.Yes)
                             {
@@ -50,14 +49,14 @@ namespace EventsScheduler
                                 newEventWindow.ShowDialog();
                             }
                         }
-                        else
-                        {
-                            List<Entities.Event> daysEvents = dayEvent.ToList();
-                            DayEvents eventWindow = new DayEvents(daysEvents);
-                            eventWindow.ShowDialog();
-                        }
-                        uOW.Dispose();
                     }
+                    else
+                    {
+                        List<Entities.Event> daysEvents = dayEvent.ToList();
+                        DayEvents eventWindow = new DayEvents(daysEvents);
+                        eventWindow.ShowDialog();
+                    }
+                        uOW.Dispose();
                 }
             }
         }
