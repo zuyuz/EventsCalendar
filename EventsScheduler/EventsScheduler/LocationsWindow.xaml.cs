@@ -17,9 +17,9 @@ namespace EventsScheduler
     /// <summary>
     /// Interaction logic for NewLocation.xaml
     /// </summary>
-    public partial class Locations : Window
+    public partial class LocationsWindow : Window
     {
-        public Locations()
+        public LocationsWindow()
         {
             InitializeComponent();
             locationsListBox.Items.Clear();

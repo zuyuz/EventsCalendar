@@ -145,6 +145,12 @@ namespace EventsScheduler
 
                 Location location = dataManager.Locations.GetLocationByAddress(locationStr);
 
+                List<User> participantsContext = new List<User>();
+                foreach (var user in participants)
+                {
+                    participantsContext.Add(dataManager.Users.GetUserByLogin(user.Login));
+                }
+
                 Event createdEvent = new Event()
                 {
                     Name = name,
@@ -153,7 +159,7 @@ namespace EventsScheduler
                     FreePlaces = freePlaces,
                     EventLocation = location,
                     Creator = dataManager.Users.GetUserByLogin(creatorLogin),
-                    Participants = participants
+                    Participants = participantsContext
                 };
                 dataManager.Events.Add(createdEvent);
 

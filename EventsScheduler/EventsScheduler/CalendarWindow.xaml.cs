@@ -35,20 +35,21 @@ namespace EventsScheduler
             {
                 using (var uOW = new UnitOfWork(new AppDbContext()))
                 {
-                    var dayEvent = uOW.Events.GetEventsInSpecificPeriod(calendar.SelectedDate.Value, calendar.SelectedDate.Value.AddDays(1));
+                    var dayEvent = uOW.Events.GetEventsInSpecificPeriod(
+                        calendar.SelectedDate.Value, calendar.SelectedDate.Value.AddDays(1));
 
                     if (dayEvent.Count() == 0)
                     {
-                        var result = MessageBox.Show("No events for this day. Would you like to create new one?", "Free day", MessageBoxButton.YesNo);
+                        var result = MessageBox.Show("Free day", "No events for this day. Would you like to create new one?", MessageBoxButton.YesNo);
                         if(result == MessageBoxResult.Yes)
                         {
-
+                            NewEvent newEvent = new NewEvent();
+                            newEvent.ShowDialog();
                         }
                     }
                     else
                     {
-                        List<Entities.Event> daysEvents = (from ev in dayEvent
-                                                           select ev).ToList();
+                        List<Entities.Event> daysEvents = dayEvent.ToList();
                         DayEvents eventWindow = new DayEvents(daysEvents);
                         eventWindow.ShowDialog();
                     }

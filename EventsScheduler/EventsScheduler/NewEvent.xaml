@@ -52,7 +52,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Label x:Name="label" Content="Participants:" HorizontalAlignment="Left" Margin="20,311,0,0" VerticalAlignment="Top" Width="81" Foreground="White" FontWeight="Bold"/>
+            <Label x:Name="label" Content="Participants:" HorizontalAlignment="Left" Margin="20,315,0,0" VerticalAlignment="Top" Width="81" Foreground="White" FontWeight="Bold"/>
         </Grid>
 
     </Grid>

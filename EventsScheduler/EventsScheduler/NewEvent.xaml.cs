@@ -29,6 +29,19 @@ namespace EventsScheduler
         private string freePlaces;
         private string locationAddress;
         private List<User> participants;
+
+        public List<User> Participants
+        {
+            get
+            {
+                return participants;
+            }
+            set
+            {
+                participants = value;
+            }
+        }
+
         public NewEvent()
         {
             InitializeComponent();
@@ -100,8 +113,9 @@ namespace EventsScheduler
                 }
                 catch(ArgumentException ex)
 				{
-					MessageBox.Show("Can not create event!",
-						ex.Message,
+					MessageBox.Show(
+                        ex.Message, 
+                        "Can not create event!",
 						MessageBoxButton.OK);
 				}
 			}
@@ -110,18 +124,17 @@ namespace EventsScheduler
 		private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
         {
             AddParticipants addParticipants = new AddParticipants();
-            addParticipants.Owner = this;
-            addParticipants.ShowDialog();
-
-            participants = new List<User>();
-
-            if (addParticipants.SelectedUsers.Count != 0)
+            if(participants != null)
             {
-                foreach (var user in addParticipants.SelectedUsers)
-                {
-                    participants.Add(user);
-                }
+                addParticipants.SelectedUsers = participants;
             }
+            addParticipants.Owner = this;
+            bool? result = addParticipants.ShowDialog();
+            
+            //if (result == true)
+            //{
+            //    participants = addParticipants.SelectedUsers;
+            //}
         }
     }
 }

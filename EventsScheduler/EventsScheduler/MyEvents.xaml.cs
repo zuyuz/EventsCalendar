@@ -32,11 +32,11 @@ namespace EventsScheduler
 						e => e.Creator.Login.Equals(
 							Controller.Instance.CurrentUser.Login))
 							.ToList();
-				}
-				foreach (var e in events)
-				{
-					listBoxEvents.Items.Add(e.Name);
-				}
+                    foreach (var e in events)
+                    {
+                        listBoxEvents.Items.Add(e.Name);
+                    }
+                }
 			}
 		}
 
