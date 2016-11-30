@@ -10,7 +10,7 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Menu x:Name="EventsShedulerMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
+        <Menu x:Name="eventsShedulerMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
             <MenuItem x:Name="FileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
                 <MenuItem x:Name="SignInItem" Header="Sign in" StaysOpenOnClick="True" Click="SignInItem_Click"/>
                 <MenuItem x:Name="ViewMyEventsItem" Header="My events" Click="ViewMyEventsItem_Click"/>

@@ -63,6 +63,11 @@ namespace EventsScheduler
 					listBoxEvents.Items.RemoveAt(listBoxEvents.SelectedIndex);
 				}
 			}
-		}       
+		}
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 	}
 }
