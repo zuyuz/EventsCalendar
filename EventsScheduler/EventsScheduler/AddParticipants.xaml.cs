@@ -106,8 +106,6 @@ namespace EventsScheduler
 				}
 			}
 
-
-
             Close();
 		}
 

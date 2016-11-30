@@ -31,16 +31,22 @@ namespace EventsScheduler
         {
             InitializeComponent();
 
-            EventNameLabel.Content = choosedEvent.Name;
+            DeleteParticipantButton.IsEnabled = false;
+
             DatePickerStart.SelectedDate = choosedEvent.StartTime;
             DatePickerEnd.SelectedDate = choosedEvent.EndTime;
 
-            startTimeTextBox.Text = choosedEvent.StartTime.TimeOfDay.ToString();
-            endTimeTextBox.Text = choosedEvent.EndTime.TimeOfDay.ToString();
+            DatePickerStart.DisplayDate = choosedEvent.StartTime;
+            DatePickerEnd.DisplayDate = choosedEvent.EndTime;
+
+            beginTextBlock.Text = choosedEvent.StartTime.TimeOfDay.ToString(@"hh\:mm");
+            endTextBlock.Text = choosedEvent.EndTime.TimeOfDay.ToString(@"hh\:mm");
 
             CreatorLabel.Content = choosedEvent.Creator.Name;
             if(choosedEvent.EventLocation != null)
                 LocationTextBox.Text = choosedEvent.EventLocation.Address.ToString();
+
+            EventNameLabel.Content = choosedEvent.Name;
 
             foreach (var i in choosedEvent.Participants)
             {
@@ -83,9 +89,9 @@ namespace EventsScheduler
             }
         }
 
-        private void CloseItem_Click(object sender, RoutedEventArgs e)
+        private void ParticipantsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Close();
+            DeleteParticipantButton.IsEnabled = true;
         }
     }
 }
