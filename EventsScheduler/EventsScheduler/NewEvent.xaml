@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventsScheduler"
         mc:Ignorable="d"
-        Title="NewEvent" Height="480" Width="530" Icon="Resources/icon.ico" ResizeMode="NoResize">
+        Title="New Event" Height="480" Width="530" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid Margin="0,0,-8,-2">
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Grid Margin="150,10">
+        <Menu x:Name="newEventWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
+            <MenuItem x:Name="fileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
+                <MenuItem x:Name="closeItem" Header="Close" StaysOpenOnClick="True" Click="CloseItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="150,43,150,21">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -43,8 +48,7 @@
             <Label x:Name="endLabel1" Content="End :" HorizontalAlignment="Left" Margin="20,126,0,0" VerticalAlignment="Top" Width="160" FontWeight="Bold" Foreground="White"/>
             <Label x:Name="dateLabel_Copy" Content="Date" Margin="20,153,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <DatePicker x:Name="endDatePicker" Margin="20,179,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
-            <Label x:Name="participantsLabel" Content="Participants" Margin="20,305,18,0" VerticalAlignment="Top" Width="160" FontWeight="Bold" Foreground="White"/>
-            <Button x:Name="addParticipantsButton" Content="Add" Margin="63,0,64,71" VerticalAlignment="Bottom" Width="101" Foreground="White" FontWeight="Bold" Click="addParticipantsButton_Click">
+            <Button x:Name="addParticipantsButton" Content="Add participants" Margin="63,0,64,55" VerticalAlignment="Bottom" Width="101" Foreground="White" FontWeight="Bold" Click="addParticipantsButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FF3EFF46" Offset="0.007"/>

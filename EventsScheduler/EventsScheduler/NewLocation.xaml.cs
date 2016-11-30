@@ -47,7 +47,11 @@ namespace EventsScheduler
 						MessageBoxButton.OK);
 				}
 			}
-
 		}
+
+        private void CloseItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 	}
 }

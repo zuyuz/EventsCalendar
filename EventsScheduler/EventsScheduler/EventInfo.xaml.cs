@@ -79,5 +79,10 @@ namespace EventsScheduler
                 MessageBox.Show("No participants choosed");
             }
         }
+
+        private void CloseItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

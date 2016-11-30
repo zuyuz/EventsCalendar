@@ -6,7 +6,12 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Grid Margin="10,29,10,83">
+        <Menu x:Name="eventInfoWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
+            <MenuItem x:Name="fileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
+                <MenuItem x:Name="closeItem" Header="Close" StaysOpenOnClick="True" Click="CloseItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="10,48,10,57">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -14,7 +19,7 @@
                     <GradientStop Color="#FF4E4E4E"/>
                 </RadialGradientBrush>
             </Grid.Background>
-            <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="42" Width="520" FontSize="27" Foreground="White"/>
+            <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="48" Width="154" FontSize="27" Foreground="White"/>
             <Label x:Name="CreatedByLabel" Content="Organizer:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontSize="12" Width="70" Foreground="White"/>
             <Label x:Name="CreatorLabel" Content="username" HorizontalAlignment="Left" Margin="98,63,0,0" VerticalAlignment="Top" FontSize="17" Foreground="White"/>
             <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="365,27,0,0" VerticalAlignment="Top" Height="26" Width="152" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False"/>

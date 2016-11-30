@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventsScheduler"
         mc:Ignorable="d"
-        Title="NewLocation" Height="203.971" Width="269.11" Icon="Resources/icon.ico">
+        Title="New Location" Height="225" Width="280" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Grid Margin="48,9,48,42">
+        <Menu x:Name="newLocationWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="540">
+            <MenuItem x:Name="fileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
+                <MenuItem x:Name="closeItem" Header="Close" StaysOpenOnClick="True" Click="CloseItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="49,41,47,10">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -18,7 +23,7 @@
                     <GradientStop Color="#FF4E4E4E"/>
                 </RadialGradientBrush>
             </Grid.Background>
-            <Label x:Name="addressLabel" Content="Location address:" Margin="10,17,43,0" Width="112" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
+            <Label x:Name="addressLabel" Content="Location address:" Margin="0,30,43,0" Width="112" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <TextBox x:Name="addressTextBox" Height="23" Margin="10,41,10,43" TextWrapping="Wrap"/>
             <Button x:Name="addButton" Content="Add" Margin="28,0,28,10" VerticalAlignment="Bottom" Width="75" Foreground="White" FontWeight="Bold" Click="addButton_Click">
                 <Button.Background>
@@ -30,6 +35,5 @@
                 </Button.Background>
             </Button>
         </Grid>
-
     </Grid>
 </Window>
