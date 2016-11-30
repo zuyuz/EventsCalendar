@@ -95,19 +95,16 @@ namespace EventsScheduler
 			}
 		}
 
-		private async void confirmButton_ClickAsync(object sender, RoutedEventArgs e)
+		private void confirmButton_Click(object sender, RoutedEventArgs e)
 		{
-			await Task.Run(() =>
+			using (var dataManager = new UnitOfWork(new AppDbContext()))
 			{
-				using (var dataManager = new UnitOfWork(new AppDbContext()))
+				foreach (var user in selectedUsersListBox.Items)
 				{
-					foreach (var user in selectedUsersListBox.Items)
-					{
-						selectedUsers.Add(
-							dataManager.Users.GetUserByLogin((user as CheckBox).Name));
-					}
+					selectedUsers.Add(
+						dataManager.Users.GetUserByLogin((user as CheckBox).Name));
 				}
-			});
+			}
 		}
 
 		private void closeButton_Click(object sender, RoutedEventArgs e)
