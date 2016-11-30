@@ -13,7 +13,7 @@ namespace EventsScheduler.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201611151800110_Initial"; }
+            get { return "201611300725098_Initial"; }
         }
         
         string IMigrationMetadata.Source

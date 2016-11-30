@@ -3,18 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Event Info" Height="484" Width="546" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid x:Name="ParrticipantsTextBox">
-        <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="42" Width="520" FontSize="27"/>
-        <Label x:Name="CreatedByLabel" Content="Organizer:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontSize="12" Width="70"/>
-        <Label x:Name="CreatorLabel" Content="username" HorizontalAlignment="Left" Margin="98,63,0,0" VerticalAlignment="Top" FontSize="17"/>
-        <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="365,27,0,0" VerticalAlignment="Top" Height="35" Width="152" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False"/>
-        <Label x:Name="LocationLabel" Content="Location:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.003"/>
-        <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Height="23" Margin="98,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" IsEnabled="False"/>
-        <Label x:Name="ParticipantsLabel" Content="Participants:" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,-2.457" Width="81"/>
-        <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Height="283" Margin="96,163,0,0" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="DeleteParticipantButton" Content="Delete participant" HorizontalAlignment="Left" Margin="407,424,0,0" VerticalAlignment="Top" Width="110" Click="DeleteParticipantButton_Click"/>
-        <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="365,98,0,0" VerticalAlignment="Top" Height="35" Width="152" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False"/>
-        <Label x:Name="startLabel" Content="Begins:" HorizontalAlignment="Left" Margin="312,27,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="endLabel" Content="Ends:" HorizontalAlignment="Left" Margin="312,98,0,0" VerticalAlignment="Top"/>
-
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
+        </Grid.Background>
+        <Grid Margin="10,29,10,83">
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF4E4E4E"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="42" Width="520" FontSize="27" Foreground="White"/>
+            <Label x:Name="CreatedByLabel" Content="Organizer:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontSize="12" Width="70" Foreground="White"/>
+            <Label x:Name="CreatorLabel" Content="username" HorizontalAlignment="Left" Margin="98,63,0,0" VerticalAlignment="Top" FontSize="17" Foreground="White"/>
+            <DatePicker x:Name="DatePickerStart" HorizontalAlignment="Left" Margin="365,27,0,0" VerticalAlignment="Top" Height="26" Width="152" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False"/>
+            <Label x:Name="LocationLabel" Content="Location:" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.003" Foreground="White"/>
+            <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Height="23" Margin="98,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" IsEnabled="False"/>
+            <Label x:Name="ParticipantsLabel" Content="Participants:" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,-2.457" Width="81" Foreground="White"/>
+            <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Height="158" Margin="96,163,0,0" VerticalAlignment="Top" Width="209"/>
+            <Button x:Name="DeleteParticipantButton" Content="Delete participant" HorizontalAlignment="Left" Margin="367,300,0,0" VerticalAlignment="Top" Width="123" Foreground="White" FontWeight="Bold" Click="DeleteParticipantButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                        <GradientStop Color="#FF118516" Offset="0.826"/>
+                        <GradientStop Color="White"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="365,98,0,0" VerticalAlignment="Top" Height="26" Width="152" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False"/>
+            <Label x:Name="startLabel" Content="Begins:" HorizontalAlignment="Left" Margin="312,27,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="endLabel" Content="Ends:" HorizontalAlignment="Left" Margin="312,98,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="startTimeLabel" Content="Time:" HorizontalAlignment="Left" Margin="312,57,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label x:Name="endTimeLabel" Content="Time:" HorizontalAlignment="Left" Margin="312,129,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="startTimeTextBox" HorizontalAlignment="Left" Height="23" Margin="365,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
+            <TextBox x:Name="endTimeTextBox" HorizontalAlignment="Left" Height="23" Margin="365,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71"/>
+        </Grid>
     </Grid>
 </Window>
