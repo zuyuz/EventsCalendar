@@ -35,11 +35,7 @@ namespace EventsScheduler
             {
                 listBoxEvents.Items.Add(e.Name);
             }
-<<<<<<< HEAD
-=======
-
             //this.eventsLabel.Content += " on " + ev[0].StartTime.Date.ToShortDateString() + ":";
->>>>>>> 5bc63ae71e10d4adda815d83aba12464b7932f33
         }
 
         private void CloseItem_Click(object sender, RoutedEventArgs e)
