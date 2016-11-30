@@ -37,7 +37,7 @@ namespace EventsScheduler
             }
         }
 
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        private void CloseItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

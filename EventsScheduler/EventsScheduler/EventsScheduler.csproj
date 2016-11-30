@@ -49,8 +49,8 @@
       <HintPath>..\packages\EntityFramework6.Npgsql.3.1.1\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Npgsql, Version=3.1.8.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.3.1.8\lib\net45\Npgsql.dll</HintPath>
+    <Reference Include="Npgsql, Version=3.1.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.1.9\lib\net45\Npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -97,9 +97,9 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="LocationRepository.cs" />
-    <Compile Include="Migrations\201611151800110_Initial.cs" />
-    <Compile Include="Migrations\201611151800110_Initial.Designer.cs">
-      <DependentUpon>201611151800110_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201611300725098_Initial.cs" />
+    <Compile Include="Migrations\201611300725098_Initial.Designer.cs">
+      <DependentUpon>201611300725098_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyEvents.xaml.cs">
@@ -183,8 +183,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201611151800110_Initial.resx">
-      <DependentUpon>201611151800110_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611300725098_Initial.resx">
+      <DependentUpon>201611300725098_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

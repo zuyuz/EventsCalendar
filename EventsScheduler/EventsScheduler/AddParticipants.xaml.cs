@@ -48,7 +48,7 @@ namespace EventsScheduler
                     {
                         CheckBox item = new CheckBox();
                         item.Name = user.Login;
-                        item.Content = $"{user.Name} ({user.Login})";
+                        item.Content = String.Format("{0} {1}", user.Name, user.Login);
                         allUsersListBox.Items.Add(item);
                     }
                 }
@@ -66,7 +66,7 @@ namespace EventsScheduler
 					var newItem = new CheckBox()
 					{
 						Name = check.Name,
-						Content = $"{check.Content} ({check.Name})"
+						Content = String.Format("{0} {1}", check.Content, check.Name)
 					};
 					selectedUsersListBox.Items.Add(newItem);
 					allUsersListBox.Items.Remove(check);
@@ -86,7 +86,7 @@ namespace EventsScheduler
 					var newItem = new CheckBox()
 					{
 						Name = check.Name,
-						Content = $"{check.Content} ({check.Name})"
+                        Content = String.Format("{0} {1}", check.Content, check.Name)
 					};
 					allUsersListBox.Items.Add(newItem);
 					selectedUsersListBox.Items.Remove(check);
@@ -107,7 +107,7 @@ namespace EventsScheduler
 			}
 		}
 
-		private void closeButton_Click(object sender, RoutedEventArgs e)
+		private void CloseItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

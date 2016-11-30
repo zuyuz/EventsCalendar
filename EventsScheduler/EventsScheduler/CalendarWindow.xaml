@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventsScheduler"
         mc:Ignorable="d"
-        Title="CalendarWindow" Height="300" Width="300" Icon="Resources/icon.ico">
+        Title="Calendar" Height="300" Width="300" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid>
         <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
             <Calendar x:Name="CalendarBox" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
