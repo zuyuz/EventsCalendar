@@ -42,7 +42,8 @@ namespace EventsScheduler
                         var result = MessageBox.Show("No events for this day. Would you like to create new one?", "Free day", MessageBoxButton.YesNo);
                         if(result == MessageBoxResult.Yes)
                         {
-
+                            NewEvent newEventWindow = new NewEvent(Convert.ToDateTime(calendar.SelectedDate));
+                            newEventWindow.ShowDialog();
                         }
                     }
                     else

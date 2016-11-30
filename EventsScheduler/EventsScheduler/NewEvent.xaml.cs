@@ -29,12 +29,19 @@ namespace EventsScheduler
         private string freePlaces;
         private string locationAddress;
         private List<User> participants;
-        public NewEvent()
+        public NewEvent(DateTime beginDate)
         {
             InitializeComponent();
             beginDatePicker.DisplayDateStart = beginDatePicker.DisplayDate;
             endDatePicker.DisplayDateStart = endDatePicker.DisplayDate;
             locationComboBox.Items.Clear();
+
+            if (beginDate != new DateTime())
+            {
+                begin = beginDate;
+                beginDatePicker.Text = begin.ToString();
+            }
+
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
                 foreach (var location in dataManager.Locations.GetAll())
@@ -42,46 +49,57 @@ namespace EventsScheduler
                     locationComboBox.Items.Add(location.Address);
                 }
             }
-
         }
 
-		private  void createButton_Click(object sender, RoutedEventArgs e)
-		{
-			MainWindow mainWindow = this.Owner as MainWindow;
+        private void createButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = this.Owner as MainWindow;
 
-			if (nameTextBox.Text == "")
-			{
-				MessageBox.Show("Please, input name.");
-			}
-			else if (beginDatePicker.SelectedDate.HasValue == false)
-			{
-				MessageBox.Show("Please, select date.");
-			}
-			else if (beginTextBox.Text == "")
-			{
-				MessageBox.Show("Please, input begin time.");
-			}
-			else if (endTextBox.Text == "")
-			{
-				MessageBox.Show("Please, input end time.");
-			}
-			else if (placesTextBox.Text == "")
-			{
-				MessageBox.Show("Please, input number of places.");
-			}
-			else if (locationComboBox.SelectedValue == null)
-			{
-				MessageBox.Show("Please, select location.");
-			}
-			else
-			{
-				name = nameTextBox.Text;
-				begin = beginDatePicker.SelectedDate.Value;
-                beginTime = beginTextBox.Text;
-				end = beginDatePicker.SelectedDate.Value;
-				endTime = endTextBox.Text;
-                freePlaces = placesTextBox.Text;
-				locationAddress = locationComboBox.SelectedValue.ToString();
+            if (nameTextBox.Text == "")
+            {
+                MessageBox.Show("Please, input name.");
+            }
+            else if (beginDatePicker.SelectedDate.HasValue == false)
+            {
+                MessageBox.Show("Please, select date.");
+            }
+            else if (beginTextBox.Text == "")
+            {
+                MessageBox.Show("Please, input begin time.");
+            }
+            else if (endTextBox.Text == "")
+            {
+                MessageBox.Show("Please, input end time.");
+            }
+            else if (placesTextBox.Text == "")
+            {
+                MessageBox.Show("Please, input number of places.");
+            }
+            else if (locationComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Please, select location.");
+            }
+            else
+            {
+                name = nameTextBox.Text;
+
+                if (begin == new DateTime())
+                {
+                    begin = beginDatePicker.SelectedDate.Value;
+                    beginTime = beginTextBox.Text;
+                    end = beginDatePicker.SelectedDate.Value;
+                    endTime = endTextBox.Text;
+                    freePlaces = placesTextBox.Text;
+                    locationAddress = locationComboBox.SelectedValue.ToString();
+                }
+                else
+                {
+                    beginTime = beginTextBox.Text;
+                    end = beginDatePicker.SelectedDate.Value;
+                    endTime = endTextBox.Text;
+                    freePlaces = placesTextBox.Text;
+                    locationAddress = locationComboBox.SelectedValue.ToString();
+                }
 
                 try
                 {
@@ -98,16 +116,16 @@ namespace EventsScheduler
 
                     Close();
                 }
-                catch(ArgumentException ex)
-				{
-					MessageBox.Show("Can not create event!",
-						ex.Message,
-						MessageBoxButton.OK);
-				}
-			}
-		}
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Can not create event!",
+                        ex.Message,
+                        MessageBoxButton.OK);
+                }
+            }
+        }
 
-		private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
+        private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
         {
             AddParticipants addParticipants = new AddParticipants();
             addParticipants.Owner = this;

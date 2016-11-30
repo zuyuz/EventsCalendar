@@ -90,7 +90,8 @@ namespace EventsScheduler
 
         private void CreateEventItem_Click(object sender, RoutedEventArgs e)
         {
-            NewEvent newEvent = new NewEvent();
+            DateTime begin = new DateTime();
+            NewEvent newEvent = new NewEvent(begin);
             newEvent.ShowDialog();
         }
 
