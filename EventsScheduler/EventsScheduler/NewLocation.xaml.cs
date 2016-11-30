@@ -17,11 +17,19 @@ namespace EventsScheduler
     /// <summary>
     /// Interaction logic for NewLocation.xaml
     /// </summary>
-    public partial class NewLocation : Window
+    public partial class Locations : Window
     {
-        public NewLocation()
+        public Locations()
         {
             InitializeComponent();
+            locationsListBox.Items.Clear();
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                foreach (var location in dataManager.Locations.GetAll())
+                {
+                    locationsListBox.Items.Add(location.Address);
+                }
+            }
         }
 
 		private async void addButton_Click(object sender, RoutedEventArgs e)
@@ -35,10 +43,7 @@ namespace EventsScheduler
 				var result = await Controller.Instance.AddLocationAsync(addressTextBox.Text);
 				if (result)
 				{
-					MessageBox.Show("Location added successfully!",
-						"Addition Completed!",
-						MessageBoxButton.OK);
-					Close();
+                    locationsListBox.Items.Add(addressTextBox.Text);
 				}
 				else
 				{
@@ -49,5 +54,20 @@ namespace EventsScheduler
 			}
 
 		}
-	}
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                if (locationsListBox.SelectedValue.ToString() != "")
+                {
+                    Entities.Location location = dataManager.Locations.
+                    GetLocationByAddress(locationsListBox.SelectedValue.ToString());
+                    dataManager.Locations.Remove(location);
+                    locationsListBox.Items.Remove(location.Address);
+                }
+            }
+
+        }
+    }
 }
