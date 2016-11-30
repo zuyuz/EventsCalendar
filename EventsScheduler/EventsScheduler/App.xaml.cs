@@ -13,6 +13,6 @@ namespace EventsScheduler
     /// </summary>
     public partial class App : Application
     {
-        public static  Controller Controller = Controller.Instance;
+        public static Controller Controller = Controller.Instance;
     }
 }

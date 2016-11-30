@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventsScheduler"
         mc:Ignorable="d"
-        Title="AddParticipants" Height="350" Width="350">
+        Title="AddParticipants" Height="350" Width="400">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
@@ -17,8 +17,8 @@
                     <GradientStop Color="#FF616161"/>
                 </RadialGradientBrush>
             </Grid.Background>
-            <ListBox x:Name="allUsersListBox" HorizontalAlignment="Left" Height="160" Margin="10,25,0,0" VerticalAlignment="Top" Width="120"/>
-            <ListBox x:Name="selectedUsersListBox" HorizontalAlignment="Right" Height="160" Margin="0,25,10,0" Width="120" VerticalAlignment="Top"/>
+            <ListBox x:Name="allUsersListBox" HorizontalAlignment="Left" Height="160" Margin="10,25,0,0" VerticalAlignment="Top" Width="125" SelectedValuePath="Content" />
+            <ListBox x:Name="selectedUsersListBox" HorizontalAlignment="Right" Height="160" Margin="0,25,10,0" Width="125" VerticalAlignment="Top" SelectedValuePath="Content"/>
             <Button x:Name="addButton" Content="→" HorizontalAlignment="Center" Margin="131,79,131,0" VerticalAlignment="Top" Width="30" Click="addButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
