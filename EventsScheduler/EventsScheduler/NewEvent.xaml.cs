@@ -85,7 +85,7 @@ namespace EventsScheduler
 
                 try
                 {
-                    Controller.Instance.CreateEventAsync(
+                    Controller.Instance.CreateEvent(
                         name,
                         begin,
                         beginTime,

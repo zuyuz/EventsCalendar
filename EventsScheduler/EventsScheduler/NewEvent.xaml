@@ -21,7 +21,7 @@
             <Label x:Name="nameLabel" Content="Name" Margin="20,0,18,343" Background="{x:Null}" Foreground="#FFFDFDFD" FontWeight="Bold" VerticalAlignment="Top"/>
             <TextBox x:Name="nameTextBox" TextWrapping="Wrap" Margin="20,26,18,320" VerticalAlignment="Top"/>
             <Label x:Name="dateLabel" Content="Date" Margin="20,76,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
-            <DatePicker x:Name="beginDatePicker" Margin="20,102,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
+            <DatePicker x:Name="beginDatePicker" Margin="20,102,119,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
             <Label x:Name="beginLabel" Content="Time" Margin="101,77,18,266" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <TextBox x:Name="beginTextBox" TextWrapping="Wrap" Margin="106,103,18,0" VerticalAlignment="Top"/>
             <Label x:Name="endLabel" Content="Time" Margin="101,154,18,189" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
@@ -42,7 +42,7 @@
             <Label x:Name="startLabel" Content="Start :" Margin="20,48,18,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" Height="23"/>
             <Label x:Name="endLabel1" Content="End :" HorizontalAlignment="Left" Margin="20,126,0,0" VerticalAlignment="Top" Width="160" FontWeight="Bold" Foreground="White"/>
             <Label x:Name="dateLabel_Copy" Content="Date" Margin="20,153,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
-            <DatePicker x:Name="endDatePicker" Margin="20,179,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
+            <DatePicker x:Name="endDatePicker" Margin="20,179,119,0" FirstDayOfWeek="Monday" VerticalAlignment="Top"/>
             <Label x:Name="participantsLabel" Content="Participants" Margin="20,305,18,0" VerticalAlignment="Top" Width="160" FontWeight="Bold" Foreground="White"/>
             <Button x:Name="addParticipantsButton" Content="Add" Margin="0,0,0,70" VerticalAlignment="Bottom" Width="101" Click="addParticipantsButton_Click" HorizontalAlignment="Center">
                 <Button.Background>

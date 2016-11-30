@@ -105,7 +105,7 @@ namespace EventsScheduler
             });
         }
 
-        public void CreateEventAsync(
+        public void CreateEvent(
             string name,
             DateTime begin,
             string beginTimeStr,

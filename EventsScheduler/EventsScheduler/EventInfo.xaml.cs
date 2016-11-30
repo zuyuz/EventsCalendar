@@ -35,8 +35,8 @@ namespace EventsScheduler
             DatePickerStart.SelectedDate = choosedEvent.StartTime;
             DatePickerEnd.SelectedDate = choosedEvent.EndTime;
 
-            beginTextBlock.Text = choosedEvent.StartTime.TimeOfDay.ToString();
-            endTextBlock.Text = choosedEvent.EndTime.TimeOfDay.ToString();
+            beginTextBlock.Text = choosedEvent.StartTime.TimeOfDay.ToString(@"hh\:mm");
+            endTextBlock.Text = choosedEvent.EndTime.TimeOfDay.ToString(@"hh\:mm");
 
             CreatorLabel.Content = choosedEvent.Creator.Name;
             if(choosedEvent.EventLocation != null)
