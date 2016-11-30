@@ -98,5 +98,11 @@ namespace EventsScheduler
             NewLocation location = new NewLocation();
             location.ShowDialog();
         }
-    }
+
+		private void ViewMyEventsItem_Click(object sender, RoutedEventArgs e)
+		{
+			MyEvents myEvents = new MyEvents();
+			myEvents.ShowDialog();
+		}
+	}
 }
