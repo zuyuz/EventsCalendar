@@ -31,9 +31,16 @@ namespace EventsScheduler
         {
             InitializeComponent();
 
+            DeleteParticipantButton.IsEnabled = false;
 
             DatePickerStart.SelectedDate = choosedEvent.StartTime;
             DatePickerEnd.SelectedDate = choosedEvent.EndTime;
+
+            DatePickerStart.DisplayDate = choosedEvent.StartTime;
+            DatePickerEnd.DisplayDate = choosedEvent.EndTime;
+
+            beginTextBlock.Text = choosedEvent.StartTime.TimeOfDay.ToString(@"hh\:mm");
+            endTextBlock.Text = choosedEvent.EndTime.TimeOfDay.ToString(@"hh\:mm");
 
             CreatorLabel.Content = choosedEvent.Creator.Name;
             if(choosedEvent.EventLocation != null)
@@ -45,8 +52,11 @@ namespace EventsScheduler
             {
                 ParticipantsListBox.Items.Add(i.Name);
             }
-            
 
+            if (ParticipantsListBox.Items.Count == 0)
+            {
+                DeleteParticipantButton.Visibility = Visibility.Collapsed;
+            }
 
             chEvent = choosedEvent;
         }
@@ -77,6 +87,11 @@ namespace EventsScheduler
             {
                 MessageBox.Show("No participants choosed");
             }
+        }
+
+        private void ParticipantsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DeleteParticipantButton.IsEnabled = true;
         }
     }
 }

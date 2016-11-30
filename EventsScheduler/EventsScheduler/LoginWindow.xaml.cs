@@ -35,10 +35,5 @@ namespace EventsScheduler
                 Close();
             }
         }
-
-        private void BackItem_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

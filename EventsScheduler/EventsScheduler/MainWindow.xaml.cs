@@ -43,11 +43,12 @@ namespace EventsScheduler
                 this.GreetingLabel.Content = "Hello " + App.Controller.GetCurrentUserLogin() + "!";
                 this.CreateEventItem.Visibility = Visibility.Visible;
                 this.ViewMyEventsItem.Visibility = Visibility.Visible;
-            }
-            if (App.Controller.CurrentUser.Login == "admin")
-            {
-                this.AddLocationItem.Visibility = Visibility.Visible;
-            }
+
+				if (App.Controller.CurrentUser.Login == "admin")
+				{
+					this.AddLocationItem.Visibility = Visibility.Visible;
+				}
+			}
         }
 
         private void SignUpItem_Click(object sender, RoutedEventArgs e)
@@ -95,7 +96,7 @@ namespace EventsScheduler
 
         private void AddLocationItem_Click(object sender, RoutedEventArgs e)
         {
-            NewLocation location = new NewLocation();
+            Locations location = new Locations();
             location.ShowDialog();
         }
 

@@ -35,9 +35,11 @@ namespace EventsScheduler
             {
                 listBoxEvents.Items.Add(e.Name);
             }
+
+            //this.eventsLabel.Content += " on " + ev[0].StartTime.Date.ToShortDateString() + ":";
         }
 
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        private void CloseItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
@@ -57,7 +59,9 @@ namespace EventsScheduler
                         return false;
                     }
                 });
+
                 EventInfo eInfoWindow = new EventInfo(ev);
+
                 eInfoWindow.ShowDialog();
             }
         }
@@ -93,7 +97,11 @@ namespace EventsScheduler
                 }
             }
         }
-
+        
+        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
 

@@ -85,7 +85,7 @@ namespace EventsScheduler
 
                 try
                 {
-                    Controller.Instance.CreateEventAsync(
+                    Controller.Instance.CreateEvent(
                         name,
                         begin,
                         beginTime,
@@ -112,6 +112,16 @@ namespace EventsScheduler
             AddParticipants addParticipants = new AddParticipants();
             addParticipants.Owner = this;
             addParticipants.ShowDialog();
+
+            participants = new List<User>();
+
+            if (addParticipants.SelectedUsers.Count != 0)
+            {
+                foreach (var user in addParticipants.SelectedUsers)
+                {
+                    participants.Add(user);
+                }
+            }
         }
     }
 }

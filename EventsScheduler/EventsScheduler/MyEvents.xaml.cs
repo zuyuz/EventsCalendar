@@ -21,24 +21,24 @@ namespace EventsScheduler
     {
         List<Entities.Event> events;
 
-        public MyEvents()
-        {
-            InitializeComponent();
-            if (Controller.Instance.CurrentUser != null)
-            {
-                using (var uOW = new UnitOfWork(new AppDbContext()))
-                {
-                    var ev = uOW.Events.Find(
-                        e => e.Creator.Login.Equals(
-                            Controller.Instance.CurrentUser.Login));
-                    events = ev.ToList();
-                }
-                foreach (var e in events)
-                {
-                    listBoxEvents.Items.Add(e.Name);
-                }
-            }
-        }
+		public MyEvents()
+		{
+			InitializeComponent();
+			if (Controller.Instance.CurrentUser != null)
+			{
+				using (var uOW = new UnitOfWork(new AppDbContext()))
+				{
+					events = uOW.Events.Find(
+						e => e.Creator.Login.Equals(
+							Controller.Instance.CurrentUser.Login))
+							.ToList();
+				}
+				foreach (var e in events)
+				{
+					listBoxEvents.Items.Add(e.Name);
+				}
+			}
+		}
 
         private void buttonShowEvent_Click(object sender, RoutedEventArgs e)
         {
@@ -60,7 +60,6 @@ namespace EventsScheduler
                 eInfoWindow.ShowDialog();
             }
         }
-
         private void buttonDeleteEvent_Click(object sender, RoutedEventArgs e)
         {
             if (listBoxEvents.SelectedIndex != -1)
