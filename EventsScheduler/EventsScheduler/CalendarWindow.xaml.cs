@@ -39,11 +39,16 @@ namespace EventsScheduler
 
                     if (dayEvent.Count() == 0)
                     {
-                        var result = MessageBox.Show("Free day", "No events for this day. Would you like to create new one?", MessageBoxButton.YesNo);
-                        if(result == MessageBoxResult.Yes)
+                        if(Controller.Instance.CurrentUser != null)
                         {
-
+                            var result = MessageBox.Show("No events for this day. Would you like to create new one?", "Free day", MessageBoxButton.YesNo);
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                NewEvent ev = new NewEvent();
+                                ev.ShowDialog();
+                            }
                         }
+                        
                     }
                     else
                     {

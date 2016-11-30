@@ -90,10 +90,10 @@ namespace EventsScheduler
                     {
                         MessageBox.Show("Only event creator or admin are allowed to delete this event.");
                     }
-
                 }
             }
-
         }
+
     }
 }
+
