@@ -25,14 +25,14 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto" MinWidth="255"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="0,10,0,11" VerticalAlignment="Center" Height="42" FontSize="27" Width="148" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label x:Name="EventNameLabel" Content="Event name" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" FontSize="27" Grid.ColumnSpan="2" Foreground="White"/>
         <Label x:Name="CreatedByLabel" Content="Organizer:" HorizontalAlignment="Right" Margin="0,2" VerticalAlignment="Center" FontSize="12" Height="26" Grid.Row="1" Width="65" Foreground="White"/>
         <Label x:Name="CreatorLabel" Content="username" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" FontSize="17" Grid.Column="1" Padding="0,5" Height="34" Width="72" Foreground="White" Grid.Row="1"/>
-        <DatePicker x:Name="DatePickerStart" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3"/>
+        <DatePicker x:Name="DatePickerStart" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" DisplayDate="11/16/2016 18:00:00" IsEnabled="False"/>
         <Label x:Name="LocationLabel" Content="Location:" HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.113,0.003" Height="26" Width="58" Grid.Row="2" Margin="0,2" Foreground="White"/>
-        <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" IsEnabled="False" Padding="13,1,1,1" Grid.Column="1" Grid.Row="2" Foreground="White"/>
+        <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" Margin="0,3" TextWrapping="Wrap" VerticalAlignment="Center" Width="200" IsEnabled="False" Padding="5,0,1,0" Grid.Column="1" Grid.Row="2" Foreground="Black" VerticalContentAlignment="Center"/>
         <Label x:Name="ParticipantsLabel" Content="Participants:" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" RenderTransformOrigin="0.097,-2.457" Height="26" Grid.Row="5" Width="74" Foreground="White"/>
-        <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="200" Grid.Column="1" Grid.Row="5" Height="150"/>
+        <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="200" Grid.Column="1" Grid.Row="5" Height="150" SelectionChanged="ParticipantsListBox_SelectionChanged"/>
         <Button x:Name="DeleteParticipantButton" Content="Delete" HorizontalAlignment="Center" Margin="124,10,55,10" VerticalAlignment="Center" Width="76" Click="DeleteParticipantButton_Click" Grid.Column="1" Height="22" Grid.Row="6">
         <Button.Background>
             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -42,7 +42,7 @@
             </LinearGradientBrush>
         </Button.Background>
         </Button>
-        <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" IsEnabled="False" Grid.Column="1" Grid.Row="4"/>
+        <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" DisplayDateEnd="11/16/2016 18:00:00" DisplayDateStart="11/16/2016 16:40:00" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" Grid.Column="1" Grid.Row="4" IsEnabled="False"/>
         <Label x:Name="startLabel" Content="Begins:" HorizontalAlignment="Right" Margin="0,3,0,2" VerticalAlignment="Center" Height="26" Width="48" Grid.Row="3" Foreground="White"/>
         <Label x:Name="endLabel" Content="Ends:" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="4" Foreground="White"/>
         <TextBlock x:Name="beginTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="3" TextWrapping="Wrap" Text="Time" VerticalAlignment="Center" Width="79"/>
