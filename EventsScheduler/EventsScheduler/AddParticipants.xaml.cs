@@ -105,6 +105,10 @@ namespace EventsScheduler
 						dataManager.Users.GetUserByLogin((user as CheckBox).Name));
 				}
 			}
+
+
+
+            Close();
 		}
 
 		private void CloseItem_Click(object sender, RoutedEventArgs e)

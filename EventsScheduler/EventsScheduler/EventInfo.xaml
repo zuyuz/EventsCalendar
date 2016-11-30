@@ -1,7 +1,7 @@
 ﻿<Window x:Class="EventsScheduler.EventInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Event Info" Height="484" Width="546" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
+        Title="Event Info" Height="484" Width="555" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid x:Name="ParrticipantsTextBox">
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>

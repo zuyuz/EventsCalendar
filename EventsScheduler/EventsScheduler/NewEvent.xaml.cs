@@ -112,6 +112,16 @@ namespace EventsScheduler
             AddParticipants addParticipants = new AddParticipants();
             addParticipants.Owner = this;
             addParticipants.ShowDialog();
+
+            participants = new List<User>();
+
+            if (addParticipants.SelectedUsers.Count != 0)
+            {
+                foreach (var user in addParticipants.SelectedUsers)
+                {
+                    participants.Add(user);
+                }
+            }
         }
 
         private void CloseItem_Click(object sender, RoutedEventArgs e)
