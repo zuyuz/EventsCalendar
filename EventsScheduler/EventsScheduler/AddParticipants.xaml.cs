@@ -105,6 +105,8 @@ namespace EventsScheduler
 						dataManager.Users.GetUserByLogin((user as CheckBox).Name));
 				}
 			}
+
+            Close();
 		}
     }
 }

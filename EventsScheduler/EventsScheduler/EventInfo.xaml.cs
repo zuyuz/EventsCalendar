@@ -52,8 +52,11 @@ namespace EventsScheduler
             {
                 ParticipantsListBox.Items.Add(i.Name);
             }
-            
 
+            if (ParticipantsListBox.Items.Count == 0)
+            {
+                DeleteParticipantButton.Visibility = Visibility.Collapsed;
+            }
 
             chEvent = choosedEvent;
         }
