@@ -32,42 +32,47 @@ namespace EventsScheduler
             }
         }
 
-		private async void addButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (addressTextBox.Text == "")
-			{
-				MessageBox.Show("Please, input location address.");
-			}
-			else
-			{
-				var result = await Controller.Instance.AddLocationAsync(addressTextBox.Text);
-				if (result)
-				{
-                    locationsListBox.Items.Add(addressTextBox.Text);
-				}
-				else
-				{
-					MessageBox.Show("Can not add location!",
-						"Addition Failed!",
-						MessageBoxButton.OK);
-				}
-			}
-
-		}
-
-        private void removeButton_Click(object sender, RoutedEventArgs e)
+        private async void addButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            if (addressTextBox.Text == "")
             {
-                if (locationsListBox.SelectedValue.ToString() != "")
+                MessageBox.Show("Please, input location address.");
+            }
+            else
+            {
+                try
                 {
-                    Entities.Location location = dataManager.Locations.
-                    GetLocationByAddress(locationsListBox.SelectedValue.ToString());
-                    dataManager.Locations.Remove(location);
-                    locationsListBox.Items.Remove(location.Address);
+                    Controller.Instance.AddLocation(addressTextBox.Text);
+                    locationsListBox.Items.Add(addressTextBox.Text);
+                }
+                catch(ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message,
+                        "Can not add location!",
+                        MessageBoxButton.OK);
+                    addressTextBox.Clear();
                 }
             }
 
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            string locationAddress = locationsListBox.SelectedValue.ToString();
+            if (locationAddress != "")
+            {
+                try
+                {
+                    Controller.Instance.RemoveLocation(locationAddress);
+                    locationsListBox.Items.Remove(locationAddress);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message,
+                        "Can not remove location!",
+                        MessageBoxButton.OK);
+                }
+            }
         }
     }
 }

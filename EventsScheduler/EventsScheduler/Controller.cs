@@ -21,7 +21,7 @@ namespace EventsScheduler
         {
         }
 
-        public User CurrentUser 
+        public User CurrentUser
         {
             get
             {
@@ -67,20 +67,20 @@ namespace EventsScheduler
             return this.currentUser.Login;
         }
 
-		/// <summary>
-		/// Performs registration and updates DB.
-		/// </summary>
-		/// <param name="email">User email</param>
-		/// <param name="name">User full name</param>
-		/// <param name="login">User login</param>
-		/// <param name="password">User password</param>
-		/// <returns>Whether registration completed successfully</returns>
-		public async Task<bool> RegisterUserAsync(
-			string email, 
-			string name, 
-			string login, 
-			string password)
-		{
+        /// <summary>
+        /// Performs registration and updates DB.
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="name">User full name</param>
+        /// <param name="login">User login</param>
+        /// <param name="password">User password</param>
+        /// <returns>Whether registration completed successfully</returns>
+        public async Task<bool> RegisterUserAsync(
+            string email,
+            string name,
+            string login,
+            string password)
+        {
             return await Task.Run(() =>
             {
                 using (var dataManager = new UnitOfWork(new AppDbContext()))
@@ -103,9 +103,9 @@ namespace EventsScheduler
                     return false;
                 }
             });
-		}
+        }
 
-        public  void CreateEventAsync(
+        public void CreateEventAsync(
             string name,
             DateTime begin,
             string beginTimeStr,
@@ -114,76 +114,71 @@ namespace EventsScheduler
             string freePlacesStr,
             string locationStr,
             string creatorLogin,
-			List<User> participants)
-		{
-				using (var dataManager = new UnitOfWork(new AppDbContext()))
-				{
-                    TimeSpan beginTime = new TimeSpan();
-                    TimeSpan endTime = new TimeSpan();
-                    if(TimeSpan.TryParseExact(beginTimeStr, @"hh\:mm", null, out beginTime) == false
-                    || TimeSpan.TryParseExact(endTimeStr, @"hh\:mm", null, out endTime) == false)
-                    {
-                        throw new ArgumentException("Invalid time!\nTime format is HH:MM");
-                    }
-                    begin = begin.Add(beginTime);
-                    end = end.Add(endTime);
-                    if(begin > end)
-                    {
-                        throw new ArgumentException("Invalid period of time");
-                    }
-
-                    int freePlaces;
-                    if (int.TryParse(freePlacesStr, out freePlaces) == false)
-                    {
-                        throw new ArgumentException("Invalid number of participants!");
-                    }
-
-                    if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() > 0)
-                    {
-                        throw new ArgumentException("Event in such period already exists.");
-                    }
-
-                    Location location = dataManager.Locations.GetLocationByAddress(locationStr);
-
-                    Event createdEvent = new Event()
-						{
-							Name = name,
-							StartTime = begin,
-							EndTime = end,
-							FreePlaces = freePlaces,
-							EventLocation = location,
-							Creator = dataManager.Users.GetUserByLogin(creatorLogin),
-							Participants = participants
-						};
-						dataManager.Events.Add(createdEvent);
-
-						dataManager.Complete();
-				}
-		}
-
-		public async Task<bool> AddLocationAsync(string address)
+            List<User> participants)
         {
-			return await Task.Run(() =>
-			{
-				using (var dataManager = new UnitOfWork(new AppDbContext()))
-				{
-					if (dataManager.Locations.GetLocationByAddress(address) == null)
-					{
-						Location location = new Location();
-						location.Address = address;
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                TimeSpan beginTime = new TimeSpan();
+                TimeSpan endTime = new TimeSpan();
+                if (TimeSpan.TryParseExact(beginTimeStr, @"hh\:mm", null, out beginTime) == false
+                || TimeSpan.TryParseExact(endTimeStr, @"hh\:mm", null, out endTime) == false)
+                {
+                    throw new ArgumentException("Invalid time!\nTime format is HH:MM");
+                }
+                begin = begin.Add(beginTime);
+                end = end.Add(endTime);
+                if (begin > end)
+                {
+                    throw new ArgumentException("Invalid period of time");
+                }
 
-						dataManager.Locations.Add(location);
+                int freePlaces;
+                if (int.TryParse(freePlacesStr, out freePlaces) == false)
+                {
+                    throw new ArgumentException("Invalid number of participants!");
+                }
 
-						dataManager.Complete();
+                if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() > 0)
+                {
+                    throw new ArgumentException("Event in such period already exists.");
+                }
 
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-			});
+                Location location = dataManager.Locations.GetLocationByAddress(locationStr);
+
+                Event createdEvent = new Event()
+                {
+                    Name = name,
+                    StartTime = begin,
+                    EndTime = end,
+                    FreePlaces = freePlaces,
+                    EventLocation = location,
+                    Creator = dataManager.Users.GetUserByLogin(creatorLogin),
+                    Participants = participants
+                };
+                dataManager.Events.Add(createdEvent);
+
+                dataManager.Complete();
+            }
+        }
+
+        public void AddLocation(string address)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                if (dataManager.Locations.GetLocationByAddress(address) == null)
+                {
+                    Location location = new Location();
+                    location.Address = address;
+
+                    dataManager.Locations.Add(location);
+
+                    dataManager.Complete();
+                }
+                else
+                {
+                    throw new ArgumentException("Location with such address already exists.");
+                }
+            }
         }
 
         /// <summary>
@@ -227,6 +222,34 @@ namespace EventsScheduler
                         break;
                     }
                 }
+
+            }
+        }
+
+        public void RemoveLocation(string locationAddress)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                var locationToRemove = dataManager.Locations.GetLocationByAddress(locationAddress);
+                if (locationToRemove != null)
+                {
+                    dataManager.Locations.Remove(locationToRemove);
+                    dataManager.Complete();
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid address");
+                }
+
+                //foreach (var ev in events)
+                //{
+                //    if (ev.Name == eventToRemove.Name)
+                //    {
+                //        dataManager.Events.Remove(ev);
+                //        dataManager.Complete();
+                //        break;
+                //    }
+                //}
 
             }
         }
