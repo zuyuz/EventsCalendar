@@ -105,44 +105,60 @@ namespace EventsScheduler
             });
 		}
 
-        public async Task<bool> CreateEventAsync(
+        public  void CreateEventAsync(
             string name,
             DateTime begin,
+            string beginTimeStr,
             DateTime end,
-            int freePlaces,
-            string location,
+            string endTimeStr,
+            string freePlacesStr,
+            string locationStr,
             string creatorLogin,
 			List<User> participants)
 		{
-			return await Task.Run(() =>
-			{
 				using (var dataManager = new UnitOfWork(new AppDbContext()))
 				{
-					if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() == 0)
-					{
-						Event createdEvent = new Event()
+                    TimeSpan beginTime = new TimeSpan();
+                    TimeSpan endTime = new TimeSpan();
+                    if(TimeSpan.TryParseExact(beginTimeStr, @"hh\:mm", null, out beginTime) == false
+                    || TimeSpan.TryParseExact(endTimeStr, @"hh\:mm", null, out endTime) == false)
+                    {
+                        throw new ArgumentException("Invalid time!\nTime format is HH:MM");
+                    }
+                    begin = begin.Add(beginTime);
+                    end = end.Add(endTime);
+                    if(begin > end)
+                    {
+                        throw new ArgumentException("Invalid period of time");
+                    }
+
+                    int freePlaces;
+                    if (int.TryParse(freePlacesStr, out freePlaces) == false)
+                    {
+                        throw new ArgumentException("Invalid number of participants!");
+                    }
+
+                    if (dataManager.Events.GetEventsInSpecificPeriod(begin, end).Count() > 0)
+                    {
+                        throw new ArgumentException("Event in such period already exists.");
+                    }
+
+                    Location location = dataManager.Locations.GetLocationByAddress(locationStr);
+
+                    Event createdEvent = new Event()
 						{
 							Name = name,
 							StartTime = begin,
 							EndTime = end,
 							FreePlaces = freePlaces,
-							EventLocation = dataManager.Locations
-							.GetLocationByAddress(location),
+							EventLocation = location,
 							Creator = dataManager.Users.GetUserByLogin(creatorLogin),
 							Participants = participants
 						};
 						dataManager.Events.Add(createdEvent);
 
 						dataManager.Complete();
-
-						return true;
-					}
-					else
-					{
-						return false;
-					}
 				}
-			});
 		}
 
 		public async Task<bool> AddLocationAsync(string address)

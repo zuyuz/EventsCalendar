@@ -21,6 +21,14 @@ namespace EventsScheduler
     /// </summary>
     public partial class NewEvent : Window
     {
+        private string name;
+        private DateTime begin;
+        private string beginTime;
+        private DateTime end;
+        private string endTime;
+        private string freePlaces;
+        private string locationAddress;
+        private List<User> participants;
         public NewEvent()
         {
             InitializeComponent();
@@ -37,7 +45,7 @@ namespace EventsScheduler
 
         }
 
-		private async void createButton_Click(object sender, RoutedEventArgs e)
+		private  void createButton_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow mainWindow = this.Owner as MainWindow;
 
@@ -67,52 +75,33 @@ namespace EventsScheduler
 			}
 			else
 			{
-				string name = nameTextBox.Text;
-				DateTime begin = beginDatePicker.SelectedDate.Value;
-				TimeSpan beginTime = new TimeSpan();
-				DateTime end = beginDatePicker.SelectedDate.Value;
-				TimeSpan endTime = new TimeSpan();
-				if (TimeSpan.TryParseExact(beginTextBox.Text, @"hh\:mm", null, out beginTime) == false
-					|| TimeSpan.TryParseExact(endTextBox.Text, @"hh\:mm", null, out endTime) == false)
-				{
-					MessageBox.Show("Invalid time!\nTime format is HH:MM");
-				}
-				begin = begin.Add(beginTime);
-				end = end.Add(endTime);
-				int freePlaces;
-				if (int.TryParse(placesTextBox.Text, out freePlaces) == false)
-				{
-					MessageBox.Show("Invalid number of participants!");
-				}
-				string locationAddress = locationComboBox.SelectedValue.ToString();
+				name = nameTextBox.Text;
+				begin = beginDatePicker.SelectedDate.Value;
+                beginTime = beginTextBox.Text;
+				end = beginDatePicker.SelectedDate.Value;
+				endTime = endTextBox.Text;
+                freePlaces = placesTextBox.Text;
+				locationAddress = locationComboBox.SelectedValue.ToString();
 
-				Location location = new Location();
-				using (var dataManager = new UnitOfWork(new AppDbContext()))
-				{
-					location = dataManager.Locations.GetLocationByAddress(
-						locationAddress);
-				}
+                try
+                {
+                    Controller.Instance.CreateEventAsync(
+                        name,
+                        begin,
+                        beginTime,
+                        end,
+                        endTime,
+                        freePlaces,
+                        locationAddress,
+                        App.Controller.CurrentUser.Login,
+                        participants);
 
-				var result = await Controller.Instance.CreateEventAsync(
-					name,
-					begin,
-					end,
-					freePlaces,
-					locationAddress,
-					App.Controller.CurrentUser.Login,
-					null);
-
-				if (result)
-				{
-					MessageBox.Show("Event created successfully!",
-						"Creation Completed!",
-						MessageBoxButton.OK);
-					Close();
-				}
-				else
+                    Close();
+                }
+                catch(ArgumentException ex)
 				{
 					MessageBox.Show("Can not create event!",
-						"Creation Failed!",
+						ex.Message,
 						MessageBoxButton.OK);
 				}
 			}
