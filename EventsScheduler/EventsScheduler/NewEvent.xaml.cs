@@ -28,7 +28,7 @@ namespace EventsScheduler
         private string endTime;
         private string freePlaces;
         private string locationAddress;
-        private List<User> participants;
+        private List<User> participants = new List<User>();
 
 
         public List<User> Participants
@@ -37,12 +37,13 @@ namespace EventsScheduler
             {
                 return participants;
             }
+
             set
             {
                 participants = value;
             }
         }
-        
+
         public NewEvent(DateTime beginDate)
         {
             InitializeComponent();
@@ -77,17 +78,21 @@ namespace EventsScheduler
             {
                 MessageBox.Show("Please, select date.");
             }
-            else if (beginTextBox.Text == "")
+            else if (beginTimePicker.Value.HasValue == false)
             {
                 MessageBox.Show("Please, input begin time.");
             }
-            else if (endTextBox.Text == "")
+            else if (endTimePicker.Value.HasValue == false)
             {
                 MessageBox.Show("Please, input end time.");
             }
-            else if (placesTextBox.Text == "")
+            else if (numberOfParticipantsTextBox.Text == "")
             {
                 MessageBox.Show("Please, input number of places.");
+            }
+            else if (Convert.ToInt32(numberOfParticipantsTextBox.Text) < 1)
+            {
+                MessageBox.Show("That count of participants is not possible.");
             }
             else if (locationComboBox.SelectedValue == null)
             {
@@ -100,20 +105,13 @@ namespace EventsScheduler
                 if (begin == new DateTime())
                 {
                     begin = beginDatePicker.SelectedDate.Value;
-                    beginTime = beginTextBox.Text;
-                    end = beginDatePicker.SelectedDate.Value;
-                    endTime = endTextBox.Text;
-                    freePlaces = placesTextBox.Text;
-                    locationAddress = locationComboBox.SelectedValue.ToString();
                 }
-                else
-                {
-                    beginTime = beginTextBox.Text;
-                    end = beginDatePicker.SelectedDate.Value;
-                    endTime = endTextBox.Text;
-                    freePlaces = placesTextBox.Text;
-                    locationAddress = locationComboBox.SelectedValue.ToString();
-                }
+
+                beginTime = beginTimePicker.Value.Value.ToShortTimeString();
+                end = beginDatePicker.SelectedDate.Value;
+                endTime = endTimePicker.Value.Value.ToShortTimeString();
+                freePlaces = numberOfParticipantsTextBox.Text;
+                locationAddress = locationComboBox.SelectedValue.ToString();
 
                 try
                 {
@@ -130,26 +128,26 @@ namespace EventsScheduler
 
                     Close();
                 }
-                catch(ArgumentException ex)
-				{
-					MessageBox.Show(
-                        ex.Message, 
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(
+                        ex.Message,
                         "Can not create event!",
-						MessageBoxButton.OK);
-				}
-			}
-		}
+                        MessageBoxButton.OK);
+                }
+            }
+        }
 
         private void addParticipantsButton_Click(object sender, RoutedEventArgs e)
         {
             AddParticipants addParticipants = new AddParticipants();
-            if(participants != null)
+            if (participants != null)
             {
                 addParticipants.SelectedUsers = participants;
             }
             addParticipants.Owner = this;
             bool? result = addParticipants.ShowDialog();
-            
+
             //if (result == true)
             //{
             //    participants = addParticipants.SelectedUsers;

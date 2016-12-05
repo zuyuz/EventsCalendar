@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventsScheduler"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="New Event" Height="480" Width="530" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid Margin="0,0,-8,-2">
@@ -23,11 +24,11 @@
             <Label x:Name="dateLabel" Content="Date" Margin="20,76,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <DatePicker x:Name="beginDatePicker" Margin="20,102,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top" SelectedDateFormat="Short"/>
             <Label x:Name="beginLabel" Content="Time" Margin="101,77,18,266" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
-            <TextBox x:Name="beginTextBox" TextWrapping="Wrap" Margin="106,103,18,0" VerticalAlignment="Top"/>
+            <wpfTool:TimePicker x:Name="beginTimePicker" Format="ShortTime" FormatString="HH:mm" Margin="106,103,18,0" VerticalAlignment="Top" Height="23"/>
             <Label x:Name="endLabel" Content="Time" Margin="101,154,18,189" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
-            <TextBox x:Name="endTextBox" TextWrapping="Wrap" Margin="106,180,18,0" VerticalAlignment="Top"/>
-            <Label x:Name="placesLabel" Content="Number of participants:" Margin="20,203,18,140" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
-            <TextBox x:Name="placesTextBox" TextWrapping="Wrap" Margin="20,229,18,117" VerticalAlignment="Top"/>
+            <wpfTool:TimePicker x:Name="endTimePicker" Format="ShortTime" FormatString="HH:mm" Margin="106,180,18,0" VerticalAlignment="Top" Height="23"/>
+            <Label x:Name="numberOfParticipantsLabel" Content="Number of participants:" Margin="20,203,18,140" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
+            <TextBox x:Name="numberOfParticipantsTextBox" TextWrapping="Wrap" Margin="20,229,18,117" VerticalAlignment="Top"/>
             <Label x:Name="locationLabel" Content="Location:" Margin="20,252,18,91" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
             <ComboBox x:Name="locationComboBox" Margin="20,278,18,69" VerticalAlignment="Top" IsEditable="True"/>
             <Button x:Name="createButton" Content="Create" Margin="48,0,49,20" VerticalAlignment="Bottom" Width="101" Foreground="White" FontWeight="Bold" Click="createButton_Click">

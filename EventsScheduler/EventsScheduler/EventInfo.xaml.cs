@@ -39,8 +39,11 @@ namespace EventsScheduler
             DatePickerStart.DisplayDate = choosedEvent.StartTime;
             DatePickerEnd.DisplayDate = choosedEvent.EndTime;
 
-            beginTextBlock.Text = choosedEvent.StartTime.TimeOfDay.ToString(@"hh\:mm");
-            endTextBlock.Text = choosedEvent.EndTime.TimeOfDay.ToString(@"hh\:mm");
+            beginTimePicker.Value = choosedEvent.StartTime;
+            beginTimePicker.Text = beginTimePicker.Value.Value.ToShortTimeString();
+
+            endTimePicker.Value = choosedEvent.EndTime;
+            endTimePicker.Text = endTimePicker.Value.Value.ToShortTimeString();
 
             CreatorLabel.Content = choosedEvent.Creator.Name;
             if(choosedEvent.EventLocation != null)
@@ -92,6 +95,11 @@ namespace EventsScheduler
         private void ParticipantsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DeleteParticipantButton.IsEnabled = true;
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

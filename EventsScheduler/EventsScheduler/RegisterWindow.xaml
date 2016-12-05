@@ -3,11 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Registration" Height="508.79" Width="572.125" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico">
     <Grid>
-        <Menu x:Name="RegisterWindowMenu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="566">
-            <MenuItem x:Name="FileItem" Header="File" Height="26" StaysOpenOnClick="True" FontSize="14">
-                <MenuItem x:Name="BackItem" Header="Back" StaysOpenOnClick="True" Click="BackItem_Click"/>
-            </MenuItem>
-        </Menu>
         <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" Height="326" Margin="163,50,163,105">
             <StackPanel.Background>
                 <RadialGradientBrush>
@@ -33,7 +28,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="111" FontSize="14" Margin="64,6,64,27" Click="SignUpButton_Click" Foreground="#FFF9F7F7" FontWeight="Bold" IsCancel="True">
+            <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="111" FontSize="14" Margin="64,6,64,27" Foreground="#FFF9F7F7" FontWeight="Bold" IsCancel="True" Click="cancelButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>

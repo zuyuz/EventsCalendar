@@ -70,7 +70,7 @@ namespace EventsScheduler
             }
         }
 
-        private void BackItem_Click(object sender, RoutedEventArgs e)
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

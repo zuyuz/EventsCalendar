@@ -80,8 +80,6 @@ namespace EventsScheduler
 
         }
 
-        
-
         private void ShowCalendarItem_Click(object sender, RoutedEventArgs e)
         {
             CalendarWindow cw = new CalendarWindow();

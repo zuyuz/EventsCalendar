@@ -35,5 +35,10 @@ namespace EventsScheduler
                 Close();
             }
         }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

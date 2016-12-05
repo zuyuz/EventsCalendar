@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Grid Margin="35,40">
+        <Grid Margin="36,10,34,23">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -39,7 +39,17 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="confirmButton" Content="Confirm" HorizontalAlignment="Center" Margin="108,0,108,17" VerticalAlignment="Bottom" Width="76" IsDefault="True" Foreground="White" FontWeight="Bold" Click="confirmButton_Click">
+            <Button x:Name="confirmButton" Content="Confirm" HorizontalAlignment="Center" Margin="124,0,114,60" VerticalAlignment="Bottom" Width="86" IsDefault="True" Foreground="White" FontWeight="Bold" Click="confirmButton_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FF3EFF46" Offset="0.009"/>
+                        <GradientStop Color="#FF118516"/>
+                        <GradientStop Color="#FF118516" Offset="0.826"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Center" Margin="124,0,114,23" VerticalAlignment="Bottom" Width="86" IsDefault="True" Foreground="White" FontWeight="Bold" Click="cancelButton_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF3F3F3" Offset="0"/>
