@@ -203,6 +203,19 @@ namespace EventsScheduler
             }
         }
 
+        public void UpdateEvent(Entities.Event oldEvent, Entities.Event newEvent)
+        {
+            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            {
+                Entities.Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
+                if (eventInDb != null)
+                {
+                    eventInDb = newEvent;
+                    dataManager.Complete();
+                }
+            }
+        }
+
         public void RemoveEvent(Entities.Event eventToRemove)
         {
             using (var dataManager = new UnitOfWork(new AppDbContext()))

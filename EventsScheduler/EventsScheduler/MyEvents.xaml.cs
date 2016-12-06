@@ -77,5 +77,20 @@ namespace EventsScheduler
         {
             Close();
         }
+
+        private void buttonEditEvent_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBoxEvents.SelectedIndex != -1)
+            {
+                var temp = events.Find(i =>
+                     i.Name == listBoxEvents.SelectedItem.ToString());
+                EditEventWindow editEventWindow = new EditEventWindow(temp);
+                editEventWindow.ShowDialog();
+                if(editEventWindow.oldEvent.Name != editEventWindow.newEvent.Name)
+                {
+                    listBoxEvents.SelectedItem = editEventWindow.newEvent.Name;
+                }
+            }
+        }
     }
 }

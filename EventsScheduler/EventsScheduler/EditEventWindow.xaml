@@ -1,0 +1,79 @@
+﻿<Window x:Class="EventsScheduler.EditEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:local="clr-namespace:EventsScheduler"
+        mc:Ignorable="d"
+        Title="Event Edit" Height="484" Width="555" ResizeMode="NoResize" FontSize="12" Foreground="Black" Icon="Resources/icon.ico" Closing="Window_Closing" >
+    <Grid>
+        <Grid x:Name="ParrticipantsTextBox">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
+            </Grid.Background>
+            <Grid x:Name="ParticipantsTextBox" Margin="106,34,96,34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="338">
+
+                <Grid.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FF8A8A8A"/>
+                    </RadialGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="62*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="36*"/>
+                    <RowDefinition Height="36*"/>
+                    <RowDefinition Height="200*"/>
+                    <RowDefinition Height="67*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto" MinWidth="255"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="EventNameTextBox" Text="Event name" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" FontSize="27" Grid.ColumnSpan="2" />
+                <Label x:Name="CreatedByLabel" Content="Organizer:" HorizontalAlignment="Right" Margin="0,2" VerticalAlignment="Center" FontSize="12" Height="26" Grid.Row="1" Width="65" Foreground="White"/>
+                <Label x:Name="CreatorLabel" Content="username" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" FontSize="17" Grid.Column="1" Padding="0,5" Height="34" Width="72" Foreground="White" Grid.Row="1"/>
+                <DatePicker x:Name="DatePickerStart" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="True" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3"/>
+                <Label x:Name="LocationLabel" Content="Location:" HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.113,0.003" Height="26" Width="58" Grid.Row="2" Margin="0,2" Foreground="White"/>
+                <Label x:Name="ParticipantsLabel" Content="Participants:" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" RenderTransformOrigin="0.097,-2.457" Height="26" Grid.Row="5" Width="74" Foreground="White"/>
+                <ListBox x:Name="ParticipantsListBox" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="200" Grid.Column="1" Grid.Row="5" Height="150" SelectionChanged="ParticipantsListBox_SelectionChanged"/>
+                <Button x:Name="DeleteParticipantButton" Content="Delete" HorizontalAlignment="Center" Margin="52.6,9.2,126.6,10.4" VerticalAlignment="Center" Width="76" Click="DeleteParticipantButton_Click" Grid.Column="1" Height="22" Grid.Row="6">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                            <GradientStop Color="#FF118516" Offset="0.826"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Center" Margin="147.6,9.2,31.6,10.4" VerticalAlignment="Center" Width="76" Grid.Column="1" Height="22" Grid.Row="6" Click="closeButton_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                            <GradientStop Color="#FF118516" Offset="0.826"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <DatePicker x:Name="DatePickerEnd" HorizontalAlignment="Left" Margin="0,3" VerticalAlignment="Center" Width="116" FirstDayOfWeek="Monday" SelectedDateFormat="Short" Text="nbbnnj" IsTodayHighlighted="False" Grid.Column="1" Grid.Row="4" />
+                <Label x:Name="startLabel" Content="Begins:" HorizontalAlignment="Right" Margin="0,3,0,2" VerticalAlignment="Center" Height="26" Width="48" Grid.Row="3" Foreground="White"/>
+                <Label x:Name="endLabel" Content="Ends:" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Height="26" Width="38" Grid.Row="4" Foreground="White"/>
+                <wpfTool:TimePicker x:Name="beginTimePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="3" VerticalAlignment="Center" Width="79" />
+                <wpfTool:TimePicker x:Name="endTimePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="121,3,0,3" Grid.Row="4" VerticalAlignment="Center" Width="79" />
+                <Button x:Name="AddParticipantButton" Content="Add" HorizontalAlignment="Center" Margin="34,9.2,227.6,10.4" VerticalAlignment="Center" Width="76" Click="AddParticipantButton_Click" Height="22" Grid.Row="6" Grid.ColumnSpan="2">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FF3EFF46" Offset="0.007"/>
+                            <GradientStop Color="#FF118516" Offset="0.826"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <ComboBox x:Name="locationComboBox" Margin="4.6,0.8,57.6,0" VerticalAlignment="Top" IsEditable="True" Grid.Row="2" Grid.Column="1"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
