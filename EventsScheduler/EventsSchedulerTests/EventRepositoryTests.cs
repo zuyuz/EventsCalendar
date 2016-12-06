@@ -22,7 +22,7 @@ namespace EventsScheduler.Tests
         {
             dbContext = new Mock<AppDbContext>();
             dbSet = new Mock<DbSet<Event>>();
-            dbContext.Setup(obj => obj.Set<Event>())
+            dbContext.SetupGet(obj => obj.Events)
                 .Returns(dbSet.Object);
             repository = new EventRepository(dbContext.Object);
 
