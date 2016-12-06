@@ -1,7 +1,6 @@
 ﻿using EventsScheduler;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -40,13 +39,33 @@ namespace EventsScheduler.Tests
                 new Entity() { Id = 1, Name = "One" },
                 new Entity() { Id = 2, Name = "Two" }
             };
+
+            dbSet.Setup(obj => obj.Find(0))
+                .Returns(entity);
+
+            dbSet.Setup(obj => obj.Find(-1))
+                .Returns<Entity>(null);
+
+            dbSet.As<IEnumerable<Entity>>()
+                .Setup(obj => obj.GetEnumerator())
+                .Returns(entities.GetEnumerator());
+            dbSet.As<IQueryable<Entity>>()
+                .Setup(obj => obj.GetEnumerator())
+                .Returns(entities.GetEnumerator());
+            dbSet.As<IQueryable<Entity>>()
+                .SetupGet(obj => obj.ElementType)
+                .Returns(entities.AsQueryable().ElementType);
+            dbSet.As<IQueryable<Entity>>()
+                .SetupGet(obj => obj.Expression)
+                .Returns(entities.AsQueryable().Expression);
+            dbSet.As<IQueryable<Entity>>()
+                .SetupGet(obj => obj.Provider)
+                .Returns(entities.AsQueryable().Provider);
         }
 
         [TestMethod()]
         public void GetTest()
         {
-            dbSet.Setup(obj => obj.Find(0))
-                .Returns(entity);
             var actual = repository.Get(0);
 
             Assert.AreEqual(0, actual.Id);
@@ -56,31 +75,89 @@ namespace EventsScheduler.Tests
         [TestMethod()]
         public void GetNonExistentIdTest()
         {
-            dbSet.Setup(obj => obj.Find(-1))
-                .Returns<Entity>(null);
             var actual = repository.Get(-1);
 
             Assert.IsNull(actual);
-
         }
 
         [TestMethod()]
         public void GetAllTest()
         {
-            bool check = false;
-            dbContext.Setup(obj => obj.Set<Entity>())
-                .Callback(() => { check = true; });
-            try
-            {
-                repository.GetAll();
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.IsTrue(check);
-                return;
-            }
+            var actual = repository.GetAll().ToList();
 
-            Assert.Fail();
+            Assert.AreEqual(2, actual.Count);
+            Assert.AreEqual(1, actual[0].Id);
+            Assert.AreEqual("One", actual[0].Name);
+            Assert.AreEqual("Two", actual[1].Name);
+        }
+
+        [TestMethod()]
+        public void FindTest()
+        {
+            var actual = repository
+                .Find(e => e.Id.Equals(1))
+                .ToList();
+
+            Assert.AreEqual(1, actual.Count);
+            Assert.AreEqual(1, actual[0].Id);
+            Assert.AreEqual("One", actual[0].Name);
+        }
+
+        [TestMethod()]
+        public void FindEmptyResultTest()
+        {
+            var actual = repository
+                .Find(e => e.Id.Equals(-1))
+                .ToList();
+
+            Assert.IsTrue(actual.Count == 0);
+        }
+
+        [TestMethod()]
+        public void AddTest()
+        {
+            bool check = false;
+            dbSet.Setup(obj => obj.Add(It.IsAny<Entity>()))
+                .Callback(() => check = true);
+            repository.Add(entity);
+
+            Assert.IsTrue(check);
+        }
+
+        [TestMethod()]
+        public void AddRangeTest()
+        {
+            bool check = false;
+            dbSet.Setup(obj => obj.AddRange(
+                It.IsAny<IEnumerable<Entity>>()))
+                .Callback(() => check = true);
+            repository.AddRange(entities);
+
+            Assert.IsTrue(check);
+        }
+
+        [TestMethod()]
+        public void RemoveTest()
+        {
+            bool check = false;
+            dbSet.Setup(obj => obj.Remove(It.IsAny<Entity>()))
+                .Callback(() => check = true);
+            repository.Remove(entity);
+            var e = entities;
+            System.Console.WriteLine(e.Count);
+            Assert.IsTrue(check);
+        }
+
+        [TestMethod()]
+        public void RemoveRangeTest()
+        {
+            bool check = false;
+            dbSet.Setup(obj => obj.RemoveRange(
+                It.IsAny<IEnumerable<Entity>>()))
+                .Callback(() => check = true);
+            repository.RemoveRange(entities);
+
+            Assert.IsTrue(check);
         }
     }
 }

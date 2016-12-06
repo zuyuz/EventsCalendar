@@ -1,12 +1,5 @@
 ﻿using EventsScheduler.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventsScheduler
 {
@@ -24,7 +17,7 @@ namespace EventsScheduler
         {
             // PostgreSQL uses the public schema by default - not dbo.
             modelBuilder.HasDefaultSchema("public");
-
+            
             modelBuilder.Entity<User>()
                         .HasMany(u => u.Events)
                         .WithMany(ev => ev.Participants)

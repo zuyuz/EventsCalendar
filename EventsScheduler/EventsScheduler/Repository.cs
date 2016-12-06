@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventsScheduler
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
         protected readonly DbContext Context;
 
