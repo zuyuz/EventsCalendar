@@ -1,6 +1,5 @@
 ﻿using EventsScheduler.Entities;
 using System.Linq;
-using System;
 
 namespace EventsScheduler
 {
