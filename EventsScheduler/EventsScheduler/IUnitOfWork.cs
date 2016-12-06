@@ -1,6 +1,6 @@
 ﻿namespace EventsScheduler
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         IEventRepository Events { get; }
         ILocationRepository Locations { get; }

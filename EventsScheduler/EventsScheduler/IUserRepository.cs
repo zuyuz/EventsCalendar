@@ -2,7 +2,7 @@
 
 namespace EventsScheduler
 {
-    interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         User GetUserByLogin(string login);
         User GetUserAdmin();

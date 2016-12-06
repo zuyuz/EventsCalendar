@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace EventsScheduler
 {
-    class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext() : base("PostgreSQLConnection") {}
 
