@@ -11,7 +11,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Resources/register_window_calendar_bg.jpg"/>
         </Grid.Background>
-        <Grid Margin="150,30">
+        <Grid Margin="150,19,150,29">
             <Grid.Background>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="1"/>
@@ -24,9 +24,9 @@
             <Label x:Name="dateLabel" Content="Date" Margin="20,76,131,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
             <DatePicker x:Name="beginDatePicker" Margin="20,102,131,0" FirstDayOfWeek="Monday" VerticalAlignment="Top" SelectedDateFormat="Short"/>
             <Label x:Name="beginLabel" Content="Time" Margin="101,77,18,266" Foreground="White" FontWeight="Bold" VerticalAlignment="Top"/>
-            <wpfTool:TimePicker x:Name="beginTimePicker" Format="ShortTime" FormatString="HH:mm" Margin="106,103,18,0" VerticalAlignment="Top" Height="23"/>
+            <wpfTool:TimePicker x:Name="beginTimePicker" Format="ShortTime" Margin="106,103,18,0" VerticalAlignment="Top" Height="23"/>
             <Label x:Name="endLabel" Content="Time" Margin="101,154,18,189" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
-            <wpfTool:TimePicker x:Name="endTimePicker" Format="ShortTime" FormatString="HH:mm" Margin="106,180,18,0" VerticalAlignment="Top" Height="23"/>
+            <wpfTool:TimePicker x:Name="endTimePicker" Format="ShortTime" Margin="106,180,18,0" VerticalAlignment="Top" Height="23"/>
             <Label x:Name="numberOfParticipantsLabel" Content="Number of participants:" Margin="20,203,18,140" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>
             <TextBox x:Name="numberOfParticipantsTextBox" TextWrapping="Wrap" Margin="20,229,18,117" VerticalAlignment="Top"/>
             <Label x:Name="locationLabel" Content="Location:" Margin="20,252,18,91" FontWeight="Bold" Foreground="White" VerticalAlignment="Top"/>

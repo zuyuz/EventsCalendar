@@ -138,6 +138,14 @@ namespace EventsScheduler
                 }
             }
 
+            if (selectedUsers.Count == 0)
+            {
+                MessageBox.Show(
+                        "You have to add at least one participant to the event.",
+                        "No participants!",
+                        MessageBoxButton.OK);
+            }
+
             var owner = this.Owner as NewEvent;
 
             owner.Participants = selectedUsers;
