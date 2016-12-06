@@ -1,5 +1,4 @@
 ﻿using EventsScheduler.Entities;
-using System.Data.Entity;
 using System.Linq;
 
 namespace EventsScheduler

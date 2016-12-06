@@ -1,5 +1,4 @@
 ﻿using EventsScheduler.Entities;
-using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,21 +48,6 @@ namespace EventsScheduler
                     };
                 }
             }
-            /*
-            return (from ev in AppDbContext.Events
-                    where ev.Creator.Name == currentUser.Name
-                    select new Entities.Event()
-                    {
-                        Id = ev.Id,
-                        Creator = ev.Creator,
-                        EndTime = ev.EndTime,
-                        StartTime = ev.StartTime,
-                        EventLocation = ev.EventLocation,
-                        FreePlaces = ev.FreePlaces,
-                        Name = ev.Name,
-                        Participants = ev.Participants
-                    }
-                    ).ToList();*/
         }
     }
 }
