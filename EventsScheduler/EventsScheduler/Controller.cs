@@ -166,24 +166,27 @@ namespace EventsScheduler
             }
         }
 
-        public void AddLocation(string address)
+        public async Task AddLocationAsync(string address)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            await Task.Run(() =>
             {
-                if (dataManager.Locations.GetLocationByAddress(address) == null)
+                using (var dataManager = new UnitOfWork(new AppDbContext()))
                 {
-                    Location location = new Location();
-                    location.Address = address;
+                    if (dataManager.Locations.GetLocationByAddress(address) == null)
+                    {
+                        Location location = new Location();
+                        location.Address = address;
 
-                    dataManager.Locations.Add(location);
+                        dataManager.Locations.Add(location);
 
-                    dataManager.Complete();
+                        dataManager.Complete();
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Location with such address already exists.");
+                    }
                 }
-                else
-                {
-                    throw new ArgumentException("Location with such address already exists.");
-                }
-            }
+            });
         }
 
         /// <summary>
