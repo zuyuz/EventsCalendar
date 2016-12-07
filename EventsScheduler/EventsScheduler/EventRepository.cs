@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace EventsScheduler
 {
-    class EventRepository : Repository<Event>, IEventRepository
+    public class EventRepository : Repository<Event>, IEventRepository
     {
         public EventRepository(AppDbContext context)
             : base(context)
