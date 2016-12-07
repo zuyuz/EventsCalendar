@@ -32,12 +32,6 @@ namespace EventsScheduler
              "not such a global case but creating a " + "\n" +
              "small remainder in your calendar would be " + "\n" +
              "a good idea!!!";
-            /*string aboutText = "How many times did you forget to"
-+ "go to the shop, to feed your kitty or almost to"
-+ "write a report for your teacher? Of course this "
-+ "thing is not a global case, creating a remainder"
-+ "in your calendar is absurdly but leaving a special"
-+ "note for yourself is a GREAT IDEA!!!!!!";*/
             this.aboutListBox.Items.Add(aboutText);
         }
     }
