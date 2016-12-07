@@ -71,6 +71,7 @@
     <Compile Include="LocationRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTests.cs" />
+    <Compile Include="UserRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventsScheduler\EventsScheduler.csproj">
