@@ -91,5 +91,12 @@ namespace EventsScheduler
 			MyEvents myEvents = new MyEvents();
 			myEvents.ShowDialog();
 		}
+
+        private void aboutItem_Click(object sender, RoutedEventArgs e)
+        {
+            AboutProgramWindow about = new AboutProgramWindow();
+            about.Owner = this;
+            about.ShowDialog();
+        }
 	}
 }
