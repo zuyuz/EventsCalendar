@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EventsScheduler
 {
-    class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         public UserRepository(AppDbContext context) 
             : base(context)
