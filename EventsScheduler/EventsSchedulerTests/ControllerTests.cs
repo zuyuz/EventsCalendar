@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using EventsScheduler;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using EventsScheduler.DAL.Interfaces;
 using EventsScheduler.DAL.Entities;
+using System;
 
 namespace EventsScheduler.Tests
 {
@@ -93,9 +95,9 @@ namespace EventsScheduler.Tests
             bool checkAdd = false;
             bool checkComplete = false;
             users.Setup(_ => _.Add(
-                    It.Is<User>(usr => 
-                        usr.Name == "1" 
-                     && usr.Login == "2" 
+                    It.Is<User>(usr =>
+                        usr.Name == "1"
+                     && usr.Login == "2"
                      && usr.Password == "3")))
                 .Callback(() => checkAdd = true);
             dataAccess.Setup(_ => _.Complete())
@@ -123,6 +125,43 @@ namespace EventsScheduler.Tests
             task.Wait();
 
             Assert.IsFalse(task.Result);
+        }
+
+        [TestMethod()]
+        public void AddLocationAsyncTest()
+        {
+            bool checkAdd = false;
+            bool checkComplete = false;
+            locations.Setup(_ => _.Add(
+                    It.Is<Location>(l => l.Address == "addr")))
+                .Callback(() => checkAdd = true);
+            dataAccess.Setup(_ => _.Complete())
+               .Callback(() => checkComplete = true);
+
+            controller.AddLocationAsync("addr").Wait();
+
+            Assert.IsTrue(checkAdd);
+            Assert.IsTrue(checkComplete);
+        }
+
+        [TestMethod()]
+        public void AddLocationAsyncAlreadyExistsTest()
+        {
+            locations.Setup(_ => _.GetLocationByAddress("addr"))
+               .Returns(new Location() { Id = 1, Address = "addr" });
+            bool check = false;
+            try
+            {
+                controller.AddLocationAsync("addr").Wait();
+            }
+            catch (AggregateException ex)
+            {
+                if (ex.InnerException.GetType()
+                    .IsEquivalentTo(typeof(ArgumentException)))
+                    check = true;
+            }
+
+            Assert.IsTrue(check);
         }
     }
 }
