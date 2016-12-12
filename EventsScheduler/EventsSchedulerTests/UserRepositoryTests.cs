@@ -1,13 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EventsScheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
-using EventsScheduler.Entities;
 using System.Data.Entity;
+using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL;
 
 namespace EventsScheduler.Tests
 {

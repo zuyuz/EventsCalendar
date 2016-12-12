@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
-using EventsScheduler.Entities;
 using System.Data.Entity;
+using EventsScheduler.DAL;
+using EventsScheduler.DAL.Entities;
 
 namespace EventsScheduler.Tests
 {
