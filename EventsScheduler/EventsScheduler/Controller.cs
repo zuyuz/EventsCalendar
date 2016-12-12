@@ -1,4 +1,5 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL;
+using EventsScheduler.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -205,11 +206,11 @@ namespace EventsScheduler
             }
         }
 
-        public void UpdateEvent(Entities.Event oldEvent, Entities.Event newEvent)
+        public void UpdateEvent(Event oldEvent, Event newEvent)
         {
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {
-                Entities.Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
+                Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
                 if (eventInDb != null)
                 {
                     eventInDb = newEvent;
@@ -218,7 +219,7 @@ namespace EventsScheduler
             }
         }
 
-        public void RemoveEvent(Entities.Event eventToRemove)
+        public void RemoveEvent(Event eventToRemove)
         {
             using (var dataManager = new UnitOfWork(new AppDbContext()))
             {

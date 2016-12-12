@@ -1,8 +1,8 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL.Interfaces
 {
     public interface IEventRepository : IRepository<Event>
     {

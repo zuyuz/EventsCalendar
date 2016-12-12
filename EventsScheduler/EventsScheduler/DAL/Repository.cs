@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EventsScheduler.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

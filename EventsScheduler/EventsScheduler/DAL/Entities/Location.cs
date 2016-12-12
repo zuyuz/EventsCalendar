@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EventsScheduler.Entities
+namespace EventsScheduler.DAL.Entities
 {
     [Table("Locations")]
     public class Location

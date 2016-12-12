@@ -103,7 +103,7 @@
     <Compile Include="AddParticipants.xaml.cs">
       <DependentUpon>AddParticipants.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppDbContext.cs" />
+    <Compile Include="DAL\AppDbContext.cs" />
     <Compile Include="CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
@@ -114,24 +114,24 @@
     <Compile Include="EditEventWindow.xaml.cs">
       <DependentUpon>EditEventWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Event.cs" />
+    <Compile Include="DAL\Entities\Event.cs" />
     <Compile Include="EventInfo.xaml.cs">
       <DependentUpon>EventInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Location.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="EventRepository.cs" />
-    <Compile Include="IEventRepository.cs" />
-    <Compile Include="ILocationRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="IUserRepository.cs" />
-    <Compile Include="LocationRepository.cs" />
-    <Compile Include="Migrations\201611300725098_Initial.cs" />
-    <Compile Include="Migrations\201611300725098_Initial.Designer.cs">
+    <Compile Include="DAL\Entities\Location.cs" />
+    <Compile Include="DAL\Entities\User.cs" />
+    <Compile Include="DAL\EventRepository.cs" />
+    <Compile Include="DAL\Interfaces\IEventRepository.cs" />
+    <Compile Include="DAL\Interfaces\ILocationRepository.cs" />
+    <Compile Include="DAL\Interfaces\IRepository.cs" />
+    <Compile Include="DAL\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="DAL\Interfaces\IUserRepository.cs" />
+    <Compile Include="DAL\LocationRepository.cs" />
+    <Compile Include="DAL\Migrations\201611300725098_Initial.cs" />
+    <Compile Include="DAL\Migrations\201611300725098_Initial.Designer.cs">
       <DependentUpon>201611300725098_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="DAL\Migrations\Configuration.cs" />
     <Compile Include="MyEvents.xaml.cs">
       <DependentUpon>MyEvents.xaml</DependentUpon>
     </Compile>
@@ -144,9 +144,9 @@
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repository.cs" />
-    <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
+    <Compile Include="DAL\UserRepository.cs" />
     <Page Include="AboutProgramWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,7 +221,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201611300725098_Initial.resx">
+    <EmbeddedResource Include="DAL\Migrations\201611300725098_Initial.resx">
       <DependentUpon>201611300725098_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

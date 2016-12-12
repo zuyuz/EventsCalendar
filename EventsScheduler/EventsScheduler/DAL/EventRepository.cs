@@ -1,9 +1,10 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
     public class EventRepository : Repository<Event>, IEventRepository
     {
@@ -28,14 +29,14 @@ namespace EventsScheduler
                    select ev).ToList();
         }
 
-        public IEnumerable<Event> GetCurrentUserEvents(Entities.User currentUser)
+        public IEnumerable<Event> GetCurrentUserEvents(User currentUser)
         {
             foreach (var ev in AppDbContext.Events.ToList())
             {
                 if (ev.Creator.Login == currentUser.Login)
                 {
                     yield return 
-                        new Entities.Event()
+                        new Event()
                     {
                         Id = ev.Id,
                         Creator = ev.Creator,

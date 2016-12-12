@@ -1,6 +1,6 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL.Interfaces
 {
     public interface ILocationRepository : IRepository<Location>
     {

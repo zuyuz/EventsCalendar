@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EventsScheduler.DAL;
+using EventsScheduler.DAL.Entities;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EventsScheduler
 {
@@ -19,10 +10,10 @@ namespace EventsScheduler
     /// </summary>
     public partial class EditEventWindow : Window
     {
-        public Entities.Event oldEvent { get; set; }
-        public Entities.Event newEvent { get; set; }
+        public Event oldEvent { get; set; }
+        public Event newEvent { get; set; }
 
-        public EditEventWindow(Entities.Event choosedEvent)
+        public EditEventWindow(Event choosedEvent)
         {
             InitializeComponent();
 
@@ -64,7 +55,7 @@ namespace EventsScheduler
                 DeleteParticipantButton.Visibility = Visibility.Collapsed;
             }
 
-            oldEvent = new Entities.Event();
+            oldEvent = new Event();
 
             oldEvent.Creator = choosedEvent.Creator;
             oldEvent.EventLocation = choosedEvent.EventLocation;
@@ -86,7 +77,7 @@ namespace EventsScheduler
             {
                 ParticipantsListBox.Items.Remove(itemForDelete);
 
-                Entities.User participForDel = new Entities.User();
+                User participForDel = new User();
 
                 foreach (var i in newEvent.Participants)
                 {

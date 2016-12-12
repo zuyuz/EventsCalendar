@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using EventsScheduler.DAL.Entities;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace EventsScheduler
@@ -8,7 +9,7 @@ namespace EventsScheduler
     /// </summary>
     public partial class EventInfo : Window
     {
-        Entities.Event chEvent;
+        Event chEvent;
 
         public EventInfo()
         {
@@ -16,7 +17,7 @@ namespace EventsScheduler
 
         }
 
-        public EventInfo(Entities.Event choosedEvent)
+        public EventInfo(Event choosedEvent)
         {
             InitializeComponent();
 
@@ -61,7 +62,7 @@ namespace EventsScheduler
             {
                 ParticipantsListBox.Items.Remove(itemForDelete);
 
-                Entities.User participForDel = new Entities.User();
+                User participForDel = new User();
 
                 foreach (var i in chEvent.Participants)
                 {

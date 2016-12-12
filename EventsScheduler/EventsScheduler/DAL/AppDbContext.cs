@@ -1,7 +1,7 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
 using System.Data.Entity;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
     public class AppDbContext : DbContext
     {

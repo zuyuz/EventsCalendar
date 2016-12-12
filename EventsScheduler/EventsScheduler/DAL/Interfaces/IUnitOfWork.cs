@@ -1,4 +1,4 @@
-﻿namespace EventsScheduler
+﻿namespace EventsScheduler.DAL.Interfaces
 {
     public interface IUnitOfWork
     {
