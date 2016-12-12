@@ -7,6 +7,13 @@ namespace EventsScheduler.DAL.Entities
     [Table("Users")]
     public class User
     {
+        public enum Role
+        {
+            Admin,
+            User,
+            Guest
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -28,12 +35,5 @@ namespace EventsScheduler.DAL.Entities
         public virtual List<Event> CreatedEvents { get; set; }
 
         public virtual List<Event> Events { get; set; }
-
-        public enum Role
-        {
-            Admin,
-            User,
-            Guest
-        }
     }
 }

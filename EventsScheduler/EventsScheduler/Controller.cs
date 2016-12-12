@@ -50,7 +50,16 @@ namespace EventsScheduler
                     {
                         if (user.Password == password) // authentification
                         {
-                            currentUser = user; // authorization
+                            currentUser = new User()
+                            {
+                                Id = user.Id,
+                                Name = user.Name,
+                                Login = user.Login,
+                                Password = user.Password,
+                                UserRole = user.UserRole,
+                                CreatedEvents = null,
+                                Events = null
+                            }; // authorization
                             return true;
                         }
                     }
@@ -63,11 +72,6 @@ namespace EventsScheduler
         public void SignOut()
         {
             this.currentUser = null;
-        }
-
-        public string GetCurrentUserLogin()
-        {
-            return this.currentUser.Login;
         }
 
         /// <summary>
