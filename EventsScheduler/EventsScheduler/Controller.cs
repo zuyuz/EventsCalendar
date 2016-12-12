@@ -101,7 +101,6 @@ namespace EventsScheduler
                         registrant.UserRole = User.Role.User;
 
                         dataManager.Users.Add(registrant);
-                        //remove completion if necessary
                         dataManager.Complete();
 
                         return true;

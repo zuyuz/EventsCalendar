@@ -21,10 +21,10 @@ namespace EventsScheduler.Tests
             events = new Mock<IEventRepository>();
             users = new Mock<IUserRepository>();
             locations = new Mock<ILocationRepository>();
-            controller.NewUnitOfWork = () => dataAccess.Object;
             dataAccess.SetupGet(_ => _.Events).Returns(events.Object);
             dataAccess.SetupGet(_ => _.Users).Returns(users.Object);
             dataAccess.SetupGet(_ => _.Locations).Returns(locations.Object);
+            controller.NewUnitOfWork = () => dataAccess.Object;
         }
 
         [TestMethod()]
@@ -85,6 +85,44 @@ namespace EventsScheduler.Tests
 
             Assert.IsTrue(task.Result);
             Assert.IsNull(controller.CurrentUser);
+        }
+
+        [TestMethod()]
+        public void RegisterUserAsyncTest()
+        {
+            bool checkAdd = false;
+            bool checkComplete = false;
+            users.Setup(_ => _.Add(
+                    It.Is<User>(usr => 
+                        usr.Name == "1" 
+                     && usr.Login == "2" 
+                     && usr.Password == "3")))
+                .Callback(() => checkAdd = true);
+            dataAccess.Setup(_ => _.Complete())
+                .Callback(() => checkComplete = true);
+            var task = controller.RegisterUserAsync("mail", "1", "2", "3");
+            task.Wait();
+
+            Assert.IsTrue(checkAdd);
+            Assert.IsTrue(checkComplete);
+            Assert.IsTrue(task.Result);
+        }
+
+        [TestMethod()]
+        public void RegisterUserAsyncAlreadyExistsTest()
+        {
+            users.Setup(_ => _.GetUserByLogin("2"))
+                .Returns(new User()
+                {
+                    Name = "1",
+                    Login = "2",
+                    Password = "3"
+                });
+
+            var task = controller.RegisterUserAsync("mail", "1", "2", "3");
+            task.Wait();
+
+            Assert.IsFalse(task.Result);
         }
     }
 }
