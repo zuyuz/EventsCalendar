@@ -1,6 +1,8 @@
-﻿namespace EventsScheduler.DAL.Interfaces
+﻿using System;
+
+namespace EventsScheduler.DAL.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IEventRepository Events { get; }
         ILocationRepository Locations { get; }

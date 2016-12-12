@@ -1,5 +1,6 @@
 ﻿using EventsScheduler.DAL;
 using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace EventsScheduler
         private static Controller instance;
 
         private User currentUser;
+
+        public Func<IUnitOfWork> NewUnitOfWork { get; set; }
 
         private Controller()
         {
@@ -40,7 +43,7 @@ namespace EventsScheduler
         {
             return await Task.Run(() =>
             {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                using (var dataManager = NewUnitOfWork())
                 {
                     User user = dataManager.Users.GetUserByLogin(login);
                     if (user != null) // identification
@@ -83,7 +86,7 @@ namespace EventsScheduler
         {
             return await Task.Run(() =>
             {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                using (var dataManager = NewUnitOfWork())
                 {
                     if (dataManager.Users.GetUserByLogin(login) == null)
                     {
@@ -116,7 +119,7 @@ namespace EventsScheduler
             string creatorLogin,
             List<User> participants)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 TimeSpan beginTime = new TimeSpan();
                 TimeSpan endTime = new TimeSpan();
@@ -171,7 +174,7 @@ namespace EventsScheduler
         {
             await Task.Run(() =>
             {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                using (var dataManager = NewUnitOfWork())
                 {
                     if (dataManager.Locations.GetLocationByAddress(address) == null)
                     {
@@ -190,25 +193,9 @@ namespace EventsScheduler
             });
         }
 
-        /// <summary>
-        /// Getter for singleton instance of <c>Controller</c> type
-        /// </summary>
-        public static Controller Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Controller();
-                }
-
-                return instance;
-            }
-        }
-
         public void UpdateEvent(Event oldEvent, Event newEvent)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
                 if (eventInDb != null)
@@ -221,7 +208,7 @@ namespace EventsScheduler
 
         public void RemoveEvent(Event eventToRemove)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 var events = dataManager.Events.GetAll();
 
@@ -250,7 +237,7 @@ namespace EventsScheduler
 
         public void RemoveLocation(string locationAddress)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 var locationToRemove = dataManager.Locations.GetLocationByAddress(locationAddress);
                 if (locationToRemove != null)
@@ -274,5 +261,22 @@ namespace EventsScheduler
                 //}
             }
         }
+
+        /// <summary>
+        /// Getter for singleton instance of <c>Controller</c> type
+        /// </summary>
+        public static Controller Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Controller();
+                    instance.NewUnitOfWork = () => new UnitOfWork(new AppDbContext());
+                }
+
+                return instance;
+            }
+        }        
     }
 }
