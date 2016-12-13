@@ -77,7 +77,7 @@ namespace EventsScheduler
                 editEventWindow.ShowDialog();
                 if(editEventWindow.oldEvent.Name != editEventWindow.newEvent.Name)
                 {
-                    listBoxEvents.SelectedItem = editEventWindow.newEvent.Name;
+                    listBoxEvents.Items[listBoxEvents.SelectedIndex] = editEventWindow.newEvent.Name;
                 }
             }
         }

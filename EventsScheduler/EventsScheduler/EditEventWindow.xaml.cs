@@ -149,10 +149,13 @@ namespace EventsScheduler
             }
             else
             {
-                newEvent.Name = EventNameTextBox.Text;
-                newEvent.EventLocation.Address = locationComboBox.SelectedValue.ToString();
+                if (!oldEvent.Equals(newEvent))
+                {
+                    newEvent.Name = EventNameTextBox.Text;
+                    newEvent.EventLocation.Address = locationComboBox.SelectedValue.ToString();
 
-                App.Controller.UpdateEvent(oldEvent, newEvent);
+                    App.Controller.UpdateEvent(oldEvent, newEvent);
+                }
             }
         }
     }
