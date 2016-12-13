@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using EventsScheduler.DAL;
+using EventsScheduler.DAL.Entities;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace EventsScheduler
@@ -8,7 +10,7 @@ namespace EventsScheduler
     /// </summary>
     public partial class MyEvents : Window
     {
-        List<Entities.Event> events;
+        List<Event> events;
 
 		public MyEvents()
 		{
@@ -17,7 +19,7 @@ namespace EventsScheduler
 			{
 				using (var uOW = new UnitOfWork(new AppDbContext()))
 				{
-                    events = new List<Entities.Event>(uOW.Events.GetCurrentUserEvents(App.Controller.CurrentUser));
+                    events = new List<Event>(uOW.Events.GetCurrentUserEvents(App.Controller.CurrentUser));
                     foreach (var e in events)
                     {
                         listBoxEvents.Items.Add(e.Name);
@@ -31,7 +33,7 @@ namespace EventsScheduler
         {
             if (listBoxEvents.SelectedIndex != -1)
             {
-                Entities.Event ev = events.Find(
+                Event ev = events.Find(
                     i =>
                     {
                         if (i.Name == listBoxEvents.SelectedItem.ToString())
@@ -52,7 +54,7 @@ namespace EventsScheduler
         {
             if (listBoxEvents.SelectedIndex != -1)
             {
-                Entities.Event ev = events.Find(i =>
+                Event ev = events.Find(i =>
                     i.Name == listBoxEvents.SelectedItem.ToString());
                 if (ev != null)
                 {

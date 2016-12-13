@@ -1,9 +1,10 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL.Interfaces;
 using System.Linq;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
-    class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         public UserRepository(AppDbContext context) 
             : base(context)

@@ -1,4 +1,6 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL;
+using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,8 @@ namespace EventsScheduler
         private static Controller instance;
 
         private User currentUser;
+
+        public Func<IUnitOfWork> NewUnitOfWork { get; set; }
 
         private Controller()
         {
@@ -39,14 +43,23 @@ namespace EventsScheduler
         {
             return await Task.Run(() =>
             {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                using (var dataManager = NewUnitOfWork())
                 {
                     User user = dataManager.Users.GetUserByLogin(login);
                     if (user != null) // identification
                     {
                         if (user.Password == password) // authentification
                         {
-                            currentUser = user; // authorization
+                            currentUser = new User()
+                            {
+                                Id = user.Id,
+                                Name = user.Name,
+                                Login = user.Login,
+                                Password = user.Password,
+                                UserRole = user.UserRole,
+                                CreatedEvents = null,
+                                Events = null
+                            }; // authorization
                             return true;
                         }
                     }
@@ -59,11 +72,6 @@ namespace EventsScheduler
         public void SignOut()
         {
             this.currentUser = null;
-        }
-
-        public string GetCurrentUserLogin()
-        {
-            return this.currentUser.Login;
         }
 
         /// <summary>
@@ -82,7 +90,7 @@ namespace EventsScheduler
         {
             return await Task.Run(() =>
             {
-                using (var dataManager = new UnitOfWork(new AppDbContext()))
+                using (var dataManager = NewUnitOfWork())
                 {
                     if (dataManager.Users.GetUserByLogin(login) == null)
                     {
@@ -93,7 +101,6 @@ namespace EventsScheduler
                         registrant.UserRole = User.Role.User;
 
                         dataManager.Users.Add(registrant);
-                        //remove completion if necessary
                         dataManager.Complete();
 
                         return true;
@@ -115,7 +122,7 @@ namespace EventsScheduler
             string creatorLogin,
             List<User> participants)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 TimeSpan beginTime = new TimeSpan();
                 TimeSpan endTime = new TimeSpan();
@@ -166,47 +173,34 @@ namespace EventsScheduler
             }
         }
 
-        public void AddLocation(string address)
+        public async Task AddLocationAsync(string address)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            await Task.Run(() =>
             {
-                if (dataManager.Locations.GetLocationByAddress(address) == null)
+                using (var dataManager = NewUnitOfWork())
                 {
-                    Location location = new Location();
-                    location.Address = address;
+                    if (dataManager.Locations.GetLocationByAddress(address) == null)
+                    {
+                        Location location = new Location();
+                        location.Address = address;
 
-                    dataManager.Locations.Add(location);
+                        dataManager.Locations.Add(location);
 
-                    dataManager.Complete();
+                        dataManager.Complete();
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Location with such address already exists.");
+                    }
                 }
-                else
-                {
-                    throw new ArgumentException("Location with such address already exists.");
-                }
-            }
+            });
         }
 
-        /// <summary>
-        /// Getter for singleton instance of <c>Controller</c> type
-        /// </summary>
-        public static Controller Instance
+        public void UpdateEvent(Event oldEvent, Event newEvent)
         {
-            get
+            using (var dataManager = NewUnitOfWork())
             {
-                if (instance == null)
-                {
-                    instance = new Controller();
-                }
-
-                return instance;
-            }
-        }
-
-        public void UpdateEvent(Entities.Event oldEvent, Entities.Event newEvent)
-        {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
-            {
-                Entities.Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
+                Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
                 if (eventInDb != null)
                 {
                     eventInDb = newEvent;
@@ -215,9 +209,9 @@ namespace EventsScheduler
             }
         }
 
-        public void RemoveEvent(Entities.Event eventToRemove)
+        public void RemoveEvent(Event eventToRemove)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 var events = dataManager.Events.GetAll();
 
@@ -246,7 +240,7 @@ namespace EventsScheduler
 
         public void RemoveLocation(string locationAddress)
         {
-            using (var dataManager = new UnitOfWork(new AppDbContext()))
+            using (var dataManager = NewUnitOfWork())
             {
                 var locationToRemove = dataManager.Locations.GetLocationByAddress(locationAddress);
                 if (locationToRemove != null)
@@ -270,5 +264,22 @@ namespace EventsScheduler
                 //}
             }
         }
+
+        /// <summary>
+        /// Getter for singleton instance of <c>Controller</c> type
+        /// </summary>
+        public static Controller Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Controller();
+                    instance.NewUnitOfWork = () => new UnitOfWork(new AppDbContext());
+                }
+
+                return instance;
+            }
+        }        
     }
 }

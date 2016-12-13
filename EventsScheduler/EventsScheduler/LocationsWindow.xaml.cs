@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventsScheduler.DAL;
+using System;
 using System.Windows;
 
 namespace EventsScheduler
@@ -31,7 +32,7 @@ namespace EventsScheduler
             {
                 try
                 {
-                    Controller.Instance.AddLocation(addressTextBox.Text);
+                    await Controller.Instance.AddLocationAsync(addressTextBox.Text);
                     locationsListBox.Items.Add(addressTextBox.Text);
                 }
                 catch(ArgumentException ex)

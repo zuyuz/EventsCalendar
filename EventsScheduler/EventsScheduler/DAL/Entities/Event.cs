@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EventsScheduler.Entities
+namespace EventsScheduler.DAL.Entities
 {
     [Table("Events")]
     public class Event: IEquatable<Event>

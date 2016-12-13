@@ -1,10 +1,10 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL.Interfaces
 {
-    interface IEventRepository : IRepository<Event>
+    public interface IEventRepository : IRepository<Event>
     {
         IEnumerable<Event> GetEventsInSpecificPeriod(DateTime fromTime, DateTime toTime);
         IEnumerable<Event> GetCurrentUserEvents(Entities.User currentUser);

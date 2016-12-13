@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EventsScheduler.DAL.Entities;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace EventsScheduler
@@ -13,13 +14,13 @@ namespace EventsScheduler
             InitializeComponent();
         }
 
-        List<Entities.Event> events;
+        List<Event> events;
 
-        public DayEvents(List<Entities.Event> ev)
+        public DayEvents(List<DAL.Entities.Event> ev)
         {
             InitializeComponent();
 
-            events = new List<Entities.Event>(ev);
+            events = new List<Event>(ev);
             foreach (var e in events)
             {
                 listBoxEvents.Items.Add(e.Name);
@@ -36,7 +37,7 @@ namespace EventsScheduler
         {
             if (listBoxEvents.SelectedIndex != -1)
             {
-                Entities.Event ev = events.Find(i =>
+                Event ev = events.Find(i =>
                 {
                     if (i.Name == listBoxEvents.SelectedItem.ToString())
                     {
@@ -57,7 +58,7 @@ namespace EventsScheduler
         {
             if (listBoxEvents.SelectedIndex != -1)
             {
-                Entities.Event ev = events.Find(i =>
+                Event ev = events.Find(i =>
                 {
                     if (i.Name == listBoxEvents.SelectedItem.ToString())
                     {
@@ -72,7 +73,7 @@ namespace EventsScheduler
                 {
                     if (Controller.Instance.CurrentUser != null &&
                         (Controller.Instance.CurrentUser == ev.Creator ||
-                        Controller.Instance.CurrentUser.UserRole == Entities.User.Role.Admin))
+                        Controller.Instance.CurrentUser.UserRole == User.Role.Admin))
                     {
                         Controller.Instance.RemoveEvent(ev);
                         listBoxEvents.Items.RemoveAt(listBoxEvents.SelectedIndex);

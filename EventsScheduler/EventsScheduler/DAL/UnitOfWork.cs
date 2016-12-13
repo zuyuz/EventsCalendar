@@ -1,6 +1,7 @@
-﻿using System;
+﻿using EventsScheduler.DAL.Interfaces;
+using System;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
     class UnitOfWork : IUnitOfWork, IDisposable
     {

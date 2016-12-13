@@ -1,17 +1,17 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
 using System.Data.Entity;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
-    class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext() : base("PostgreSQLConnection") {}
 
-        public DbSet<User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
-        public DbSet<Event> Events { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
 
-        public DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

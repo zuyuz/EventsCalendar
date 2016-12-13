@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-
-using EventsScheduler.Entities;
+using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL;
 
 namespace EventsScheduler
 {

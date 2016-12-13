@@ -27,7 +27,7 @@ namespace EventsScheduler
                 this.SignOutItem.Visibility = Visibility.Visible;
                 this.SignInItem.Visibility = Visibility.Collapsed;
                 this.SignUpItem.Visibility = Visibility.Collapsed;
-                this.GreetingLabel.Content = "Hello " + App.Controller.GetCurrentUserLogin() + "!";
+                this.GreetingLabel.Content = "Hello " + App.Controller.CurrentUser.Login + "!";
                 this.CreateEventItem.Visibility = Visibility.Visible;
                 this.ViewMyEventsItem.Visibility = Visibility.Visible;
 
@@ -91,5 +91,12 @@ namespace EventsScheduler
 			MyEvents myEvents = new MyEvents();
 			myEvents.ShowDialog();
 		}
+
+        private void aboutItem_Click(object sender, RoutedEventArgs e)
+        {
+            AboutProgramWindow about = new AboutProgramWindow();
+            about.Owner = this;
+            about.ShowDialog();
+        }
 	}
 }

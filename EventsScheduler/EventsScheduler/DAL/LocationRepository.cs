@@ -1,9 +1,10 @@
-﻿using EventsScheduler.Entities;
+﻿using EventsScheduler.DAL.Entities;
+using EventsScheduler.DAL.Interfaces;
 using System.Linq;
 
-namespace EventsScheduler
+namespace EventsScheduler.DAL
 {
-    class LocationRepository : Repository<Location>, ILocationRepository
+    public class LocationRepository : Repository<Location>, ILocationRepository
     {
         public LocationRepository(AppDbContext context)
             : base(context)
