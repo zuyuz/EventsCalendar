@@ -59,7 +59,18 @@ namespace EventsScheduler.DAL.Entities
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int prime = 31;
+            int result = 1;
+            result = prime * result + ((Name == null) ? 0 : Name.GetHashCode());
+            result = prime * result + ((StartTime == null) ? 0 : StartTime.GetHashCode());
+            result = prime * result + Id.GetHashCode();
+            result = prime * result + ((EndTime == null) ? 0 : EndTime.GetHashCode());
+            result = prime * result + FreePlaces.GetHashCode();
+            result = prime * result + EventLocation.Address.GetHashCode() + EventLocation.Id;
+            result = prime * result + ((Creator == null) ? 0 : Creator.GetHashCode());
+            result = prime * result + ((Participants == null) ? 0 : Participants.GetHashCode());
+
+            return result;
         }
     }
 }

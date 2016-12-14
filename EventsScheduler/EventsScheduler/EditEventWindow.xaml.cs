@@ -1,5 +1,6 @@
 ﻿using EventsScheduler.DAL;
 using EventsScheduler.DAL.Entities;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -145,6 +146,32 @@ namespace EventsScheduler
                     newEvent.Name = EventNameTextBox.Text;
                     newEvent.EventLocation.Address = locationComboBox.SelectedValue.ToString();
 
+                    var begin = DatePickerStart.SelectedDate.Value;
+                    var end = DatePickerEnd.SelectedDate.Value;
+
+
+                    try
+                    {
+                        TimeSpan beginTime = new TimeSpan();
+                        TimeSpan endTime = new TimeSpan();
+                        if (TimeSpan.TryParseExact(beginTimePicker.Value.Value.ToShortTimeString(), @"hh\:mm", null, out beginTime) == false
+                        || TimeSpan.TryParseExact(endTimePicker.Value.Value.ToShortTimeString(), @"hh\:mm", null, out endTime) == false)
+                        {
+                            throw new ArgumentException("Invalid time!\nTime format is HH:MM");
+                        }
+                        begin = begin.Add(beginTime);
+                        end = end.Add(endTime);
+                        if (begin > end)
+                        {
+                            throw new ArgumentException("Invalid period of time");
+                        }
+                    }
+                    catch(ArgumentException)
+                    {
+                        MessageBox.Show("Wrong date or time");
+                    }
+                    newEvent.StartTime = begin;
+                    newEvent.EndTime = end;
                     App.Controller.UpdateEvent(oldEvent, newEvent);
                 }
             }

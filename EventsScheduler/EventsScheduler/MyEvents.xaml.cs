@@ -77,6 +77,7 @@ namespace EventsScheduler
                      i.Name == listBoxEvents.SelectedItem.ToString());
                 EditEventWindow editEventWindow = new EditEventWindow(temp);
                 editEventWindow.ShowDialog();
+                
                 if(editEventWindow.oldEvent.Name != editEventWindow.newEvent.Name)
                 {
                     listBoxEvents.Items[listBoxEvents.SelectedIndex] = editEventWindow.newEvent.Name;

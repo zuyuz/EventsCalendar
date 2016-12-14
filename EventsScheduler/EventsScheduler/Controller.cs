@@ -200,8 +200,14 @@ namespace EventsScheduler
         {
             using (var dataManager = NewUnitOfWork())
             {
-                var ev = dataManager.Events.GetEventsWithSpecificName(oldEvent.Name).FirstOrDefault();
-                ev = newEvent;
+                var ev = dataManager.Events.GetEventsWithSpecificName(oldEvent.Name).First();
+                ev.EndTime = newEvent.EndTime;
+                ev.EventLocation = newEvent.EventLocation;
+                ev.FreePlaces = newEvent.FreePlaces;
+                ev.Name = newEvent.Name;
+                ev.Participants = new List<User>(newEvent.Participants);
+                ev.StartTime = newEvent.StartTime;
+
                 dataManager.Complete();
             }
         }
