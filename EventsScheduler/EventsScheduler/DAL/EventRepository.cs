@@ -3,6 +3,7 @@ using EventsScheduler.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace EventsScheduler.DAL
 {
@@ -21,6 +22,8 @@ namespace EventsScheduler.DAL
         public IEnumerable<Event> GetEventsWithSpecificName(string eventName)
         {
             return (from ev in AppDbContext.Events
+                                .Include(_ => _.Creator)
+                                .Include(_ => _.EventLocation)
                     where ev.Name == eventName
                     select ev).ToList();
         }
