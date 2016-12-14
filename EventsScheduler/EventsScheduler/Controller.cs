@@ -200,12 +200,9 @@ namespace EventsScheduler
         {
             using (var dataManager = NewUnitOfWork())
             {
-                Event eventInDb = (dataManager.Events.Find(i => i.Name == oldEvent.Name)).Last();
-                if (eventInDb != null)
-                {
-                    eventInDb = newEvent;
-                    dataManager.Complete();
-                }
+                var ev = dataManager.Events.GetEventsWithSpecificName(oldEvent.Name).FirstOrDefault();
+                ev = newEvent;
+                dataManager.Complete();
             }
         }
 

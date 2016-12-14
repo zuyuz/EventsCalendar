@@ -18,6 +18,13 @@ namespace EventsScheduler.DAL
             get { return Context as AppDbContext; }
         }
 
+        public IEnumerable<Event> GetEventsWithSpecificName(string eventName)
+        {
+            return (from ev in AppDbContext.Events
+                    where ev.Name == eventName
+                    select ev).ToList();
+        }
+
         public IEnumerable<Event> GetEventsInSpecificPeriod(DateTime fromTime, DateTime toTime)
         {
             if (fromTime > toTime)
